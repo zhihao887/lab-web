@@ -2,12 +2,12 @@
   <PageHero
     eyebrow="Projects"
     title="研究项目"
-    description="项目页依据 lab-web.md 的研究问题整理，展示蛋白生成、医学图像、舌象识别、天然分子筛选、结合点位预测与 DTA 预测课题。"
+    description="围绕实验室的核心研究方向，展示项目问题、阶段状态、代表成果和资源入口。"
   />
 
   <section class="section">
     <div class="projects-grid">
-      <article v-for="project in projects" :key="project.id" class="project-card">
+      <RouterLink v-for="project in projects" :key="project.id" :to="`/projects/${project.id}`" class="project-card">
         <div class="project-visual" :class="`accent-${project.accent}`">
           <span class="matrix-cell c1"></span>
           <span class="matrix-cell c2"></span>
@@ -19,23 +19,19 @@
           <span class="status">{{ project.status }}</span>
           <h2>{{ project.title }}</h2>
           <p>{{ project.description }}</p>
+          <p class="project-problem">{{ project.problem }}</p>
+          <div class="project-meta-row">
+            <span>负责人：{{ project.lead }}</span>
+            <span>{{ project.phase }}</span>
+          </div>
           <div class="tag-row">
             <span v-for="tag in project.tags" :key="tag">{{ tag }}</span>
           </div>
           <div class="project-links">
-            <a
-              v-for="link in project.links"
-              :key="link.label"
-              :href="link.href"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="button secondary small"
-            >
-              {{ link.label }}
-            </a>
+            <span class="button secondary small">项目档案</span>
           </div>
         </div>
-      </article>
+      </RouterLink>
     </div>
   </section>
 </template>

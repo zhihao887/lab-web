@@ -45,6 +45,38 @@
       发送申请邮件
     </a>
   </section>
+
+  <section class="section join-detail-grid">
+    <article class="mini-panel">
+      <p class="eyebrow">Open Roles</p>
+      <h2>开放类型</h2>
+      <ul class="check-list">
+        <li>长期研究助理：适合准备申请研究生、博士或科研岗位的同学</li>
+        <li>学生科研：适合本科生、硕士生从复现、数据整理和基线搭建开始</li>
+        <li>合作项目：欢迎医学、生物、药学和计算方向的交叉合作</li>
+      </ul>
+    </article>
+
+    <article class="mini-panel">
+      <p class="eyebrow">Materials</p>
+      <h2>申请材料</h2>
+      <ul class="check-list">
+        <li>简历或个人介绍，说明教育背景、技能栈和可投入时间</li>
+        <li>一段最感兴趣的研究方向，以及为什么想参与</li>
+        <li>可选：论文复现、课程项目、代码仓库或科研经历链接</li>
+      </ul>
+    </article>
+
+    <article class="mini-panel">
+      <p class="eyebrow">Commitment</p>
+      <h2>投入建议</h2>
+      <ul class="check-list">
+        <li>建议至少连续投入 3 个月以上，便于完成一个可复盘的小任务</li>
+        <li>每周稳定同步进展，重视实验记录、代码可复现和阶段总结</li>
+        <li>医学相关演示和数据处理需遵守科研伦理和数据合规要求</li>
+      </ul>
+    </article>
+  </section>
 </template>
 
 <script setup>
