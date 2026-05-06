@@ -1,0 +1,257 @@
+export const siteInfo = {
+  name: '医智矩阵实验室',
+  nameEn: 'Medical AI Lab',
+  subtitle: '面向可信医学智能的交叉研究团队',
+  email: 'contact@medical-ai-lab.example',
+  location: '北京 · 临床数据智能联合空间',
+}
+
+export const navItems = [
+  { label: '首页', path: '/' },
+  { label: '团队', path: '/people' },
+  { label: '成果', path: '/publications' },
+  { label: '动态', path: '/news' },
+  { label: '项目', path: '/projects' },
+  { label: '加入我们', path: '/join' },
+]
+
+export const stats = [
+  { value: '6', label: '研究方向' },
+  { value: '18+', label: '合作课题' },
+  { value: '42', label: '论文与预印本' },
+  { value: '9', label: '临床场景' },
+]
+
+export const researchAreas = [
+  {
+    slug: 'ehr',
+    title: '多模态电子病历预测',
+    eyebrow: 'EHR Intelligence',
+    description: '融合表格、时序、文本与影像线索，构建可解释的风险预测与临床分层模型。',
+    metrics: ['时序建模', '风险评估', '可解释性'],
+  },
+  {
+    slug: 'llm',
+    title: '医学大模型与智能体',
+    eyebrow: 'Medical LLM',
+    description: '面向问诊、病历摘要、指南推理和科研助理，探索可靠、可控、可评测的医学语言模型。',
+    metrics: ['检索增强', '安全对齐', '多智能体'],
+  },
+  {
+    slug: 'clinical',
+    title: '临床决策支持平台',
+    eyebrow: 'Clinical Copilot',
+    description: '把模型能力嵌入真实临床流程，提供医生可审阅、可追溯、可落地的辅助决策体验。',
+    metrics: ['工作流', '人机协同', '审计追踪'],
+  },
+  {
+    slug: 'science',
+    title: 'AI for Science 工具链',
+    eyebrow: 'Research Platform',
+    description: '帮助医学研究者完成数据整理、统计分析、实验管理与结果解释，降低 AI 技术门槛。',
+    metrics: ['自动分析', '实验编排', '知识发现'],
+  },
+]
+
+export const people = [
+  {
+    name: '林知远',
+    role: '实验室负责人',
+    group: 'leadership',
+    title: '研究员 / 博士生导师',
+    bio: '关注可信医学 AI、临床预测模型与医疗大模型评测。',
+    expertise: ['医学 AI', '临床决策', '模型评测'],
+  },
+  {
+    name: '周亦然',
+    role: '学术指导',
+    group: 'leadership',
+    title: '计算机学院教授',
+    bio: '长期从事数据智能、软件工程与跨学科医疗系统研究。',
+    expertise: ['数据智能', '软件工程', '医疗系统'],
+  },
+  {
+    name: '陈沐晴',
+    role: '核心成员',
+    group: 'core',
+    title: '博士后研究员',
+    bio: '负责医疗多模态学习与真实世界数据建模方向。',
+    expertise: ['多模态学习', '真实世界数据'],
+  },
+  {
+    name: '许嘉禾',
+    role: '核心成员',
+    group: 'core',
+    title: '博士研究生',
+    bio: '研究医学智能体、病历摘要和临床流程自动化。',
+    expertise: ['医学智能体', '病历摘要'],
+  },
+  {
+    name: '赵令仪',
+    role: '团队成员',
+    group: 'members',
+    title: '硕士研究生',
+    bio: '探索可解释预测模型与 ICU 风险评估任务。',
+    expertise: ['ICU 建模', '可解释 AI'],
+  },
+  {
+    name: '王景行',
+    role: '团队成员',
+    group: 'members',
+    title: '研究助理',
+    bio: '参与医学数据治理、模型训练与平台工程开发。',
+    expertise: ['数据治理', '平台工程'],
+  },
+  {
+    name: '宋清越',
+    role: '团队成员',
+    group: 'members',
+    title: '本科生科研',
+    bio: '关注医学问答评测、知识库构建与前端可视化。',
+    expertise: ['知识库', '可视化'],
+  },
+]
+
+export const publications = [
+  {
+    id: 'pub-001',
+    title: '面向临床路径推理的医学大模型可靠性评测框架',
+    authors: '林知远, 许嘉禾, 陈沐晴',
+    venue: '医学人工智能与健康计算会议',
+    year: '2026',
+    type: 'conference',
+    tag: '医学大模型',
+    featured: true,
+    link: '#',
+    abstract: '提出覆盖指南检索、证据归因与安全拒答的评测协议。',
+  },
+  {
+    id: 'pub-002',
+    title: '融合时序事件与临床文本的住院风险动态预测',
+    authors: '赵令仪, 王景行, 林知远',
+    venue: 'Journal of Biomedical Informatics',
+    year: '2025',
+    type: 'journal',
+    tag: '电子病历',
+    featured: true,
+    link: '#',
+    abstract: '在多中心住院队列中验证跨模态表征对早期预警的提升。',
+  },
+  {
+    id: 'pub-003',
+    title: '用于医疗科研自动化的自然语言分析工作流',
+    authors: '陈沐晴, 宋清越',
+    venue: 'AI for Science Workshop',
+    year: '2025',
+    type: 'conference',
+    tag: 'AI for Science',
+    featured: false,
+    link: '#',
+    abstract: '以自然语言编排数据清洗、统计建模和可视化分析任务。',
+  },
+  {
+    id: 'pub-004',
+    title: '可审计临床决策支持系统的人机协同设计',
+    authors: '周亦然, 林知远',
+    venue: 'Healthcare Systems Review',
+    year: '2024',
+    type: 'journal',
+    tag: '临床决策',
+    featured: false,
+    link: '#',
+    abstract: '讨论面向医生审阅、模型追踪和风险告警的产品化路径。',
+  },
+  {
+    id: 'pub-005',
+    title: '多智能体协作在复杂病例讨论中的行为边界',
+    authors: '许嘉禾, 陈沐晴, 林知远',
+    venue: 'arXiv preprint',
+    year: '2024',
+    type: 'preprint',
+    tag: '医学智能体',
+    featured: false,
+    link: '#',
+    abstract: '分析多智能体在诊疗建议、证据校验和冲突消解中的稳定性。',
+  },
+]
+
+export const newsItems = [
+  {
+    id: 'news-001',
+    title: '实验室发布医学大模型评测基准内测版',
+    excerpt: '新基准覆盖临床问答、指南推理、病历摘要与安全拒答等任务。',
+    date: '2026-04-18',
+    category: 'research',
+    featured: true,
+  },
+  {
+    id: 'news-002',
+    title: '医智矩阵实验室开放长期研究助理岗位',
+    excerpt: '欢迎对医学 AI、数据智能和平台工程感兴趣的同学加入。',
+    date: '2026-03-26',
+    category: 'recruiting',
+    featured: true,
+  },
+  {
+    id: 'news-003',
+    title: '团队受邀分享临床 AI 产品化经验',
+    excerpt: '报告聚焦医生工作流、模型审计和真实世界部署中的关键挑战。',
+    date: '2026-02-11',
+    category: 'event',
+    featured: false,
+  },
+  {
+    id: 'news-004',
+    title: '多模态电子病历预测论文被期刊接收',
+    excerpt: '工作验证了文本、检验指标和时序事件联合建模的稳定收益。',
+    date: '2025-12-08',
+    category: 'achievement',
+    featured: false,
+  },
+]
+
+export const projects = [
+  {
+    id: 'proj-001',
+    title: 'ClinPilot 临床智能副驾',
+    description: '面向医生查房、病历整理和风险提示的可审阅 AI 工作台。',
+    tags: ['临床工作流', '大模型', '审计追踪'],
+    status: '原型验证',
+    accent: 'teal',
+    links: [{ label: 'Demo', href: '#' }],
+  },
+  {
+    id: 'proj-002',
+    title: 'EHR-Fusion 风险预测引擎',
+    description: '融合检验、医嘱、诊断、文本和生命体征的时序预测工具链。',
+    tags: ['EHR', '时序模型', '风险分层'],
+    status: '持续迭代',
+    accent: 'blue',
+    links: [{ label: 'GitHub', href: '#' }],
+  },
+  {
+    id: 'proj-003',
+    title: 'MedAgentBoard 评测平台',
+    description: '评估医学智能体在病例讨论、检索归因和安全决策中的表现。',
+    tags: ['智能体', 'Benchmark', '安全评测'],
+    status: '公开测试',
+    accent: 'amber',
+    links: [{ label: '数据集', href: '#' }],
+  },
+  {
+    id: 'proj-004',
+    title: 'SciFlow 医学科研助手',
+    description: '通过自然语言生成分析流程，支持队列筛选、统计建模和图表汇总。',
+    tags: ['AI for Science', '自动分析', '科研平台'],
+    status: '内部试用',
+    accent: 'rose',
+    links: [{ label: '文档', href: '#' }],
+  },
+]
+
+export const joinReasons = [
+  { title: '真实临床问题', description: '围绕诊疗效率、风险预警和科研自动化开展有落点的研究。' },
+  { title: '交叉团队协作', description: '与医院、计算机、统计和产品工程同学一起推进项目。' },
+  { title: '完整成长路径', description: '从文献复现、数据处理到论文写作和系统交付都有导师支持。' },
+  { title: '开放工程文化', description: '鼓励透明复盘、可复用工具和面向真实用户的快速验证。' },
+]
