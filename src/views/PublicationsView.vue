@@ -2,7 +2,7 @@
   <PageHero
     eyebrow="Publications"
     title="研究成果"
-    description="这里展示医学大模型、电子病历预测、临床决策支持和 AI for Science 方向的占位成果，筛选逻辑已完整实现。"
+    description="这里展示蛋白质设计、药物发现、医学影像、舌象多模态理解和生物分子交互预测方向的占位成果，筛选逻辑已完整实现。"
   />
 
   <section class="section">

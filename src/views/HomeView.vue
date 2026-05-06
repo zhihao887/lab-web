@@ -2,10 +2,10 @@
   <section class="hero-section">
     <HeroVisual />
     <div class="hero-content">
-      <p class="eyebrow">Medical AI · Clinical Decision · Research Platform</p>
-      <h1>构建可信、可用、可落地的医学人工智能</h1>
+      <p class="eyebrow">BioAI · Drug Discovery · Medical Imaging</p>
+      <h1>面向蛋白质设计、药物发现与医学影像的智能计算</h1>
       <p class="hero-lede">
-        医智矩阵实验室聚焦医学大模型、多模态电子病历、临床决策支持与 AI for Science 工具链，让模型能力进入可审阅的真实医疗流程。
+        智能医学与生物计算实验室聚焦靶点特异性蛋白生成、天然分子筛选、药物-靶标亲和力预测、医学图像分类与开放世界舌象多模态理解。
       </p>
       <div class="hero-actions">
         <RouterLink class="button primary" to="/publications">查看研究成果</RouterLink>
@@ -57,9 +57,9 @@
   <section class="section split-section">
     <div>
       <p class="eyebrow">Publications</p>
-      <h2>从论文到平台的医学 AI 研究闭环</h2>
+      <h2>从分子表征到医学智能的研究闭环</h2>
       <p>
-        团队同时推进基础模型评测、临床预测建模和面向医生的产品原型，用工程化方式缩短研究与临床实践之间的距离。
+        团队围绕数据表征、动态融合、生成建模和可信评测推进长期课题，让算法假设能够落到可复现的实验流程与可解释的验证结果中。
       </p>
       <RouterLink class="button primary" to="/projects">浏览项目</RouterLink>
     </div>

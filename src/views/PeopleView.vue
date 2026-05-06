@@ -2,7 +2,7 @@
   <PageHero
     eyebrow="People"
     title="团队成员"
-    description="实验室由计算机、医学、统计和产品工程背景的成员组成，围绕可信医学智能开展长期协作。"
+    description="实验室由机器学习、生物信息、医学影像、药物发现和多模态学习背景的成员组成，围绕智能医学与生物计算开展长期协作。"
   />
 
   <section class="section">

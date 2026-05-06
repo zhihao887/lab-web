@@ -26,7 +26,7 @@ const router = createRouter({
 
 router.afterEach((to) => {
   const suffix = to.meta.title ? `${to.meta.title} - ` : ''
-  document.title = `${suffix}医智矩阵实验室`
+  document.title = `${suffix}智能医学与生物计算实验室`
 })
 
 export default router

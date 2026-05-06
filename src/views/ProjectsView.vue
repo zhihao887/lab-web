@@ -2,7 +2,7 @@
   <PageHero
     eyebrow="Projects"
     title="研究项目"
-    description="项目页展示从模型、工具链到临床原型的占位项目卡片，方便后续替换真实 demo 与仓库链接。"
+    description="项目页依据 lab-web.md 的研究问题整理，展示蛋白生成、医学图像、舌象识别、天然分子筛选、结合点位预测与 DTA 预测课题。"
   />
 
   <section class="section">
