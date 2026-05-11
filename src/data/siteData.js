@@ -1714,62 +1714,55 @@ export const researchAreas = [
 ]
 
 export const people = [
-  {
-    name: '林知远',
-    role: '实验室负责人',
-    group: 'leadership',
-    title: '研究员 / 博士生导师',
-    bio: '关注深度生成模型、生物分子设计与智能药物发现中的可解释评测。',
-    expertise: ['蛋白质设计', '药物发现', '生成模型'],
-  },
-  {
-    name: '周亦然',
-    role: '学术指导',
-    group: 'leadership',
-    title: '计算机学院教授',
-    bio: '长期从事机器学习、数据智能与生命健康交叉计算方法研究。',
-    expertise: ['机器学习', '生物计算', '跨模态建模'],
-  },
-  {
-    name: '陈沐晴',
-    role: '核心成员',
-    group: 'core',
-    title: '博士后研究员',
-    bio: '负责天然分子表征、抗衰靶点筛选与药效语义约束建模。',
-    expertise: ['天然分子筛选', '抗衰靶点', '表征学习'],
-  },
-  {
-    name: '许嘉禾',
-    role: '核心成员',
-    group: 'core',
-    title: '博士研究生',
-    bio: '研究药物-靶标亲和力预测、蛋白质结合点位识别与动态融合机制。',
-    expertise: ['DTA 预测', '结合位点', '结构生物信息'],
-  },
-  {
-    name: '赵令仪',
-    role: '团队成员',
-    group: 'members',
-    title: '硕士研究生',
-    bio: '探索复杂病灶表征、医学图像分类和可信度校准方法。',
-    expertise: ['医学影像', '可信分类', '小样本学习'],
-  },
-  {
-    name: '王景行',
-    role: '团队成员',
-    group: 'members',
-    title: '研究助理',
-    bio: '参与舌象多模态数据整理、开放世界识别基线与系统原型开发。',
-    expertise: ['舌象识别', '多模态学习', '数据治理'],
-  },
-  {
-    name: '宋清越',
-    role: '团队成员',
-    group: 'members',
-    title: '本科生科研',
-    bio: '关注蛋白质序列特征、结构先验知识与自动化实验评测流程。',
-    expertise: ['蛋白序列', '结构先验', '实验评测'],
-  },
+  { name: '芦安洋', role: '实验室主任', group: 'directors', problemTitle: '多智能体技术学习、使用、改进' },
+  { name: '钱熠凝', role: '副主任', group: 'directors', problemTitle: '' },
+
+  // 控制理论
+  { name: '张佳楠', group: 'control-theory', category: '控制理论', problemTitle: '多目标可靠跟踪' },
+  { name: '王庆杰', group: 'control-theory', category: '控制理论', problemTitle: '多目标可靠跟踪' },
+  { name: '赵冬可', group: 'control-theory', category: '控制理论', problemTitle: '攻击设计/检测/识别' },
+  { name: '张满', group: 'control-theory', category: '控制理论', problemTitle: '攻击设计/检测/识别' },
+  { name: '崔崇熠', group: 'control-theory', category: '控制理论', problemTitle: '攻击设计/检测/识别' },
+  { name: '李家庚', group: 'control-theory', category: '控制理论', problemTitle: '无模型全自主真实世界强化学习' },
+  { name: '纪寒康', group: 'control-theory', category: '控制理论', problemTitle: '安全状态估计' },
+  { name: '杜爽', group: 'control-theory', category: '控制理论', problemTitle: '多无人机围捕' },
+
+  // 无人系统
+  { name: '尹利榜', group: 'unmanned-systems', category: '无人系统', problemTitle: '更灵活与更安全的多机悬吊负载' },
+  { name: '周圣岳', group: 'unmanned-systems', category: '无人系统', problemTitle: '无人机负载识别与控制' },
+  { name: '张小辉', group: 'unmanned-systems', category: '无人系统', problemTitle: '无人机负载识别与控制' },
+  { name: '朱立秋', group: 'unmanned-systems', category: '无人系统', problemTitle: '复杂环境下的机器人环境理解与智能决策' },
+  { name: '田傲祥', group: 'unmanned-systems', category: '无人系统', problemTitle: '基于视觉的四旋翼无人机端到端避障' },
+  { name: '李锦震', group: 'unmanned-systems', category: '无人系统', problemTitle: '轮腿机器人避障越障协同' },
+  { name: '韩丙羲', group: 'unmanned-systems', category: '无人系统', problemTitle: '轮腿机器人避障越障协同' },
+  { name: '郁有冬', group: 'unmanned-systems', category: '无人系统', problemTitle: '多模态融合的端到端自动驾驶与轨迹规划' },
+  { name: '于佳琪', group: 'unmanned-systems', category: '无人系统', problemTitle: '机械臂多模态感知协同与动态干扰下高精度控制' },
+  { name: '孙显鹏', group: 'unmanned-systems', category: '无人系统', problemTitle: '复杂场景下基于强化学习的机械臂物体抓取' },
+  { name: '张灿', group: 'unmanned-systems', category: '无人系统', problemTitle: '复杂场景下基于强化学习的机械臂物体抓取' },
+  { name: '钱炜', group: 'unmanned-systems', category: '无人系统', problemTitle: '扩散模型在无人系统轨迹规划中的应用' },
+  { name: '刘星昊', group: 'unmanned-systems', category: '无人系统', problemTitle: '扩散模型在无人系统轨迹规划中的应用' },
+  { name: '郑晓虎', group: 'unmanned-systems', category: '无人系统', problemTitle: '机械臂在复杂环境下的小目标识别定位抓取' },
+  { name: '孙秉旭', group: 'unmanned-systems', category: '无人系统', problemTitle: '面向高安全要求场景的通用语义级SLAM框架' },
+  { name: '崔瑞航', group: 'unmanned-systems', category: '无人系统', problemTitle: '面向高安全要求场景的通用语义级SLAM框架' },
+  { name: '张政', group: 'unmanned-systems', category: '无人系统', problemTitle: '具有理论安全保证的无人机高速实时避障' },
+  { name: '邢锦文', group: 'unmanned-systems', category: '无人系统', problemTitle: '四旋翼无人机端到端避障' },
+
+  // 人工智能
+  { name: '孙兴泽', group: 'artificial-intelligence', category: '人工智能', problemTitle: '靶点特异性蛋白生成' },
+  { name: '崔鹏珊', group: 'artificial-intelligence', category: '人工智能', problemTitle: '医学图像分类' },
+  { name: '徐刘义', group: 'artificial-intelligence', category: '人工智能', problemTitle: '开放世界复杂舌象识别的多模态大模型' },
+  { name: '陈明', group: 'artificial-intelligence', category: '人工智能', problemTitle: '开放世界复杂舌象识别的多模态大模型' },
+  { name: '郭蕴', group: 'artificial-intelligence', category: '人工智能', problemTitle: '开放世界复杂舌象识别的多模态大模型' },
+  { name: '王清', group: 'artificial-intelligence', category: '人工智能', problemTitle: '开放世界复杂舌象识别的多模态大模型' },
+  { name: '敦子晗', group: 'artificial-intelligence', category: '人工智能', problemTitle: '面向抗衰靶点的天然分子筛选' },
+  { name: '张学文', group: 'artificial-intelligence', category: '人工智能', problemTitle: '如何让Agent变成实用工具' },
+  { name: '高一鸣', group: 'artificial-intelligence', category: '人工智能', problemTitle: '蛋白质核苷酸结合点位预测' },
+  { name: '何天宇', group: 'artificial-intelligence', category: '人工智能', problemTitle: '药物-靶标亲和力（DTA）预测' },
+
+  // 工程项目
+  { name: '陈业凡', group: 'engineering-projects', category: '工程项目', problemTitle: '燃气轮机及压缩机建模' },
+  { name: '张兴政', group: 'engineering-projects', category: '工程项目', problemTitle: '燃气轮机及压缩机建模' },
+  { name: '吴昊隆', group: 'engineering-projects', category: '工程项目', problemTitle: '压缩机组负荷分配优化' },
 ]
 
 export const publications = [
