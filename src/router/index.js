@@ -9,6 +9,7 @@ import ResearchDetailView from '../views/ResearchDetailView.vue'
 import PublicationDetailView from '../views/PublicationDetailView.vue'
 import ProjectDetailView from '../views/ProjectDetailView.vue'
 import ResourcesView from '../views/ResourcesView.vue'
+import { siteInfo } from '../data/siteData'
 
 const routes = [
   { path: '/', name: 'home', component: HomeView, meta: { title: '首页' } },
@@ -34,7 +35,7 @@ const router = createRouter({
 
 router.afterEach((to) => {
   const suffix = to.meta.title ? `${to.meta.title} - ` : ''
-  document.title = `${suffix}智能医学与生物计算实验室`
+  document.title = `${suffix}${siteInfo.name}`
 })
 
 export default router

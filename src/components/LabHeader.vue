@@ -1,6 +1,6 @@
 <template>
   <header class="lab-header">
-    <RouterLink class="brand" to="/" aria-label="智能医学与生物计算实验室首页" @click="closeMenu">
+    <RouterLink class="brand" to="/" :aria-label="`${siteInfo.name}首页`" @click="closeMenu">
       <img src="/logo.svg" alt="" class="brand-mark" />
       <span class="brand-copy">
         <strong>{{ siteInfo.name }}</strong>

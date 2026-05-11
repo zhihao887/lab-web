@@ -2,7 +2,7 @@
   <PageHero
     eyebrow="Publications"
     title="研究成果"
-    description="展示实验室在蛋白质设计、药物发现、医学影像、舌象多模态理解和生物分子交互预测方向的论文、报告与可复现成果。"
+    description="展示问题研究社围绕控制理论、无人系统、人工智能与工程项目沉淀的论文、报告与可复现成果。"
   />
 
   <section class="section">
@@ -37,10 +37,9 @@
     </div>
 
     <div v-if="filteredPublications.length" class="publication-list">
-      <RouterLink
+      <article
         v-for="pub in filteredPublications"
         :key="pub.id"
-        :to="`/publications/${pub.id}`"
         class="publication-item"
       >
         <div>
@@ -49,13 +48,25 @@
           <p class="authors">{{ pub.authors }}</p>
           <p>{{ pub.abstract }}</p>
           <div class="tag-row publication-links">
+            <span>{{ pub.paper ? 'Paper 可访问' : 'Paper 建设中' }}</span>
             <span>{{ pub.pdf ? 'PDF 可访问' : 'PDF 建设中' }}</span>
             <span>{{ pub.code ? 'Code 可访问' : 'Code 建设中' }}</span>
             <span>{{ pub.dataset ? 'Dataset 可访问' : 'Dataset 建设中' }}</span>
           </div>
         </div>
-        <span class="button secondary small">查看详情</span>
-      </RouterLink>
+        <div class="publication-actions">
+          <a
+            v-if="pub.paper"
+            class="button secondary small"
+            :href="pub.paper"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Paper
+          </a>
+          <RouterLink class="button secondary small" :to="`/publications/${pub.id}`">查看详情</RouterLink>
+        </div>
+      </article>
     </div>
 
     <div v-else class="empty-state">

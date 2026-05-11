@@ -20,10 +20,22 @@
     </div>
 
     <div class="resource-grid">
-      <article v-for="resource in group.items" :key="resource.id" class="resource-card">
+      <component
+        :is="resource.href ? 'a' : 'article'"
+        v-for="resource in group.items"
+        :key="resource.id"
+        class="resource-card"
+        :class="{ 'is-clickable': resource.href, 'is-pending': !resource.href }"
+        :href="resource.href || undefined"
+        :target="resource.href ? '_blank' : undefined"
+        :rel="resource.href ? 'noopener noreferrer' : undefined"
+      >
         <span class="status">{{ resource.status }}</span>
         <h3>{{ resource.title }}</h3>
         <p>{{ resource.description }}</p>
+        <p class="resource-card-note">
+          {{ resource.href ? '点击卡片或按钮打开资源入口。' : '资源整理完成后，这张卡片会变成可点击入口。' }}
+        </p>
         <dl class="meta-list compact">
           <div>
             <dt>负责人</dt>
@@ -34,17 +46,11 @@
             <dd>{{ formatDate(resource.updated) }}</dd>
           </div>
         </dl>
-        <a
-          v-if="resource.href"
-          :href="resource.href"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button secondary small"
-        >
+        <span v-if="resource.href" class="button secondary small">
           打开资源
-        </a>
+        </span>
         <span v-else class="button secondary small disabled">建设中</span>
-      </article>
+      </component>
     </div>
   </section>
 </template>

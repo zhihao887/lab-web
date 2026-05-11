@@ -60,19 +60,30 @@
             </div>
             <div>
               <dt>DOI</dt>
-              <dd>{{ publication.doi || '待发布' }}</dd>
+              <dd>
+                <a
+                  v-if="publication.paper"
+                  :href="publication.paper"
+                  class="text-link inline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {{ publication.doi || 'Paper' }}
+                </a>
+                <span v-else>{{ publication.doi || '待发布' }}</span>
+              </dd>
             </div>
           </dl>
         </div>
 
-        <div class="meta-panel">
+        <div v-if="linkedArea" class="meta-panel">
           <h2>关联方向</h2>
-          <RouterLink v-if="linkedArea" :to="`/research/${linkedArea.slug}`" class="text-link">
+          <RouterLink :to="`/research/${linkedArea.slug}`" class="text-link">
             {{ linkedArea.title }}
           </RouterLink>
         </div>
 
-        <div class="meta-panel">
+        <div v-if="linkedProjects.length" class="meta-panel">
           <h2>关联项目</h2>
           <RouterLink v-for="project in linkedProjects" :key="project.id" :to="`/projects/${project.id}`" class="text-link">
             {{ project.title }}
@@ -82,9 +93,20 @@
         <div class="meta-panel">
           <h2>资源与文件</h2>
           <div class="resource-mini-list">
-            <span v-for="link in assetLinks" :key="link.label" class="resource-mini">
+            <a
+              v-for="link in availableAssetLinks"
+              :key="link.label"
+              class="resource-mini resource-mini-link"
+              :href="link.href"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <b>{{ link.label }}</b>
-              <small>{{ link.href ? '可访问' : '建设中' }}</small>
+              <small>{{ link.note || '可访问' }}</small>
+            </a>
+            <span v-for="link in pendingAssetLinks" :key="link.label" class="resource-mini">
+              <b>{{ link.label }}</b>
+              <small>建设中</small>
             </span>
           </div>
           <RouterLink to="/resources" class="button secondary small">查看资源页</RouterLink>
@@ -118,10 +140,13 @@ const publication = computed(() => publications.find((item) => item.id === route
 const linkedArea = computed(() => researchAreas.find((item) => item.slug === publication.value?.researchSlug))
 const linkedProjects = computed(() => projects.filter((item) => publication.value?.projectIds.includes(item.id)))
 const assetLinks = computed(() => [
+  { label: 'Paper', href: publication.value?.paper, note: 'IEEE Xplore' },
   { label: 'PDF', href: publication.value?.pdf },
   { label: 'Code', href: publication.value?.code },
   { label: 'Dataset', href: publication.value?.dataset },
 ])
+const availableAssetLinks = computed(() => assetLinks.value.filter((link) => link.href))
+const pendingAssetLinks = computed(() => assetLinks.value.filter((link) => !link.href))
 
 const typeLabel = (value) => {
   const labels = {
