@@ -1,7 +1,5 @@
 <template>
   <template v-if="area">
-    <PageHero :eyebrow="area.eyebrow" :title="area.title" :description="area.description" />
-
     <section class="section detail-layout">
       <article class="detail-main">
         <div class="content-block">
@@ -110,7 +108,6 @@
   </template>
 
   <template v-else>
-    <PageHero eyebrow="Research" title="未找到研究方向" description="该研究方向可能已经调整，请返回首页查看当前方向列表。" />
     <section class="section">
       <div class="empty-state">
         <h2>研究方向不存在</h2>

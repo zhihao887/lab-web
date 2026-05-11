@@ -877,7 +877,7 @@ button {
 }
 
 .page-hero {
-  padding: 142px 24px 72px;
+  padding: 110px 24px 32px;
   border-bottom: 1px solid rgba(220, 232, 242, 0.78);
   background:
     linear-gradient(90deg, rgba(255, 255, 255, 0.68), rgba(255, 255, 255, 0)),
@@ -891,16 +891,16 @@ button {
 
 .page-hero h1 {
   margin: 0;
-  font-size: 3rem;
-  line-height: 1.15;
+  font-size: 1.8rem;
+  line-height: 1.25;
 }
 
 .page-hero p:last-child {
   max-width: 760px;
-  margin: 18px 0 0;
+  margin: 8px 0 0;
   color: #40546d;
-  font-size: 1.08rem;
-  line-height: 1.8;
+  font-size: 0.85rem;
+  line-height: 1.6;
 }
 
 .people-group + .people-group {
@@ -2439,6 +2439,11 @@ button {
     padding-bottom: 62px;
   }
 
+  .page-hero {
+    padding-top: 90px;
+    padding-bottom: 24px;
+  }
+
   .section-heading {
     display: block;
   }
@@ -2447,7 +2452,7 @@ button {
   .split-section h2,
   .join-panel h2,
   .page-hero h1 {
-    font-size: 2.1rem;
+    font-size: 1.8rem;
   }
 
   .section-heading a {

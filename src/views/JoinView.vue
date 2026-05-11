@@ -1,10 +1,4 @@
 <template>
-  <PageHero
-    eyebrow="Join Us"
-    title="加入我们"
-    description="我们长期欢迎对深度学习、生物信息、药物发现、医学影像和蛋白质建模感兴趣的同学参与研究与系统建设。"
-  />
-
   <section class="section">
     <div class="reason-grid">
       <article v-for="reason in joinReasons" :key="reason.title" class="reason-card">

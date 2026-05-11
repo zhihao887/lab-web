@@ -1,10 +1,4 @@
 <template>
-  <PageHero
-    eyebrow="Resources"
-    title="资源与演示入口"
-    description="集中展示实验室的数据集、代码、模型演示和文档入口。未公开内容会标记为建设中，医学相关演示仅用于科研展示。"
-  />
-
   <section class="section resource-notice">
     <p>
       本页资源用于科研复现、协作和成果展示。医学图像与舌象相关演示不用于临床诊断、治疗建议或个人健康决策。

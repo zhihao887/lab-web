@@ -1,10 +1,4 @@
 <template>
-  <PageHero
-    eyebrow="Publications"
-    title="研究成果"
-    description="展示问题研究社围绕控制理论、无人系统、人工智能与工程项目沉淀的论文、报告与可复现成果。"
-  />
-
   <section class="section">
     <div class="filter-bar">
       <label class="search-field">

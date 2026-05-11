@@ -1,7 +1,5 @@
 <template>
   <template v-if="project">
-    <PageHero :eyebrow="`${project.direction} · ${project.status}`" :title="project.title" :description="project.description" />
-
     <section class="section detail-layout">
       <article class="detail-main">
         <div v-for="section in contentSections" :key="section.title" class="content-block">
@@ -103,7 +101,6 @@
   </template>
 
   <template v-else>
-    <PageHero eyebrow="Problem Bank" title="未找到研究问题" description="该问题记录可能已经调整，请返回问题库查看当前列表。" />
     <section class="section">
       <div class="empty-state">
         <h2>问题记录不存在</h2>

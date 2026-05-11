@@ -10,7 +10,8 @@
       "Bash(curl -s \"http://127.0.0.1:5173/src/styles/main.css\")",
       "Bash(npm install *)",
       "Bash(uipro init *)",
-      "Bash(npm run *)"
+      "Bash(npm run *)",
+      "Bash(git checkout *)"
     ]
   }
 }

@@ -1,11 +1,5 @@
 <template>
   <template v-if="publication">
-    <PageHero
-      :eyebrow="`${publication.year} · ${typeLabel(publication.type)} · ${publication.tag}`"
-      :title="publication.title"
-      :description="publication.abstract"
-    />
-
     <section class="section detail-layout">
       <article class="detail-main">
         <div class="content-block">
@@ -116,7 +110,6 @@
   </template>
 
   <template v-else>
-    <PageHero eyebrow="Publications" title="未找到成果" description="该成果可能已经调整，请返回成果页查看当前列表。" />
     <section class="section">
       <div class="empty-state">
         <h2>成果不存在</h2>

@@ -1,10 +1,4 @@
 <template>
-  <PageHero
-    eyebrow="Problem Bank"
-    title="研究问题库"
-    description="基于问题研究社信息表整理的年度问题库，按控制理论、无人系统、人工智能和工程项目四个方向持续记录问题、参与人、价值、挑战与推进状态。"
-  />
-
   <section class="section">
     <div class="filter-bar problem-filter">
       <label class="search-field">

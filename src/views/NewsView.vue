@@ -1,10 +1,4 @@
 <template>
-  <PageHero
-    eyebrow="News"
-    title="实验室动态"
-    description="跟踪研究发布、学术活动、成果接收与招募信息。"
-  />
-
   <section class="section">
     <div class="chip-filter" aria-label="新闻分类筛选">
       <button

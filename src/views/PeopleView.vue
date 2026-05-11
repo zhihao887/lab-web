@@ -1,10 +1,4 @@
 <template>
-  <PageHero
-    eyebrow="People"
-    title="团队成员"
-    description="实验室由控制理论、无人系统、人工智能与工程项目方向的成员组成，围绕真实研究问题开展长期协作。"
-  />
-
   <!-- 学术与实验室负责人 -->
   <section class="section">
     <div class="section-heading compact directors-heading">
