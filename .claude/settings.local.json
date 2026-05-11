@@ -11,7 +11,10 @@
       "Bash(npm install *)",
       "Bash(uipro init *)",
       "Bash(npm run *)",
-      "Bash(git checkout *)"
+      "Bash(git checkout *)",
+      "Bash(python3 scripts/search.py \"academic lab recruitment modern\" --design-system -p \"Lab Recruitment\")",
+      "Bash(python scripts/search.py \"academic lab recruitment modern\" --design-system -p \"Lab Recruitment\")",
+      "Bash(python *)"
     ]
   }
 }
