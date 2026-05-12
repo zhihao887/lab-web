@@ -1,10 +1,4 @@
 <template>
-  <section class="section resource-notice">
-    <p>
-      本页资源用于科研复现、协作和成果展示。医学图像与舌象相关演示不用于临床诊断、治疗建议或个人健康决策。
-    </p>
-  </section>
-
   <section v-for="group in groupedResources" :key="group.id" class="section resource-section">
     <div class="section-heading compact">
       <div>
@@ -51,7 +45,6 @@
 
 <script setup>
 import { computed } from 'vue'
-import PageHero from '../components/PageHero.vue'
 import { resources } from '../data/siteData'
 
 const categories = [
