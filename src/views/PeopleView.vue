@@ -1,6 +1,22 @@
 <template>
+  <section class="section filter-section" style="padding-bottom: 0; padding-top: 96px;">
+    <div class="chip-filter" aria-label="成员方向筛选">
+      <button type="button" :class="{ active: direction === '' }" @click="direction = ''">全部</button>
+      <button type="button" :class="{ active: direction === 'directors' }" @click="direction = 'directors'">负责人</button>
+      <button
+        v-for="group in categoryGroups"
+        :key="group.id"
+        type="button"
+        :class="{ active: direction === group.id }"
+        @click="direction = group.id"
+      >
+        {{ group.title }}
+      </button>
+    </div>
+  </section>
+
   <!-- 学术与实验室负责人 -->
-  <section class="section">
+  <section v-if="directors.length > 0 && (direction === '' || direction === 'directors')" class="section" style="padding-top: 32px;">
     <div class="section-heading compact directors-heading">
       <div class="heading-content">
         <p class="eyebrow">Directors</p>
@@ -35,13 +51,13 @@
   </section>
 
   <!-- 研究方向分组 -->
-  <section
-    v-for="(group, idx) in categoryGroups"
-    :key="group.id"
-    class="section"
-    :class="{ 'accent-section': idx % 2 === 1 }"
-  >
-    <div class="category-header">
+  <template v-for="(group, idx) in categoryGroups" :key="group.id">
+    <section
+      v-if="direction === '' || direction === group.id"
+      class="section"
+      :class="{ 'accent-section': idx % 2 === 1 }"
+    >
+      <div class="category-header">
       <div class="section-heading compact">
         <div class="category-title-wrapper">
           <span class="category-dot" :class="'dot-' + group.accent"></span>
@@ -82,15 +98,27 @@
         </div>
       </article>
     </div>
+    </section>
+  </template>
+
+  <section v-if="directors.length === 0 && Object.values(groupedPeople).every(list => list.length === 0)" class="section">
+    <div class="empty-state">
+      <h2>暂无匹配成员</h2>
+      <p>请调整方向筛选，查看当前团队中的其他记录。</p>
+      <button class="button primary" type="button" @click="resetFilters">重置筛选</button>
+    </div>
   </section>
 </template>
 
 <script setup>
-import { computed } from 'vue'
-import PageHero from '../components/PageHero.vue'
+import { computed, ref } from 'vue'
 import { people } from '../data/siteData'
 
-const directors = computed(() => people.filter((p) => p.group === 'directors'))
+const direction = ref('')
+
+const directors = computed(() => {
+  return people.filter((p) => p.group === 'directors')
+})
 
 const categoryGroups = [
   {
@@ -125,11 +153,20 @@ const categoryGroups = [
 
 const groupedPeople = computed(() => {
   const result = {}
+
   for (const g of categoryGroups) {
-    result[g.id] = people.filter((p) => p.group === g.id)
+    result[g.id] = people.filter((p) => {
+      if (p.group !== g.id) return false
+      if (direction.value && direction.value !== '' && direction.value !== 'directors' && direction.value !== g.id) return false
+      return true
+    })
   }
   return result
 })
 
 const initials = (name) => name.slice(-2)
+
+const resetFilters = () => {
+  direction.value = ''
+}
 </script>
