@@ -1714,7 +1714,7 @@ export const researchAreas = [
 ]
 
 export const people = [
-  { name: '芦安洋', role: '实验室主任', group: 'directors', problemTitle: '多智能体技术学习、使用、改进' },
+  { name: '芦安洋', role: '实验室主任', group: 'directors', problemTitle: '' },
   { name: '钱熠凝', role: '副主任', group: 'directors', problemTitle: '' },
 
   // 控制理论

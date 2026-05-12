@@ -85,15 +85,9 @@
         :class="'card-accent-' + group.accent"
         :style="{ '--delay': personIdx * 50 + 'ms' }"
       >
-        <div class="card-header">
-          <div class="avatar" :class="'avatar-' + group.accent">{{ initials(person.name) }}</div>
-          <div class="card-badge" :class="'badge-' + group.accent">
-            {{ group.category }}
-          </div>
-        </div>
+        <div class="avatar" :class="'avatar-' + group.accent">{{ initials(person.name) }}</div>
         <h3>{{ person.name }}</h3>
         <div v-if="person.problemTitle" class="problem-tag">
-          <span class="tag-icon">🎯</span>
           <span class="tag-text">{{ person.problemTitle }}</span>
         </div>
       </article>
