@@ -1493,10 +1493,55 @@ button {
 }
 
 .publication-actions {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: end;
+  display: grid;
+  justify-items: end;
   gap: 10px;
+  min-width: 124px;
+}
+
+.publication-year,
+.publication-topic {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  border-radius: var(--radius);
+  font-weight: 760;
+  line-height: 1.2;
+  padding: 6px 10px;
+}
+
+.publication-year {
+  background: rgba(79, 130, 194, 0.12);
+  color: var(--blue-deep);
+  font-size: 0.94rem;
+}
+
+.publication-topic {
+  max-width: 180px;
+  border: 1px solid rgba(177, 204, 225, 0.78);
+  background: rgba(255, 255, 255, 0.76);
+  color: #34465c;
+  font-size: 0.86rem;
+  text-align: right;
+  white-space: normal;
+}
+
+.publication-title-link {
+  display: block;
+  color: inherit;
+}
+
+.publication-title-link h2 {
+  transition: color 180ms ease;
+}
+
+.publication-title-link:hover h2 {
+  color: var(--blue-deep);
+}
+
+.publication-paper-link {
+  min-height: 32px;
+  padding: 8px 12px;
 }
 
 .publication-list.compact-list .publication-item {

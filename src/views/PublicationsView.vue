@@ -37,28 +37,26 @@
         class="publication-item"
       >
         <div>
-          <span class="pub-meta">{{ pub.year }} · {{ typeLabel(pub.type) }} · {{ pub.tag }}</span>
-          <h2>{{ pub.title }}</h2>
+          <span class="pub-meta">{{ pub.year }} · {{ venueShortName(pub) }}</span>
+          <RouterLink class="publication-title-link" :to="`/publications/${pub.id}`">
+            <h2>{{ pub.title }}</h2>
+          </RouterLink>
           <p class="authors">{{ pub.authors }}</p>
           <p>{{ pub.abstract }}</p>
-          <div class="tag-row publication-links">
-            <span>{{ pub.paper ? 'Paper 可访问' : 'Paper 建设中' }}</span>
-            <span>{{ pub.pdf ? 'PDF 可访问' : 'PDF 建设中' }}</span>
-            <span>{{ pub.code ? 'Code 可访问' : 'Code 建设中' }}</span>
-            <span>{{ pub.dataset ? 'Dataset 可访问' : 'Dataset 建设中' }}</span>
+          <div v-if="pub.paper" class="tag-row publication-links">
+            <a
+              class="button secondary small publication-paper-link"
+              :href="pub.paper"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Paper
+            </a>
           </div>
         </div>
         <div class="publication-actions">
-          <a
-            v-if="pub.paper"
-            class="button secondary small"
-            :href="pub.paper"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Paper
-          </a>
-          <RouterLink class="button secondary small" :to="`/publications/${pub.id}`">查看详情</RouterLink>
+          <span class="publication-year">{{ pub.year }}</span>
+          <span class="publication-topic">{{ pub.tag }}</span>
         </div>
       </article>
     </div>
@@ -103,5 +101,30 @@ const typeLabel = (value) => {
     preprint: '预印本',
   }
   return labels[value] || value
+}
+
+const venueShortName = (publication) => {
+  const aliases = {
+    'IEEE Transactions on Automatic Control': 'TAC',
+    'Journal of Computational Biomedicine': 'JCB',
+    'AI Drug Discovery Workshop': 'AI Drug Discovery',
+  }
+
+  if (aliases[publication.venue]) return aliases[publication.venue]
+  if (publication.type === 'preprint') return typeLabel(publication.type)
+  if (!publication.venue) return typeLabel(publication.type)
+
+  const asciiWords = publication.venue.match(/[A-Za-z]+/g)
+  if (asciiWords?.length > 1) {
+    const skipWords = new Set(['of', 'and', 'the', 'for', 'in', 'on'])
+    const initials = asciiWords
+      .filter((word) => !skipWords.has(word.toLowerCase()))
+      .map((word) => word[0].toUpperCase())
+      .join('')
+
+    return initials || publication.venue
+  }
+
+  return publication.venue
 }
 </script>
