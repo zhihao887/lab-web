@@ -176,7 +176,7 @@ button {
 .hero-content {
   position: relative;
   z-index: 2;
-  max-width: 640px;
+  max-width: 600px;
 }
 
 .eyebrow,

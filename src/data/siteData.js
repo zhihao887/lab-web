@@ -3,7 +3,7 @@ export const siteInfo = {
   nameEn: 'Problem Research Lab',
   subtitle: '围绕控制理论、无人系统、人工智能与工程项目的问题驱动型研究团队。',
   email: 'contact@imblab.cn',
-  location: '东北大学 · 问题研究社联合空间',
+  location: '东北大学 · 问题研究社',
 }
 
 export const navItems = [
