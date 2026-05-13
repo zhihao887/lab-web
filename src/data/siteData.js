@@ -1757,7 +1757,9 @@ export const people = [
   { name: '敦子晗', group: 'artificial-intelligence', category: '人工智能', problemTitle: '面向抗衰靶点的天然分子筛选' },
   { name: '张学文', group: 'artificial-intelligence', category: '人工智能', problemTitle: '如何让Agent变成实用工具' },
   { name: '高一鸣', group: 'artificial-intelligence', category: '人工智能', problemTitle: '蛋白质核苷酸结合点位预测' },
-  { name: '何天宇', group: 'artificial-intelligence', category: '人工智能', problemTitle: '药物-靶标亲和力（DTA）预测' },
+  { name: '王少宽', group: 'artificial-intelligence', category: '人工智能', problemTitle: '药物-靶标亲和力（DTA）预测' },
+  { name: '李毅霄', group: 'artificial-intelligence', category: '人工智能', problemTitle: '药物-靶标亲和力（DTA）预测' },
+
 
   // 工程项目
   { name: '陈业凡', group: 'engineering-projects', category: '工程项目', problemTitle: '燃气轮机及压缩机建模' },
