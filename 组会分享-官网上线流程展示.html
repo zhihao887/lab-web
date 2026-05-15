@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>实验室官网上线流程分享 · 学术截图预览</title>
+  <style>
+    :root {
+      --ink: #17202d;
+      --muted: #647184;
+      --paper: #f3ede1;
+      --paper-2: #fffaf0;
+      --deep: #10202b;
+      --blue: #315f8f;
+      --teal: #117e7b;
+      --gold: #b5751f;
+      --wine: #a94455;
+      --green: #4e7d58;
+      --sand: #e2d2bb;
+      --shadow: 0 34px 90px rgba(8, 16, 26, .34);
+      --ease: cubic-bezier(.22, .9, .22, 1);
+    }
+
+    * { box-sizing: border-box; }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 14% 8%, rgba(17, 126, 123, .2), transparent 28%),
+        radial-gradient(circle at 86% 78%, rgba(181, 117, 31, .17), transparent 30%),
+        #0e1823;
+      color: var(--ink);
+      font-family: "Noto Sans CJK SC", "Microsoft YaHei", "PingFang SC", sans-serif;
+    }
+
+    button { font: inherit; }
+
+    .stage {
+      position: fixed;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: 42px 42px 110px;
+    }
+
+    .deck {
+      width: 1920px;
+      height: 1080px;
+      position: relative;
+      overflow: hidden;
+      background: var(--paper);
+      box-shadow: var(--shadow);
+      transform-origin: center center;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      display: none;
+      padding: 84px 112px 82px;
+      background:
+        linear-gradient(90deg, var(--accent, var(--teal)) 0 26px, transparent 26px),
+        radial-gradient(circle at 4% 6%, rgba(255,255,255,.72), transparent 28%),
+        linear-gradient(135deg, rgba(255,255,255,.78), rgba(255,255,255,.18)),
+        var(--paper);
+      isolation: isolate;
+    }
+
+    .slide::before {
+      content: "";
+      position: absolute;
+      inset: 52px 64px;
+      background:
+        linear-gradient(rgba(24,32,45,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(24,32,45,.028) 1px, transparent 1px);
+      background-size: 88px 88px;
+      z-index: -1;
+    }
+
+    .slide.active {
+      display: block;
+      animation: reveal 420ms var(--ease) both;
+    }
+
+    @keyframes reveal {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .accent-blue { --accent: var(--blue); }
+    .accent-teal { --accent: var(--teal); }
+    .accent-gold { --accent: var(--gold); }
+    .accent-wine { --accent: var(--wine); }
+    .accent-green { --accent: var(--green); }
+
+    h1, h2, h3, p { margin: 0; text-wrap: pretty; }
+
+    .kicker {
+      display: inline-grid;
+      grid-template-columns: 18px auto;
+      align-items: center;
+      gap: 14px;
+      color: var(--accent);
+      font-size: 18px;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .kicker::before {
+      content: "";
+      width: 18px;
+      height: 18px;
+      background: currentColor;
+    }
+
+    .title {
+      margin-top: 34px;
+      max-width: 1160px;
+      font-family: "Noto Serif CJK SC", "Source Han Serif SC", SimSun, serif;
+      font-size: 78px;
+      line-height: 1.05;
+      font-weight: 900;
+      letter-spacing: -.01em;
+    }
+
+    .subtitle {
+      margin-top: 30px;
+      max-width: 960px;
+      color: var(--muted);
+      font-size: 29px;
+      line-height: 1.55;
+      font-weight: 500;
+    }
+
+    .folio {
+      position: absolute;
+      left: 112px;
+      right: 112px;
+      bottom: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 18px;
+      border-top: 3px solid rgba(24,32,45,.16);
+      color: #6f786f;
+      font-size: 17px;
+    }
+
+    .folio strong {
+      color: var(--ink);
+      font-size: 20px;
+      font-weight: 900;
+    }
+
+    .cover {
+      color: #fff;
+      background:
+        linear-gradient(90deg, rgba(16,32,43,.95) 0 48%, rgba(16,32,43,.6) 70%, rgba(16,32,43,.22)),
+        url("public/images/deck-screens/home.png") center / cover;
+    }
+
+    .cover::before {
+      background:
+        linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 90px 90px;
+    }
+
+    .cover .title,
+    .cover .subtitle { color: #fff; }
+
+    .cover .subtitle { color: rgba(255,255,255,.8); }
+
+    .cover-card {
+      position: absolute;
+      right: 118px;
+      top: 132px;
+      width: 520px;
+      padding: 38px;
+      background: rgba(255,250,240,.92);
+      color: var(--ink);
+      border-top: 14px solid var(--gold);
+      box-shadow: 0 28px 70px rgba(0,0,0,.22);
+    }
+
+    .cover-card h2 {
+      font-family: "Noto Serif CJK SC", SimSun, serif;
+      font-size: 38px;
+      line-height: 1.18;
+      margin-bottom: 28px;
+    }
+
+    .cover-card p {
+      color: #52606d;
+      font-size: 23px;
+      line-height: 1.48;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      max-width: 980px;
+      margin-top: 108px;
+    }
+
+    .stat {
+      padding: 24px 26px;
+      min-height: 136px;
+      background: rgba(255,250,240,.94);
+      border-bottom: 10px solid var(--c);
+      color: var(--ink);
+      box-shadow: 0 16px 42px rgba(0,0,0,.16);
+    }
+
+    .stat b {
+      display: block;
+      color: var(--c);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 48px;
+      line-height: 1;
+      margin-bottom: 18px;
+    }
+
+    .stat span {
+      color: #657184;
+      font-size: 21px;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 1fr 670px;
+      gap: 64px;
+      margin-top: 68px;
+      align-items: stretch;
+    }
+
+    .screenshot-card {
+      position: relative;
+      min-height: 560px;
+      background: var(--deep);
+      padding: 20px;
+      box-shadow: 0 26px 70px rgba(17, 32, 43, .2);
+    }
+
+    .screenshot-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: saturate(.86) contrast(1.03);
+    }
+
+    .screenshot-card::after {
+      content: attr(data-caption);
+      position: absolute;
+      left: 20px;
+      right: 20px;
+      bottom: 20px;
+      padding: 20px 24px;
+      background: rgba(16, 32, 43, .86);
+      color: rgba(255,255,255,.88);
+      font-size: 21px;
+      line-height: 1.35;
+    }
+
+    .paper-panel {
+      background: var(--paper-2);
+      padding: 42px;
+      box-shadow: 0 16px 46px rgba(38,30,20,.1);
+      border-top: 14px solid var(--accent);
+    }
+
+    .paper-panel h2 {
+      font-family: "Noto Serif CJK SC", SimSun, serif;
+      font-size: 44px;
+      line-height: 1.16;
+      margin-bottom: 28px;
+    }
+
+    .paper-panel p {
+      color: var(--muted);
+      font-size: 24px;
+      line-height: 1.48;
+      margin-bottom: 28px;
+    }
+
+    .filled-list {
+      display: grid;
+      gap: 18px;
+    }
+
+    .filled-row {
+      display: grid;
+      grid-template-columns: 170px 1fr;
+      min-height: 72px;
+      background: #f7eddd;
+    }
+
+    .filled-row strong {
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+      background: var(--c);
+      color: #fff;
+      font-size: 22px;
+      font-weight: 900;
+    }
+
+    .filled-row span {
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+      color: var(--ink);
+      font-size: 22px;
+      line-height: 1.3;
+    }
+
+    .flow-band {
+      margin-top: 84px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      overflow: hidden;
+      box-shadow: 0 22px 64px rgba(38,30,20,.14);
+    }
+
+    .flow-step {
+      min-height: 180px;
+      padding: 30px 28px;
+      background: var(--c);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .flow-step b {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 34px;
+      opacity: .62;
+    }
+
+    .flow-step span {
+      font-size: 26px;
+      font-weight: 900;
+      line-height: 1.18;
+    }
+
+    .flow-step small {
+      color: rgba(255,255,255,.76);
+      font-size: 18px;
+      line-height: 1.32;
+    }
+
+    .evidence-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-top: 72px;
+    }
+
+    .evidence {
+      min-height: 176px;
+      padding: 30px;
+      background: var(--paper-2);
+      border-top: 12px solid var(--c);
+      box-shadow: 0 16px 46px rgba(38,30,20,.1);
+    }
+
+    .evidence h3 {
+      color: var(--c);
+      font-size: 26px;
+      margin-bottom: 20px;
+      font-weight: 900;
+    }
+
+    .evidence p {
+      color: var(--ink);
+      font-size: 23px;
+      line-height: 1.42;
+    }
+
+    .chapter {
+      color: #fff;
+      background:
+        linear-gradient(90deg, var(--accent) 0 28px, transparent 28px),
+        linear-gradient(135deg, rgba(16,32,43,.96), rgba(22,44,58,.92));
+    }
+
+    .chapter::before {
+      background:
+        linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 90px 90px;
+    }
+
+    .chapter .title,
+    .chapter .subtitle,
+    .chapter .folio,
+    .chapter .folio strong { color: #fff; }
+
+    .chapter .subtitle,
+    .chapter .folio { color: rgba(255,255,255,.72); }
+
+    .nav {
+      position: fixed;
+      left: 50%;
+      bottom: 24px;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      z-index: 20;
+      padding: 10px;
+      background: rgba(10,16,26,.76);
+      color: #fff;
+      backdrop-filter: blur(16px);
+    }
+
+    .nav button {
+      width: 48px;
+      height: 40px;
+      border: 1px solid rgba(255,255,255,.24);
+      color: #fff;
+      background: rgba(255,255,255,.08);
+      cursor: pointer;
+    }
+
+    .nav-status {
+      min-width: 92px;
+      text-align: center;
+      font-weight: 800;
+      color: rgba(255,255,255,.82);
+    }
+
+    .progress {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 5px;
+      background: rgba(255,255,255,.12);
+      z-index: 21;
+    }
+
+    .progress span {
+      display: block;
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, var(--teal), var(--gold), var(--wine));
+      transition: width 240ms var(--ease);
+    }
+
+    .hint {
+      position: fixed;
+      top: 20px;
+      right: 28px;
+      color: rgba(255,255,255,.66);
+      font-size: 14px;
+      letter-spacing: .04em;
+      z-index: 20;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .slide.active { animation: none; }
+      * { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="stage">
+    <main class="deck" id="deck" aria-live="polite">
+      <section class="slide cover active accent-teal" data-screen-label="01 封面">
+        <div class="kicker">Academic Preview</div>
+        <h1 class="title">实验室官网从构建到上线</h1>
+        <p class="subtitle">学术风格预览稿：用项目真实截图作为视觉证据，讲清楚从页面构建到部署访问的完整流程。</p>
+        <div class="stats">
+          <div class="stat" style="--c:var(--blue)"><b>Vue</b><span>前端页面构建</span></div>
+          <div class="stat" style="--c:var(--teal)"><b>Vite</b><span>静态资源打包</span></div>
+          <div class="stat" style="--c:var(--gold)"><b>Vercel</b><span>自动部署上线</span></div>
+          <div class="stat" style="--c:var(--wine)"><b>DNS</b><span>国内访问入口</span></div>
+        </div>
+        <div class="cover-card">
+          <h2>不是纯线条图，而是“截图 + 学术板块 + 实心流程”的报告风格。</h2>
+          <p>先生成 5 页看效果：封面、网站定位、前端构建、部署流程、访问链路。</p>
+        </div>
+        <div class="folio"><span>问题研究社官网上线流程分享 · 截图预览</span><strong>01</strong></div>
+      </section>
+
+      <section class="slide accent-gold" data-screen-label="02 网站定位">
+        <div class="kicker">Website As Evidence</div>
+        <h1 class="title">官网首先是一个学术入口</h1>
+        <p class="subtitle">首页截图作为视觉背景，强调它不是单页展示，而是承载团队定位、研究方向和访问路径的入口。</p>
+        <div class="layout">
+          <div class="screenshot-card" data-caption="项目首页截图：用于说明访问者第一次进入网站时看到的团队定位与信息架构。">
+            <img src="public/images/deck-screens/home.png" alt="项目首页截图" />
+          </div>
+          <div class="paper-panel">
+            <h2>从“做网页”转向“组织学术信息”</h2>
+            <p>学术官网的重点不是堆视觉效果，而是让访问者快速理解团队、方向、成果和加入方式。</p>
+            <div class="filled-list">
+              <div class="filled-row" style="--c:var(--blue)"><strong>对外展示</strong><span>团队是谁、研究什么</span></div>
+              <div class="filled-row" style="--c:var(--teal)"><strong>内容沉淀</strong><span>成员、论文、项目、资源集中管理</span></div>
+              <div class="filled-row" style="--c:var(--gold)"><strong>招新沟通</strong><span>让潜在加入者知道下一步</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="folio"><span>问题研究社官网上线流程分享 · 截图预览</span><strong>02</strong></div>
+      </section>
+
+      <section class="slide accent-teal" data-screen-label="03 前端构建">
+        <div class="kicker">Frontend Construction</div>
+        <h1 class="title">前端页面用组件和数据组织起来</h1>
+        <p class="subtitle">团队页截图用于说明：页面不是写死文字，而是由统一数据源驱动列表、分类和详情。</p>
+        <div class="layout">
+          <div class="paper-panel">
+            <h2>页面负责展示，数据负责内容</h2>
+            <p>`siteData.js` 集中管理全站内容，页面组件从数据中读取成员、论文、项目和资源。</p>
+            <div class="filled-list">
+              <div class="filled-row" style="--c:var(--blue)"><strong>Views</strong><span>首页、团队、成果、项目、加入我们</span></div>
+              <div class="filled-row" style="--c:var(--teal)"><strong>Components</strong><span>导航、页脚、页面 Hero、首页视觉</span></div>
+              <div class="filled-row" style="--c:var(--gold)"><strong>Data</strong><span>成员、研究问题、论文、动态、资源</span></div>
+            </div>
+          </div>
+          <div class="screenshot-card" data-caption="团队页截图：用真实页面说明数据驱动列表和分类展示。">
+            <img src="public/images/deck-screens/people.png" alt="团队页截图" />
+          </div>
+        </div>
+        <div class="folio"><span>问题研究社官网上线流程分享 · 截图预览</span><strong>03</strong></div>
+      </section>
+
+      <section class="slide accent-wine" data-screen-label="04 部署流程">
+        <div class="kicker">Deploy Pipeline</div>
+        <h1 class="title">从本地项目到 Vercel 部署</h1>
+        <p class="subtitle">项目页截图作为背景证据，前景使用实心流程带说明构建与部署步骤，避免纯线条示意图。</p>
+        <div class="flow-band">
+          <div class="flow-step" style="--c:var(--blue)"><b>01</b><span>本地修改</span><small>页面、样式、数据</small></div>
+          <div class="flow-step" style="--c:var(--teal)"><b>02</b><span>Vite 构建</span><small>生成 dist 静态文件</small></div>
+          <div class="flow-step" style="--c:var(--gold)"><b>03</b><span>Git 提交</span><small>推送到仓库</small></div>
+          <div class="flow-step" style="--c:var(--wine)"><b>04</b><span>Vercel 部署</span><small>自动构建和 HTTPS</small></div>
+          <div class="flow-step" style="--c:var(--green)"><b>05</b><span>线上访问</span><small>CDN 分发给用户</small></div>
+        </div>
+        <div class="evidence-grid">
+          <div class="evidence" style="--c:var(--wine)"><h3>关键配置</h3><p>`vercel.json` 让所有路径返回 `index.html`，解决刷新二级页面 404。</p></div>
+          <div class="evidence" style="--c:var(--gold)"><h3>为什么静态化</h3><p>展示型官网没有登录和数据库，静态站成本更低、访问更快。</p></div>
+          <div class="evidence" style="--c:var(--green)"><h3>项目截图</h3><p>背景素材来自真实项目页，可增强分享可信度。</p></div>
+        </div>
+        <div class="screenshot-card" style="position:absolute;right:112px;top:642px;width:430px;height:250px;min-height:0;padding:12px;opacity:.95;" data-caption="项目页缩略图">
+          <img src="public/images/deck-screens/projects.png" alt="项目页截图" />
+        </div>
+        <div class="folio"><span>问题研究社官网上线流程分享 · 截图预览</span><strong>04</strong></div>
+      </section>
+
+      <section class="slide chapter accent-green" data-screen-label="05 DNS 访问">
+        <div class="kicker">Access Layer</div>
+        <h1 class="title">Cloudflare 让访问入口更可控</h1>
+        <p class="subtitle">加入页截图作为右侧视觉证据，前景说明：Vercel 负责部署，Cloudflare 负责 DNS、代理、缓存与访问入口。</p>
+        <div class="layout">
+          <div>
+            <div class="flow-band" style="grid-template-columns:repeat(4,1fr);margin-top:18px;">
+              <div class="flow-step" style="--c:var(--blue)"><b>01</b><span>用户</span><small>访问 imblab.cn</small></div>
+              <div class="flow-step" style="--c:var(--teal)"><b>02</b><span>Cloudflare</span><small>DNS / Proxy</small></div>
+              <div class="flow-step" style="--c:var(--wine)"><b>03</b><span>Vercel</span><small>静态源站</small></div>
+              <div class="flow-step" style="--c:var(--green)"><b>04</b><span>浏览器</span><small>渲染官网</small></div>
+            </div>
+            <div class="evidence" style="--c:var(--green);margin-top:68px;background:rgba(255,250,240,.94);">
+              <h3>严谨表述</h3>
+              <p>这套方案能改善 Vercel 默认域名在国内访问不稳定的问题；如果未来追求强稳定，可继续升级为备案域名 + 国内 CDN。</p>
+            </div>
+          </div>
+          <div class="screenshot-card" data-caption="加入我们页面截图：展示最终访问入口服务于招新和对外沟通。">
+            <img src="public/images/deck-screens/join.png" alt="加入我们页面截图" />
+          </div>
+        </div>
+        <div class="folio"><span>问题研究社官网上线流程分享 · 截图预览</span><strong>05</strong></div>
+      </section>
+
+      <section class="slide accent-blue" data-screen-label="06 技术分工">
+        <div class="kicker">Implementation Roles</div>
+        <h1 class="title">技术栈不是重点，分工才是重点</h1>
+        <p class="subtitle">组会分享时，把技术名词讲成“它在流程里解决什么问题”，比解释框架原理更容易让大家跟上。</p>
+        <div class="layout">
+          <div class="paper-panel">
+            <h2>一套轻量静态官网链路</h2>
+            <p>这个项目不需要登录、数据库和后端接口，因此优先采用静态站架构：页面先在本地构建，再由部署平台发布，最后通过域名和 DNS 提供正式入口。</p>
+            <div class="filled-list">
+              <div class="filled-row" style="--c:var(--blue)"><strong>Vue</strong><span>把重复页面拆成组件</span></div>
+              <div class="filled-row" style="--c:var(--teal)"><strong>Vite</strong><span>把工程打包成静态资源</span></div>
+              <div class="filled-row" style="--c:var(--gold)"><strong>Router</strong><span>让 URL 对应不同页面</span></div>
+              <div class="filled-row" style="--c:var(--wine)"><strong>Vercel</strong><span>自动构建并发布到公网</span></div>
+              <div class="filled-row" style="--c:var(--green)"><strong>Cloudflare</strong><span>管理 DNS、代理和访问入口</span></div>
+            </div>
+          </div>
+          <div class="screenshot-card" data-caption="资源页截图：静态内容入口越多，越需要清晰的数据组织与页面复用。">
+            <img src="public/images/deck-screens/resources.png" alt="资源页截图" />
+          </div>
+        </div>
+        <div class="folio"><span>问题研究社官网上线流程分享 · 完整汇报</span><strong>06</strong></div>
+      </section>
+
+      <section class="slide accent-teal" data-screen-label="07 数据驱动">
+        <div class="kicker">Data-driven Site</div>
+        <h1 class="title">最核心的实现：内容与页面分离</h1>
+        <p class="subtitle">`siteData.js` 是全站内容的统一来源。页面只关心如何展示，数据文件负责显示什么。</p>
+        <div class="evidence-grid">
+          <div class="evidence" style="--c:var(--blue)"><h3>站点信息</h3><p>实验室名称、英文名、邮箱、地点、导航入口。</p></div>
+          <div class="evidence" style="--c:var(--teal)"><h3>研究内容</h3><p>研究方向、问题库、项目详情和进展状态。</p></div>
+          <div class="evidence" style="--c:var(--gold)"><h3>学术成果</h3><p>论文列表、详情页、BibTeX 和资源入口。</p></div>
+        </div>
+        <div class="flow-band" style="grid-template-columns:repeat(4,1fr);">
+          <div class="flow-step" style="--c:var(--blue)"><b>A</b><span>Excel / 表格</span><small>原始内容整理</small></div>
+          <div class="flow-step" style="--c:var(--teal)"><b>B</b><span>siteData.js</span><small>统一数据源</small></div>
+          <div class="flow-step" style="--c:var(--gold)"><b>C</b><span>Vue 页面</span><small>读取并渲染</small></div>
+          <div class="flow-step" style="--c:var(--green)"><b>D</b><span>全站同步</span><small>改一处，多处生效</small></div>
+        </div>
+        <div class="folio"><span>问题研究社官网上线流程分享 · 完整汇报</span><strong>07</strong></div>
+      </section>
+
+      <section class="slide accent-green" data-screen-label="08 页面路径">
+        <div class="kicker">Visitor Journey</div>
+        <h1 class="title">页面结构按访问路径组织</h1>
+        <p class="subtitle">一个第一次访问官网的人，应该能从“认识团队”自然走到“查看成果、理解项目、联系加入”。</p>
+        <div class="flow-band" style="grid-template-columns:repeat(6,1fr);">
+          <div class="flow-step" style="--c:var(--blue)"><b>01</b><span>首页</span><small>定位与入口</small></div>
+          <div class="flow-step" style="--c:var(--teal)"><b>02</b><span>团队</span><small>谁在做</small></div>
+          <div class="flow-step" style="--c:var(--gold)"><b>03</b><span>成果</span><small>做出了什么</small></div>
+          <div class="flow-step" style="--c:var(--wine)"><b>04</b><span>项目</span><small>正在推进什么</small></div>
+          <div class="flow-step" style="--c:var(--green)"><b>05</b><span>资源</span><small>材料沉淀</small></div>
+          <div class="flow-step" style="--c:var(--blue)"><b>06</b><span>加入我们</span><small>转化沟通</small></div>
+        </div>
+        <div class="evidence-grid">
+          <div class="evidence" style="--c:var(--blue)"><h3>主页面</h3><p>负责快速扫描，告诉访问者这里有什么。</p></div>
+          <div class="evidence" style="--c:var(--teal)"><h3>详情页</h3><p>承接深入阅读，包括研究方向、论文和项目。</p></div>
+          <div class="evidence" style="--c:var(--gold)"><h3>导航栏</h3><p>全站固定入口，帮助用户随时切换信息层级。</p></div>
+        </div>
+        <div class="folio"><span>问题研究社官网上线流程分享 · 完整汇报</span><strong>08</strong></div>
+      </section>
+
+      <section class="slide accent-gold" data-screen-label="09 构建打包">
+        <div class="kicker">Build Artifact</div>
+        <h1 class="title">Vite 把开发工程导出成静态文件</h1>
+        <p class="subtitle">线上部署时，Vercel 发布的不是 `.vue` 源码，而是 Vite 构建后的 `dist/` 文件。</p>
+        <div class="layout">
+          <div class="paper-panel">
+            <h2>从工程到静态产物</h2>
+            <p>本地开发阶段适合快速试错；构建阶段则把所有页面、样式和数据打包为浏览器可以直接加载的资源。</p>
+            <div class="filled-list">
+              <div class="filled-row" style="--c:var(--blue)"><strong>dev</strong><span>本地预览，边改边看</span></div>
+              <div class="filled-row" style="--c:var(--gold)"><strong>build</strong><span>生成生产版静态文件</span></div>
+              <div class="filled-row" style="--c:var(--teal)"><strong>dist</strong><span>部署平台发布的目录</span></div>
+            </div>
+          </div>
+          <div class="paper-panel" style="--accent:var(--gold);">
+            <h2>当前项目体量</h2>
+            <p>JS 约 262 KB，CSS 约 60 KB，图片约 5.6 MB。对展示型网站来说，图片通常比代码更影响首屏体验。</p>
+            <div class="filled-list">
+              <div class="filled-row" style="--c:var(--wine)"><strong>优化一</strong><span>PNG 转 WebP / AVIF</span></div>
+              <div class="filled-row" style="--c:var(--green)"><strong>优化二</strong><span>非首屏图片懒加载</span></div>
+              <div class="filled-row" style="--c:var(--blue)"><strong>优化三</strong><span>不同屏幕使用不同尺寸</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="folio"><span>问题研究社官网上线流程分享 · 完整汇报</span><strong>09</strong></div>
+      </section>
+
+      <section class="slide accent-wine" data-screen-label="10 Vercel">
+        <div class="kicker">Vercel Deployment</div>
+        <h1 class="title">Vercel 负责把静态文件发布到公网</h1>
+        <p class="subtitle">它把构建、发布、HTTPS 和 CDN 分发变成自动流程，适合轻量展示型官网。</p>
+        <div class="flow-band">
+          <div class="flow-step" style="--c:var(--blue)"><b>01</b><span>Git 仓库</span><small>保存代码</small></div>
+          <div class="flow-step" style="--c:var(--teal)"><b>02</b><span>导入项目</span><small>识别 Vite</small></div>
+          <div class="flow-step" style="--c:var(--gold)"><b>03</b><span>安装依赖</span><small>npm install</small></div>
+          <div class="flow-step" style="--c:var(--wine)"><b>04</b><span>自动构建</span><small>npm run build</small></div>
+          <div class="flow-step" style="--c:var(--green)"><b>05</b><span>发布上线</span><small>分发到 CDN</small></div>
+        </div>
+        <div class="evidence-grid">
+          <div class="evidence" style="--c:var(--wine)"><h3>低运维</h3><p>不需要自己租服务器、配置 Nginx 或手动申请证书。</p></div>
+          <div class="evidence" style="--c:var(--gold)"><h3>自动化</h3><p>后续更新可以通过提交代码触发重新构建和发布。</p></div>
+          <div class="evidence" style="--c:var(--green)"><h3>适配静态站</h3><p>展示型官网的部署链路足够简单，成本也低。</p></div>
+        </div>
+        <div class="folio"><span>问题研究社官网上线流程分享 · 完整汇报</span><strong>10</strong></div>
+      </section>
+
+      <section class="slide accent-wine" data-screen-label="11 404">
+        <div class="kicker">SPA Fallback</div>
+        <h1 class="title">部署中最典型的坑：刷新二级页面 404</h1>
+        <p class="subtitle">前端路由里的 `/people` 看起来像真实路径，但服务器上并没有这个物理文件。</p>
+        <div class="evidence-grid">
+          <div class="evidence" style="--c:var(--wine)"><h3>现象</h3><p>从首页点击可以进入，刷新或直接打开二级路径时可能 404。</p></div>
+          <div class="evidence" style="--c:var(--gold)"><h3>原因</h3><p>服务器查找物理文件，浏览器里的 Vue Router 尚未接管。</p></div>
+          <div class="evidence" style="--c:var(--teal)"><h3>解决</h3><p>所有路径先返回 `index.html`，再由前端决定显示哪个页面。</p></div>
+        </div>
+        <div class="paper-panel" style="margin-top:82px;--accent:var(--wine);">
+          <h2>关键配置</h2>
+          <p style="font-family:Consolas,'Cascadia Mono',monospace;color:var(--ink);font-size:30px;">{ "rewrites": [{ "source": "/:path*", "destination": "/index.html" }] }</p>
+        </div>
+        <div class="folio"><span>问题研究社官网上线流程分享 · 完整汇报</span><strong>11</strong></div>
+      </section>
+
+      <section class="slide accent-teal" data-screen-label="12 DNS 托管">
+        <div class="kicker">Cloudflare DNS</div>
+        <h1 class="title">Cloudflare DNS 托管让正式域名可控</h1>
+        <p class="subtitle">部署解决“网站放在哪里”，DNS 解决“用户输入域名后如何找到它”。</p>
+        <div class="flow-band" style="grid-template-columns:repeat(6,1fr);">
+          <div class="flow-step" style="--c:var(--blue)"><b>1</b><span>添加站点</span><small>Cloudflare 添加域名</small></div>
+          <div class="flow-step" style="--c:var(--teal)"><b>2</b><span>修改 NS</span><small>注册商后台切换</small></div>
+          <div class="flow-step" style="--c:var(--gold)"><b>3</b><span>CNAME</span><small>指向 Vercel 目标</small></div>
+          <div class="flow-step" style="--c:var(--wine)"><b>4</b><span>绑定域名</span><small>Vercel 验证</small></div>
+          <div class="flow-step" style="--c:var(--green)"><b>5</b><span>HTTPS</span><small>等待证书生效</small></div>
+          <div class="flow-step" style="--c:var(--blue)"><b>6</b><span>测试</span><small>多网络访问</small></div>
+        </div>
+        <div class="evidence-grid">
+          <div class="evidence" style="--c:var(--teal)"><h3>DNS 托管</h3><p>把域名解析权交给 Cloudflare 统一管理。</p></div>
+          <div class="evidence" style="--c:var(--gold)"><h3>代理缓存</h3><p>请求先经过 Cloudflare，再回源到 Vercel。</p></div>
+          <div class="evidence" style="--c:var(--green)"><h3>正式入口</h3><p>使用自定义域名，避免依赖默认 `vercel.app` 入口。</p></div>
+        </div>
+        <div class="folio"><span>问题研究社官网上线流程分享 · 完整汇报</span><strong>12</strong></div>
+      </section>
+
+      <section class="slide accent-green" data-screen-label="13 国内访问">
+        <div class="kicker">Domestic Access</div>
+        <h1 class="title">国内访问优化靠的是入口链路变化</h1>
+        <p class="subtitle">用户访问自定义域名，由 Cloudflare 接管解析与代理，再回源到 Vercel 获取静态网站。</p>
+        <div class="flow-band" style="grid-template-columns:repeat(4,1fr);">
+          <div class="flow-step" style="--c:var(--blue)"><b>01</b><span>用户</span><small>输入 imblab.cn</small></div>
+          <div class="flow-step" style="--c:var(--teal)"><b>02</b><span>Cloudflare</span><small>DNS / Proxy / Cache</small></div>
+          <div class="flow-step" style="--c:var(--wine)"><b>03</b><span>Vercel</span><small>静态源站回源</small></div>
+          <div class="flow-step" style="--c:var(--green)"><b>04</b><span>浏览器</span><small>渲染官网</small></div>
+        </div>
+        <div class="paper-panel" style="margin-top:82px;--accent:var(--green);">
+          <h2>需要严谨表达</h2>
+          <p>这套方案能改善 Vercel 默认域名在国内访问不稳定的问题；如果未来追求强稳定，仍可继续升级为备案域名 + 国内 CDN。</p>
+        </div>
+        <div class="folio"><span>问题研究社官网上线流程分享 · 完整汇报</span><strong>13</strong></div>
+      </section>
+
+      <section class="slide accent-wine" data-screen-label="14 踩坑总结">
+        <div class="kicker">Lessons Learned</div>
+        <h1 class="title">踩坑记录比代码更值得分享</h1>
+        <p class="subtitle">这些问题来自真实上线链路，不是单个页面的实现细节。</p>
+        <div class="filled-list" style="margin-top:84px;">
+          <div class="filled-row" style="--c:var(--wine)"><strong>刷新 404</strong><span>所有路径 rewrites 到 index.html。</span></div>
+          <div class="filled-row" style="--c:var(--gold)"><strong>图片偏大</strong><span>优先转 WebP / AVIF，非首屏图懒加载。</span></div>
+          <div class="filled-row" style="--c:var(--teal)"><strong>默认域名不稳</strong><span>使用自定义域名 + Cloudflare DNS 代理。</span></div>
+          <div class="filled-row" style="--c:var(--blue)"><strong>内容维护麻烦</strong><span>数据集中管理，后续可接 Excel 自动生成或 CMS。</span></div>
+        </div>
+        <div class="folio"><span>问题研究社官网上线流程分享 · 完整汇报</span><strong>14</strong></div>
+      </section>
+
+      <section class="slide accent-gold" data-screen-label="15 成本维护">
+        <div class="kicker">Cost & Maintenance</div>
+        <h1 class="title">这套方案的成本主要是域名</h1>
+        <p class="subtitle">对实验室展示站来说，低运维成本比复杂架构更重要。</p>
+        <div class="evidence-grid" style="grid-template-columns:repeat(5,1fr);">
+          <div class="evidence" style="--c:var(--blue)"><h3>Vue / Vite</h3><p>开源免费</p></div>
+          <div class="evidence" style="--c:var(--teal)"><h3>Vercel</h3><p>免费额度</p></div>
+          <div class="evidence" style="--c:var(--gold)"><h3>Cloudflare</h3><p>免费计划</p></div>
+          <div class="evidence" style="--c:var(--wine)"><h3>域名</h3><p>年费</p></div>
+          <div class="evidence" style="--c:var(--green)"><h3>服务器</h3><p>无需单独购买</p></div>
+        </div>
+        <div class="paper-panel" style="margin-top:80px;--accent:var(--gold);">
+          <h2>维护逻辑</h2>
+          <p>内容更新走数据文件；页面更新走组件；上线更新走自动部署；访问入口走域名和 DNS。</p>
+        </div>
+        <div class="folio"><span>问题研究社官网上线流程分享 · 完整汇报</span><strong>15</strong></div>
+      </section>
+
+      <section class="slide accent-teal" data-screen-label="16 演示计划">
+        <div class="kicker">Live Demo</div>
+        <h1 class="title">现场演示只做四件事</h1>
+        <p class="subtitle">演示目标是让听众理解流程，不要陷入具体代码细节。</p>
+        <div class="flow-band" style="grid-template-columns:repeat(4,1fr);">
+          <div class="flow-step" style="--c:var(--blue)"><b>01</b><span>看项目结构</span><small>views / components / data / vercel.json</small></div>
+          <div class="flow-step" style="--c:var(--teal)"><b>02</b><span>改一条数据</span><small>说明内容统一维护</small></div>
+          <div class="flow-step" style="--c:var(--gold)"><b>03</b><span>刷新二级页</span><small>验证 rewrites 解决 404</small></div>
+          <div class="flow-step" style="--c:var(--wine)"><b>04</b><span>看 DNS 配置</span><small>说明域名如何指向部署平台</small></div>
+        </div>
+        <div class="screenshot-card" style="margin-top:70px;height:250px;min-height:0;" data-caption="现场演示可以用真实项目页面作为视觉参照，避免只有命令行。">
+          <img src="public/images/deck-screens/home.png" alt="首页截图" />
+        </div>
+        <div class="folio"><span>问题研究社官网上线流程分享 · 完整汇报</span><strong>16</strong></div>
+      </section>
+
+      <section class="slide accent-blue" data-screen-label="17 Q&A">
+        <div class="kicker">Q&A Backup</div>
+        <h1 class="title">回答时重点讲取舍</h1>
+        <p class="subtitle">听众常问的不是某一行代码，而是为什么不用另一种方案。</p>
+        <div class="evidence-grid" style="grid-template-columns:repeat(2,1fr);">
+          <div class="evidence" style="--c:var(--blue)"><h3>为什么不用 WordPress？</h3><p>当前更需要定制展示和低运行成本，后续可接 CMS。</p></div>
+          <div class="evidence" style="--c:var(--teal)"><h3>为什么不用国内服务器？</h3><p>国内服务器更稳，但备案、运维和证书成本更高。</p></div>
+          <div class="evidence" style="--c:var(--gold)"><h3>Cloudflare 能保证国内访问吗？</h3><p>不能绝对保证，但能改善默认域名不稳定；强稳定需国内 CDN。</p></div>
+          <div class="evidence" style="--c:var(--wine)"><h3>以后怎么更新内容？</h3><p>先集中维护数据文件，再逐步接 Excel 自动生成或后台。</p></div>
+        </div>
+        <div class="folio"><span>问题研究社官网上线流程分享 · 完整汇报</span><strong>17</strong></div>
+      </section>
+
+      <section class="slide chapter accent-green" data-screen-label="18 总结">
+        <div class="kicker">Conclusion</div>
+        <h1 class="title">把一个本地项目变成真正可对外使用的实验室官网</h1>
+        <p class="subtitle">用轻量前端技术完成页面构建，用自动化平台完成部署，用 DNS 与代理服务打通访问链路。</p>
+        <div class="flow-band" style="grid-template-columns:repeat(6,1fr);">
+          <div class="flow-step" style="--c:var(--blue)"><b>A</b><span>内容</span><small>统一数据源</small></div>
+          <div class="flow-step" style="--c:var(--teal)"><b>B</b><span>页面</span><small>组件化展示</small></div>
+          <div class="flow-step" style="--c:var(--gold)"><b>C</b><span>构建</span><small>静态产物</small></div>
+          <div class="flow-step" style="--c:var(--wine)"><b>D</b><span>部署</span><small>自动发布</small></div>
+          <div class="flow-step" style="--c:var(--green)"><b>E</b><span>域名</span><small>DNS 托管</small></div>
+          <div class="flow-step" style="--c:var(--blue)"><b>F</b><span>访问</span><small>多网络验证</small></div>
+        </div>
+        <div class="folio"><span>问题研究社官网上线流程分享 · 完整汇报</span><strong>18</strong></div>
+      </section>
+    </main>
+  </div>
+
+  <div class="hint">← / → / Space 翻页</div>
+  <nav class="nav" aria-label="幻灯片导航">
+    <button id="prev" type="button" aria-label="上一页">←</button>
+    <span class="nav-status" id="status">01 / 18</span>
+    <button id="next" type="button" aria-label="下一页">→</button>
+  </nav>
+  <div class="progress" aria-hidden="true"><span id="progress"></span></div>
+
+  <script>
+    const deck = document.getElementById('deck');
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    const status = document.getElementById('status');
+    const progress = document.getElementById('progress');
+    const prev = document.getElementById('prev');
+    const next = document.getElementById('next');
+    const storeKey = 'labweb-academic-shot-preview-index';
+    let index = Number(localStorage.getItem(storeKey) || 0);
+    if (!Number.isFinite(index) || index < 0 || index >= slides.length) index = 0;
+
+    function fitDeck() {
+      const availableWidth = Math.max(320, window.innerWidth - 72);
+      const availableHeight = Math.max(240, window.innerHeight - 132);
+      const scale = Math.min(availableWidth / 1920, availableHeight / 1080);
+      deck.style.transform = `scale(${Math.max(.1, scale)})`;
+    }
+
+    function show(nextIndex) {
+      index = Math.max(0, Math.min(slides.length - 1, nextIndex));
+      slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
+      const human = String(index + 1).padStart(2, '0');
+      status.textContent = `${human} / ${slides.length}`;
+      progress.style.width = `${((index + 1) / slides.length) * 100}%`;
+      document.title = `${slides[index].dataset.screenLabel} · 实验室官网上线流程分享`;
+      localStorage.setItem(storeKey, String(index));
+    }
+
+    prev.addEventListener('click', () => show(index - 1));
+    next.addEventListener('click', () => show(index + 1));
+    window.addEventListener('resize', fitDeck);
+    window.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowRight' || event.key === ' ') {
+        event.preventDefault();
+        show(index + 1);
+      }
+      if (event.key === 'ArrowLeft') {
+        event.preventDefault();
+        show(index - 1);
+      }
+      if (event.key === 'Home') show(0);
+      if (event.key === 'End') show(slides.length - 1);
+    });
+
+    fitDeck();
+    show(index);
+  </script>
+</body>
+</html>
