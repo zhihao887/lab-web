@@ -12,7 +12,9 @@
         <RouterLink v-for="item in navItems" :key="item.path" :to="item.path">{{ item.label }}</RouterLink>
       </div>
       <address>
-        <span>{{ siteInfo.location }}</span>
+        <a href="https://www.0006777.xyz/manage-lab-2026/login" target="_blank" rel="noopener noreferrer">
+          {{ siteInfo.location }}
+        </a>
         <a :href="`mailto:${siteInfo.email}`">{{ siteInfo.email }}</a>
       </address>
     </div>
