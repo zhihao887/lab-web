@@ -1583,6 +1583,15 @@ button {
   line-height: 1.55;
 }
 
+.home-publication-venue {
+  margin: 12px 0 0;
+  color: #6f9fca;
+  font-size: 0.9rem;
+  font-weight: 720;
+  line-height: 1.55;
+  text-wrap: pretty;
+}
+
 .publication-paper-link {
   min-height: 32px;
   padding: 8px 12px;

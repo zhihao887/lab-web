@@ -111,7 +111,7 @@
           <span class="pub-meta">{{ pub.year }} · {{ pub.tag }}</span>
           <h2>{{ pub.title }}</h2>
           <p class="authors">{{ pub.authors }}</p>
-          <p>{{ pub.abstract }}</p>
+          <p v-if="pub.venue" class="home-publication-venue">{{ pub.venue }}</p>
         </div>
         <span class="button secondary small">详情</span>
       </RouterLink>

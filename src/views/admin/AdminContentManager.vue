@@ -5,7 +5,7 @@
         <p class="admin-kicker">Content</p>
         <h1>{{ module.title }}管理</h1>
       </div>
-      <button class="admin-primary-button" type="button" @click="newItem">新增{{ module.singular }}</button>
+      <button class="admin-primary-button" type="button" :disabled="loading" @click="newItem">新增{{ module.singular }}</button>
     </div>
 
     <p v-if="!isSupabaseConfigured" class="admin-alert">
@@ -18,7 +18,7 @@
       <section class="admin-panel admin-list-panel">
         <div class="admin-toolbar">
           <input v-model.trim="query" type="search" placeholder="搜索标题、姓名、摘要或负责人" />
-          <button type="button" @click="loadItems">刷新</button>
+          <button type="button" :disabled="loading" @click="loadItems">刷新</button>
         </div>
 
         <div class="admin-table">
@@ -115,7 +115,7 @@
           </template>
 
           <div class="admin-editor-actions">
-            <button class="admin-primary-button" type="submit" :disabled="saving || !isSupabaseConfigured">
+            <button class="admin-primary-button" type="submit" :disabled="saving || loading || !isSupabaseConfigured">
               {{ saving ? '保存中...' : '保存' }}
             </button>
             <button class="admin-secondary-button" type="button" @click="duplicateSelected">复制并新增</button>
@@ -149,6 +149,7 @@ const entryKey = ref('')
 const status = ref('published')
 const sortOrder = ref(0)
 const query = ref('')
+const loading = ref(false)
 const saving = ref(false)
 const isDirty = ref(false)
 const suppressDirty = ref(false)
@@ -224,16 +225,26 @@ const makeKey = (data) => {
 const nextEntryKey = () => {
   const prefix = module.value.keyPrefix
   const pattern = new RegExp(`^${prefix}-(\\d+)$`)
+  const existingKeys = new Set(entries.value.map((entry) => String(entry.entry_key)))
   const maxNumber = entries.value.reduce((max, entry) => {
     const match = String(entry.entry_key).match(pattern)
     if (!match) return max
     return Math.max(max, Number(match[1]) || 0)
   }, 0)
 
-  return `${prefix}-${String(maxNumber + 1).padStart(3, '0')}`
+  let nextNumber = maxNumber + 1
+  let key = `${prefix}-${String(nextNumber).padStart(3, '0')}`
+
+  while (existingKeys.has(key)) {
+    nextNumber += 1
+    key = `${prefix}-${String(nextNumber).padStart(3, '0')}`
+  }
+
+  return key
 }
 
 const newItem = () => {
+  if (loading.value) return
   suppressDirty.value = true
   const nextIndex = entries.value.length + 1
   const key = nextEntryKey()
@@ -251,6 +262,7 @@ const newItem = () => {
 }
 
 const duplicateSelected = () => {
+  if (loading.value) return
   const key = nextEntryKey()
   const draft = {
     content_type: route.meta.contentType,
@@ -266,6 +278,7 @@ const duplicateSelected = () => {
 }
 
 const loadItems = async () => {
+  loading.value = true
   error.value = ''
   message.value = ''
 
@@ -275,6 +288,8 @@ const loadItems = async () => {
     else newItem()
   } catch (err) {
     error.value = err.message || '加载失败。'
+  } finally {
+    loading.value = false
   }
 }
 
@@ -301,6 +316,7 @@ const syncSelectedLocalEntry = () => {
 }
 
 const save = async () => {
+  if (loading.value) return
   saving.value = true
   error.value = ''
   message.value = ''
