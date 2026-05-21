@@ -14,7 +14,8 @@
 
     <div v-if="filteredNews.length" class="news-list">
       <article v-for="item in filteredNews" :key="item.id" class="news-card">
-        <div class="news-visual" :class="`news-visual-${item.category}`">
+        <div class="news-visual" :class="[`news-visual-${item.category}`, { 'has-cover': item.cover }]">
+          <img v-if="item.cover" :src="item.cover" :alt="item.title" />
           <span>{{ categoryLabel(item.category) }}</span>
         </div>
         <div class="news-body">

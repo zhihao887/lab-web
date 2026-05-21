@@ -32,7 +32,12 @@ export const adminModules = {
         type: 'select',
         options: ['research', 'recruiting', 'event', 'achievement'],
       },
-      { name: 'featured', label: '首页精选', type: 'checkbox' },
+      {
+        name: 'featured',
+        label: '首页精选',
+        type: 'checkbox',
+        help: '首页最多展示 3 条，超过后按日期优先显示最新动态。',
+      },
       { name: 'cover', label: '封面图 URL', type: 'url', upload: 'image' },
     ],
   },

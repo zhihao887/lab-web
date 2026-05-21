@@ -66,7 +66,10 @@
           <template v-for="field in module.fields" :key="field.name">
             <label v-if="field.type === 'checkbox'" class="admin-check-field">
               <input v-model="form[field.name]" type="checkbox" />
-              <span>{{ field.label }}</span>
+              <span>
+                {{ field.label }}
+                <small v-if="field.help">{{ field.help }}</small>
+              </span>
             </label>
 
             <label v-else>
@@ -94,6 +97,7 @@
                 :type="field.type || 'text'"
                 :required="field.required"
               />
+              <small v-if="field.help" class="admin-field-help">{{ field.help }}</small>
             </label>
 
             <div v-if="field.upload" class="admin-upload-row">

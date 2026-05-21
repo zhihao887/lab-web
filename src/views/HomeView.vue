@@ -145,7 +145,14 @@
       <RouterLink to="/news">全部动态</RouterLink>
     </div>
     <div class="news-preview-grid">
-      <RouterLink v-for="item in latestNews" :key="item.id" class="news-preview" to="/news">
+      <RouterLink
+        v-for="item in homeNews"
+        :key="item.id"
+        class="news-preview"
+        :class="{ 'has-cover': item.cover }"
+        to="/news"
+      >
+        <img v-if="item.cover" class="news-preview-cover" :src="item.cover" :alt="item.title" />
         <time>{{ formatDate(item.date) }}</time>
         <h3>{{ item.title }}</h3>
         <p>{{ item.excerpt }}</p>
@@ -168,7 +175,17 @@ import { computed } from 'vue'
 import HeroVisual from '../components/HeroVisual.vue'
 import { newsItems, projects, publications, researchAreas, resources, stats } from '../services/contentStore'
 
-const latestNews = computed(() => newsItems.slice(0, 3))
+const sortByDateDesc = (items) =>
+  [...items].sort((a, b) => new Date(b.date || 0).getTime() - new Date(a.date || 0).getTime())
+
+const homeNews = computed(() => {
+  const featured = sortByDateDesc(newsItems.filter((item) => item.featured)).slice(0, 3)
+  if (featured.length >= 3) return featured
+
+  const featuredIds = new Set(featured.map((item) => item.id))
+  const fillers = sortByDateDesc(newsItems.filter((item) => !featuredIds.has(item.id))).slice(0, 3 - featured.length)
+  return [...featured, ...fillers]
+})
 const featuredPublications = computed(() => publications.filter((item) => item.featured).slice(0, 3))
 const representativeProjects = computed(() =>
   researchAreas

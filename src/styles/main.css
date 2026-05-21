@@ -808,7 +808,21 @@ button {
   display: grid;
   gap: 12px;
   min-height: 230px;
+  overflow: hidden;
   padding: 22px;
+}
+
+.news-preview.has-cover {
+  grid-template-rows: auto auto auto 1fr;
+  padding-top: 0;
+}
+
+.news-preview-cover {
+  width: calc(100% + 44px);
+  aspect-ratio: 16 / 9;
+  display: block;
+  object-fit: cover;
+  margin: 0 -22px 4px;
 }
 
 .news-preview time {
@@ -1605,6 +1619,31 @@ button {
   height: 120px;
   border: 2px solid rgba(255, 255, 255, 0.42);
   border-radius: 50%;
+}
+
+.news-visual.has-cover {
+  background: #dce8f2;
+}
+
+.news-visual.has-cover::after {
+  display: none;
+}
+
+.news-visual img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.news-visual.has-cover span {
+  align-self: end;
+  justify-self: start;
+  margin: 14px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 10px 24px rgba(23, 32, 51, 0.16);
 }
 
 .news-visual span {
@@ -3559,6 +3598,19 @@ button {
 
 .admin-check-field {
   cursor: pointer;
+}
+
+.admin-check-field span {
+  display: grid;
+  gap: 4px;
+}
+
+.admin-check-field small,
+.admin-field-help {
+  color: #94a3b8;
+  font-size: 0.78rem;
+  font-weight: 650;
+  line-height: 1.45;
 }
 
 .admin-check-field input {
