@@ -4,7 +4,6 @@
       <div>
         <p class="admin-kicker">Hidden Admin</p>
         <h1>实验室官网内容后台</h1>
-        <p>使用唯一管理员邮箱登录。后台入口不会出现在官网导航中，写入权限由 Supabase RLS 再次限制。</p>
       </div>
 
       <form class="admin-form-card" @submit.prevent="submit">
@@ -40,7 +39,7 @@ import { signInAdmin } from '../../services/adminAuth'
 import { adminEmail, isSupabaseConfigured } from '../../services/supabaseClient'
 
 const router = useRouter()
-const email = ref(adminEmail)
+const email = ref('')
 const password = ref('')
 const loading = ref(false)
 const error = ref('')

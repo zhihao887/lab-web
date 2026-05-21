@@ -17,24 +17,12 @@
         <small>{{ item.label }}</small>
       </RouterLink>
     </div>
-
-    <div class="admin-panel">
-      <h2>上线前检查</h2>
-      <ul class="admin-check-list">
-        <li :class="{ done: isSupabaseConfigured }">配置 Supabase URL 和 anon key</li>
-        <li :class="{ done: Boolean(adminEmail) }">配置唯一管理员邮箱 VITE_ADMIN_EMAIL</li>
-        <li>在 Supabase SQL Editor 运行 `supabase/schema.sql`</li>
-        <li>创建唯一管理员账号并设置密码</li>
-        <li>导入现有 `siteData.js` 内容为 `content_entries` 记录</li>
-      </ul>
-    </div>
   </section>
 </template>
 
 <script setup>
 import { computed } from 'vue'
-import { newsItems, people, projects, publications, resources, contentStatus } from '../../services/contentStore'
-import { adminEmail, isSupabaseConfigured } from '../../services/supabaseClient'
+import { contentStatus, newsItems, people, projects, publications, resources } from '../../services/contentStore'
 
 const metrics = computed(() => [
   { label: '动态', code: 'NW', count: newsItems.length, to: '/manage-lab-2026/news' },
