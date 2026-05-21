@@ -207,7 +207,8 @@ const selectEntry = (entry) => {
   entryKey.value = entry.entry_key
   status.value = entry.status || 'published'
   sortOrder.value = entry.sort_order ?? 0
-  resetForm(entry.data, Boolean(entry.localOnly || entry.dirty))
+  if (!entry.localOnly) entry.dirty = false
+  resetForm(entry.data, Boolean(entry.localOnly && entry.dirty))
 }
 
 const makeKey = (data) => {
@@ -292,6 +293,7 @@ const syncSelectedLocalEntry = () => {
   if (!selectedKey.value) return
   const entry = entries.value.find((item) => item.entry_key === selectedKey.value)
   if (!entry) return
+  if (!entry.localOnly) return
 
   entry.data = normalizedData()
   entry.sort_order = Number(sortOrder.value) || 0
