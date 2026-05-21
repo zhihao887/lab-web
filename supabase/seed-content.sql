@@ -1,0 +1,828 @@
+﻿-- Generated from src/data/siteData.js
+-- Run after supabase/schema.sql.
+begin;
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('siteInfo', 'default', '{"name":"问题研究社","nameEn":"Problem Research Lab","subtitle":"围绕控制理论、无人系统、人工智能与工程项目的问题驱动型研究团队。","email":"contact@imblab.cn","location":"东北大学 · 问题研究社"}'::jsonb, 'published', 0)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('stats', 'stats-001', '{"value":"4","label":"实验室大方向"}'::jsonb, 'published', 0)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('stats', 'stats-002', '{"value":"28","label":"研究问题"}'::jsonb, 'published', 1)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('stats', 'stats-003', '{"value":"40+","label":"参与成员"}'::jsonb, 'published', 2)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('stats', 'stats-004', '{"value":"2026","label":"年度问题库"}'::jsonb, 'published', 3)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('researchAreas', 'control-theory', '{"slug":"control-theory","title":"控制理论","eyebrow":"Control Theory","description":"围绕安全状态估计、攻击检测识别、多目标可靠跟踪、围捕控制和真实世界强化学习，构建面向复杂系统的鲁棒控制与可信估计方法。","question":"如何在网络攻击、感知故障、模型不确定和真实环境约束下，仍然保证系统状态可估计、行为可控制、任务可持续推进。","approach":["从安全状态估计、容错跟踪和攻击检测等核心问题出发，建立可证明的鲁棒控制与估计框架。","结合多无人机、多目标跟踪和真实世界强化学习场景，推动理论方法走向实物验证。","在非线性系统、组合优化和数据驱动控制中寻找可扩展的新方法。"],"openQuestions":["安全状态估计","攻击检测识别","可靠跟踪","真实世界强化学习"],"metrics":["鲁棒控制","安全估计","攻击检测"],"publicationIds":["pub-007"],"resourceIds":[],"accent":"blue","problemCount":5,"participantCount":8,"participants":["张佳楠","王庆杰","赵冬可","张满","崔崇熠","李家庚","纪寒康","杜爽"],"projectIds":["problem-003","problem-004","problem-005","problem-009","problem-010"],"representativeProblems":["多目标可靠跟踪","攻击设计/检测/识别","无模型全自主真实世界强化学习"],"problems":[{"id":"problem-003","title":"多目标可靠跟踪","direction":"控制理论","sourceDirection":"控制理论","directionSlug":"control-theory","year":"2026","owner":"张佳楠","participantsText":"张佳楠、王庆杰","participants":["张佳楠","王庆杰"],"problem":"在网络攻击或者感知故障的情况下，如何通过多架无人机协同感知与信息融合，实现对多个目标高精度、高鲁棒性的持续跟踪。","vision":"1.即使在大规模目标、强感知干扰、网络攻击或部分无人机失效等复杂场景下，仍能够持续、准确、实时地掌握每个目标的动态轨迹。\n2.将跟踪算法应用到实物中","value":"1.满足公共安全（如区域监控）、交通管理、应急救援（如围捕逃犯）等场景中对大范围、多目标实时感知的迫切需求。\n2.能显著提升单机跟踪的覆盖范围和容错能力。","challenge":"1.如何在网络攻击下实现多无人机的分布式控制\n2.在感知故障、部分目标丢失或网络攻击等复杂场景下，如何获得所有目标的状态","opportunity":"1）抗攻击分布式控制：研究不同无人机-目标数量配比下的自适应控制策略，使集群在遭遇网络攻击时仍能协同感知并覆盖所有目标；\n2）容错与鲁棒跟踪：针对单机感知部分目标、传感器故障或通信攻击等情况，发展分布式融合与状态估计方法，确保多目标跟踪的连续性与可靠性。","progress":"拜占庭攻击下的多无人机多目标跟踪已初步实现，后续将逐步优化并完善该框架并探索不同攻击场景下的跟踪策略","accent":"blue","tags":["控制理论","2026"],"status":"推进中"},{"id":"problem-004","title":"攻击设计/检测/识别","direction":"控制理论","sourceDirection":"控制理论","directionSlug":"control-theory","year":"2026","owner":"赵冬可","participantsText":"赵冬可、张满、崔崇熠","participants":["赵冬可","张满","崔崇熠"],"problem":"该问题主要研究信息物理系统在遭受恶意攻击时，攻击应该以什么形式影响系统运行；以及当系统遭受隐蔽攻击时如何检测和识别的问题。","vision":"使系统在面对隐蔽性强、破坏性大的攻击时，仍然具备可检测的能力，从而实现系统由被动防御向主动防守的转变","value":"1.随着信息物理系统面临的安全威胁日益突出，对高可靠性和高安全性的需求也越来越迫切。\n2.攻击检测与识别不仅关系到系统能否安全稳定运行，还直接影响故障隔离、容错控制、决策重构等后续环节。","challenge":"1.非线性系统方向研究不足，其中关于非线性耦合性尚未解决；","opportunity":"后续利用人工智能方法，来实现目标","progress":"找相关文献，推导中","accent":"blue","tags":["控制理论","2026"],"status":"推进中"},{"id":"problem-005","title":"无模型全自主真实世界强化学习","direction":"控制理论","sourceDirection":"控制理论","directionSlug":"control-theory","year":"2026","owner":"李家庚","participantsText":"李家庚","participants":["李家庚"],"problem":"真实世界RL Agent的危险尝试不被允许，场景训练过程需要人类大量干预，探索无人监管下RL Agent安全自主探索的可能性。","vision":"构建跨模型、对上层算法透明、对多领域人才友好的准通用真实世界具身RL智能体的自主学习架构。","value":"真实世界强化学习可以从真实环境获取信息，可以有效缓解Sim2Real Gap，并尝试解决难以被计算机模拟的问题。然而RL固有的随机性造成危险探索，需要人类实时监管并重置训练流程，学习效率低。已有方法一般依赖模型，对复杂机械系统建模困难，难以落地。所提方案有助于为真实世界RL的更广泛应用铺平道路。","challenge":"在不同硬件上设计尽可能满足通用性需求的Framework存在困难；模型提供控制逻辑，缺乏模型信息时可能无法负反馈；环境信息定义安全性，丢失环境特权信息时保证自主学习时的安全性有困难；假设跨学科从业者只有通识级别的数学/物理知识，为保证跨领域使用该架构需要减少专业性。","opportunity":"拓展已有方案性能，使其适用于更多工程痛点场景。","progress":"进行初步实物部署和已有方案的进一步升级。","accent":"blue","tags":["控制理论","2026"],"status":"推进中"},{"id":"problem-009","title":"安全状态估计","direction":"控制理论","sourceDirection":"控制理论","directionSlug":"control-theory","year":"2026","owner":"纪寒康","participantsText":"纪寒康、王庆杰\n张满、张佳楠","participants":["纪寒康","王庆杰","张满","张佳楠"],"problem":"利用一段时间内的系统输出完成初始状态的重构，排除或检测出异常传感器","vision":"开发高效状态估计算法，争取与无人机，机械臂等应用场景结合并落地","value":"安全状态估计与故障检查，目标跟踪，追捕，编队等问题联系紧密；其亦可转化为组合问题应用于计算机算法开发，具有广泛的应用场景","challenge":"非线性系统太宽泛，难以用代数方法解决状态估计","opportunity":"完成非线性系统状态估计论文；学习组合优化方法（包括拟阵等方法），将安全状态估计问题转化为组合优化问题以开发多项式时间算法","progress":"修改论文中","accent":"blue","tags":["控制理论","2026"],"status":"推进中"},{"id":"problem-010","title":"多无人机围捕","direction":"控制理论","sourceDirection":"控制理论","directionSlug":"control-theory","year":"2026","owner":"杜爽","participantsText":"杜爽","participants":["杜爽"],"problem":"在目标信息不可直接测量情况下，多架无人机通过状态估计与协同控制实现对运动目标的追踪并包围，同时保证无碰撞发生。","vision":"从理论层面分析围捕成功与否的临界条件，研究最经济的围捕策略。","value":"可应用于安防巡逻、目标拦截、应急救援等需要多无人机自主追踪与避障的场景。","challenge":"1. 目标状态不可直接获取，需要实时状态估计；\n2. 传感器感知和定位可能存在不确定性；\n3. 动态障碍物运动不确定，对于高速移动、突然出现障碍物避碰策略有效性。","opportunity":"1. 分析动态障碍物多大速度范围下系统能够在控制策略下保证安全；\n2. 扩展到密集障碍物情况下或有遮挡场景下。","progress":"文献梳理并完善想法","accent":"blue","tags":["控制理论","2026"],"status":"推进中"}]}'::jsonb, 'published', 0)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('researchAreas', 'unmanned-systems', '{"slug":"unmanned-systems","title":"无人系统","eyebrow":"Unmanned Systems","description":"面向无人机、机器人、机械臂和自动驾驶系统，研究复杂环境中的感知、规划、控制、协同运输、避障越障和语义级定位建图。","question":"如何让无人系统在未知、动态、高风险场景中安全感知环境、理解意图并完成高速、稳定、可协同的自主行动。","approach":["围绕无人机负载运输、端到端避障、机器人环境理解和机械臂操作等场景建设问题库。","结合模型控制、强化学习、多模态感知和语义 SLAM，形成可仿真、可实物验证的研究路线。","将安全约束、实时决策和复杂环境适应能力纳入系统设计。"],"openQuestions":["多机协同","端到端避障","语义 SLAM","机械臂抓取"],"metrics":["自主感知","轨迹规划","安全决策"],"publicationIds":[],"resourceIds":[],"accent":"teal","problemCount":13,"participantCount":18,"participants":["尹利榜","周圣岳","张小辉","朱立秋","田傲祥","李锦震","韩丙羲","郁有冬","于佳琪","孙显鹏","张灿","钱炜","刘星昊","郑晓虎","崔瑞航","孙秉旭","张政","邢锦文"],"projectIds":["problem-001","problem-002","problem-008","problem-012","problem-014","problem-015","problem-016","problem-017","problem-019","problem-021","problem-024","problem-026","problem-027"],"representativeProblems":["更灵活与更安全的多机悬吊负载","无人机负载识别与控制","复杂环境下的机器人环境理解与智能决策"],"problems":[{"id":"problem-001","title":"更灵活与更安全的多机悬吊负载","direction":"无人系统","sourceDirection":"无人系统","directionSlug":"unmanned-systems","year":"2026","owner":"尹利榜","participantsText":"尹利榜","participants":["尹利榜"],"problem":"由多架无人机通过柔性缆绳共同悬吊并运输一个负载，在复杂环境中实现安全、分布式的自主运输与操控。","vision":"构建一种面向复杂环境的分布式多无人机悬吊运输理论与方法体系，使多机系统能够像一个“可重构、可协同、自适应”的空中运输体一样，在未知或半未知环境中安全穿行、快速机动、鲁棒运输。","value":"多机悬吊适用于：\n1. 应急救援与灾害现场物资投送\n2. 山地/峡谷/林区等复杂地形运输\n3.港口、仓储、施工等重物协同吊运\n4.狭窄空间或危险环境中的穿越布放任务","challenge":"1. 动力学耦合强，系统本质复杂；\n2. 从集中式走向分布式后，协调更难；\n等等问题有待整理","opportunity":"按后续研究方向可以划分为：\n1. 从“集中式敏捷运输”走向“分布式敏捷运输”；\n2.从“已知模型”走向“模型不确定、自适应、学习增强”；\n3.从“开阔环境运输”走向“复杂受限空间作业”","progress":"目前正在进行从集中式到分布式的NMPC最优控制理论研究","accent":"teal","tags":["无人系统","2026"],"status":"推进中"},{"id":"problem-002","title":"无人机负载识别与控制","direction":"无人系统","sourceDirection":"无人系统","directionSlug":"unmanned-systems","year":"2026","owner":"周圣岳","participantsText":"周圣岳、张小辉","participants":["周圣岳","张小辉"],"problem":"能够识别挂载物的重量，能够识别挂载物在机身具体位置、能够识别挂载物和机身之间的绳索长度","vision":"任意负载挂载于无人机任意离散已知挂点","value":"高空作业的检修人员不可能精准定位无人机的唯一挂点，无人机不可能事先确切知道所有挂载物的所有属性","challenge":"如何识别阶跃负载并且快速控制是难度所在","opportunity":"暂时不知道","progress":"分为粗糙估计和精细化估计，精细化估计的技术已经获取，粗糙且快速估计的方法在路上","accent":"teal","tags":["无人系统","2026"],"status":"推进中"},{"id":"problem-008","title":"复杂环境下的机器人环境理解与智能决策","direction":"无人系统","sourceDirection":"无人系统","directionSlug":"unmanned-systems","year":"2026","owner":"朱立秋","participantsText":"朱立秋","participants":["朱立秋"],"problem":"机器人根据障碍物过去及当前的位置、速度等信息，推测其潜在的运动趋势并对其行为做出理解，避免与障碍物之间发生交互冲突","vision":"1. 机器人能够根据障碍物的行为和状态理解其行为逻辑，并作出合理决策；\n2. 机器人能够预判周围障碍物的下一步行为，进而主动做出自己的行动来改变周围环境","value":"使机器人从被动感知障碍物提升到主动进行安全决策，能够理解动态障碍物的行为方式并作出预判，在自动驾驶、物流以及导弹攻防等领域有较大应用前景","challenge":"1. 目前该方向研究较少，研究方法较为简单；\n2. 能够准确描述障碍物行为的模型较少，已有模型简单，无法全面概括障碍物行为；\n3. 如何让机器人根据障碍物意图模型做出合理决策；\n4. 机器人如何在理解周围物体行为逻辑的基础上对其进行引导，以完成自己的目标","opportunity":"1. 更全面的障碍物意图理解模型\n2. 更合理的机器人交互决策\n3. 后续可以将类似方法用于机器人面对复杂环境(存在静态、动态障碍物)的决策，比如存在动态障碍物环境中的避障越障","progress":"已完成仿真和部分实验，正在编写论文","accent":"teal","tags":["无人系统","2026"],"status":"推进中"},{"id":"problem-012","title":"基于视觉的四旋翼无人机端到端避障","direction":"无人系统","sourceDirection":"无人系统","directionSlug":"unmanned-systems","year":"2026","owner":"田傲祥","participantsText":"田傲祥","participants":["田傲祥"],"problem":"训练一个神经网络，使利用视觉信息的无人机能够在现实大多数环境中高速、敏捷、丝滑的飞行。","vision":"结合模仿学习与强化学习等其他方法的优点，增强其仿真到现实的泛化能力，提高训练效率，增强高速避障性能，使无人机能够在室外敏捷高速飞行。","value":"1、端到端的方法相较于传统方法能大大提高无人机飞行速度的上限，提高无人机在救援，目标跟踪，巡逻等应用场景下的效率。\n2、减少传感器的使用，使其低成本与轻量化，大规模生产。\n3、无论是在茂密的森林、复杂的室内走廊，还是光照剧烈的工业矿井，无人机都能凭借同一套神经网络模型实现自主穿梭。","challenge":"1、高速避障成功率低。\n2、强化学习奖励函数设计困难，难收敛，视觉维度高训练困难。\n3、模仿学习泛化性差，依赖高质量数据，性能上限受专家策略影响。","opportunity":"1、提高在复杂障碍物下的避障能力。\n2、提高处理速度。","progress":"测试各个方法的效果（仿真）","accent":"teal","tags":["无人系统","2026"],"status":"推进中"},{"id":"problem-014","title":"轮腿机器人避障越障协同\n轮腿机械臂（韩丙羲）","direction":"无人系统","sourceDirection":"无人系统","directionSlug":"unmanned-systems","year":"2026","owner":"李锦震","participantsText":"李锦震\n韩丙羲","participants":["李锦震","韩丙羲"],"problem":"针对轮腿机器人在复杂环境的自主运动需求，构建 “感知+规划+动作” 一体化系统，实现从起点到尽头的全流程自主运行，无需人工干预。\n（韩丙羲）研究轮腿与机械臂协同控制，实现复杂地形稳定移动，精准抓取的任务","vision":"实现复杂场景下轮腿机器人自主导航与避障越障的闭环，提升机器人在复杂地形的自主作业能力，为工业巡检、复杂环境探测等应用提供技术基础。","value":"1、满足轮腿机器人在固定障碍环境的自主导航与越障需求；\n2、提升机器人地形适应能力，拓展应用场景，降低操作成本，适配多行业实际需求。\n3.融合轮腿优势，拓展机器人在复杂环境作业能力（韩丙羲）","challenge":"1、跳跃时定位漂移、激光匹配失效；\n2、需要动作稳定，包括轮腿跳跃姿态控制、落地缓冲。\n3.机械臂运动时引发的系统振动与定位偏差（韩丙羲）","opportunity":"1、扩展多障碍场景适配；\n2、增加跳跃动作自适应调节。","progress":"已搭建的简单地图测试仿真，实现了轮腿简单功能，目前准备搭建实物地图。\n已完成机械臂仿真，轮腿仿真还未搭好（韩丙羲）","accent":"teal","tags":["无人系统","2026"],"status":"推进中"},{"id":"problem-015","title":"多模态融合的端到端自动驾驶与轨迹规划","direction":"无人系统","sourceDirection":"无人系统","directionSlug":"unmanned-systems","year":"2026","owner":"郁有冬","participantsText":"郁有冬","participants":["郁有冬"],"problem":"针对工作需求，开展自动驾驶相关内容的学习，包括从零到一的算法学习，复现","vision":"完整的学习自动驾驶控制算法，并搭实现sim2real","value":"1.面向求职岗位需要，学习一些基本技能\n2.提高自己的代码能力\n3.系统性的学习也可以为无人机后续的工作奠定基础","challenge":"从零开始需要摸索","opportunity":"","progress":"开始学习基础知识","accent":"teal","tags":["无人系统","2026"],"status":"推进中"},{"id":"problem-016","title":"机械臂多模态感知协同与动态干扰下高精度控制","direction":"无人系统","sourceDirection":"无人系统","directionSlug":"unmanned-systems","year":"2026","owner":"于佳琪","participantsText":"于佳琪","participants":["于佳琪"],"problem":"针对机械臂在复杂工况下多源感知信息不同步、动态干扰导致定位精度下降的问题，通过构建感知数据协同处理机制与抗干扰控制策略，实现多模态信息的有效融合，解决动态环境中机械臂末端执行器定位偏差超阈值、操作可靠性不足的核心矛盾。","vision":"构建一种面向复杂工况的机械臂感知 - 控制协同理论与方法体系，使机械臂能够在多源干扰、负载波动的场景中，始终保持高精度定位、稳定操作与快速响应。","value":"满足精密装配、微电子制造等场景对机械臂操作精度的高要求，提升自动化生产线的产品合格率与生产效率。","challenge":"1.视觉、力觉、惯性测量数据的采样频率与数据格式差异大，冗余信息剔除易导致融合结果失真，影响感知准确性。\n2.外部振动、负载变化等干扰具有随机性与非线性特征，难以建立精确数学模型。","opportunity":"","progress":"查找相关论文，进行相关基础知识的学习","accent":"teal","tags":["无人系统","2026"],"status":"推进中"},{"id":"problem-017","title":"复杂场景下基于强化学习的机械臂物体抓取、在机械臂强化学习前如何找到适合的奖励函数","direction":"无人系统","sourceDirection":"无人系统","directionSlug":"unmanned-systems","year":"2026","owner":"孙显鹏","participantsText":"孙显鹏，张灿","participants":["孙显鹏","张灿"],"problem":"针对机械臂端到端的强化学习，使用强化学习算法，完成能够适应复杂场景的训练。如何使用尽可能少的专家演示，找到泛化性强的强化学习控制方法，以适应复杂或者变化的环境","vision":"能够在复杂的场景下根据抓取目标自动探索，最终将目标物体抓取成功。通过强化学习训练出泛化性强的模型适应复杂场景。","value":"1.面向求职岗位需要，学习一些基本技能\n2.提高自己的代码能力\n3.系统性的学习也可以为无人机后续的工作奠定基础4.通过逆强化学习方法实现更高效的泛化性、确定性更强的训练。","challenge":"1、建模跟实际情况差别很大       2.每次训练需要资源过于庞大，每轮需要数十万次。                 3.强化学习奖励函数设计困难，难收敛，视觉维度高训练困难。如何剥离出环境和偶然的干扰，让机械臂理解训练时的真实意图","opportunity":"","progress":"查找相关论文，测试各个方法的效果。","accent":"teal","tags":["无人系统","2026"],"status":"推进中"},{"id":"problem-019","title":"扩散模型在无人系统轨迹规划中的应用","direction":"无人系统","sourceDirection":"无人系统","directionSlug":"unmanned-systems","year":"2026","owner":"钱炜","participantsText":"钱炜、刘星昊","participants":["钱炜","刘星昊"],"problem":"针对复杂及长尾突发环境下，无人系统在实际部署时面对动态障碍物或博弈场景易发生碰撞、以及底层执行机构发生剧烈抖动的问题。","vision":"构建一套\"扩散模型\"规划控制范式，实现端到端轨迹规划的“零碰撞”安全，能在环境变化时进行快速局部重规划，同时具备对陌生场景和结果不确定性的感知能力。","value":"1.赋予无人系统应对未知高危突发场景的快速主动避险能力。\n2.加速扩散轨迹规划的推理时间。\n3. 尝试将速度优化、安全约束、在线重规划与交互行为建模在同一系统中统一起来，解决当前研究方向较为分散的问题","challenge":"1.纯数据驱动的扩散模型缺乏物理常识。\n2.推理机制存在“开环盲目性”，多步去噪耗时长。\n3. 可进一步研究扩散模型与传统规划/控制方法的协同切换机制。","opportunity":"1.从扩散模型开环盲目去噪走向基于中间态干预的推理机制\n2.从“端到端直接输出”走向“大模型生成结合经典控制”的架构","progress":"查找最新相关论文，学习自动驾驶基础知识","accent":"teal","tags":["无人系统","2026"],"status":"推进中"},{"id":"problem-021","title":"机械臂在复杂环境下的小目标识别定位抓取","direction":"无人系统","sourceDirection":"无人系统","directionSlug":"unmanned-systems","year":"2026","owner":"郑晓虎","participantsText":"郑晓虎","participants":["郑晓虎"],"problem":"复杂场景中许多小目标尺寸较小，且常存在随机摆放、遮挡等情况，特征信息少、检测困难、定位精度不足，难以完成精确的识别抓取","vision":"机械臂能够在杂乱环境中快速自动识别细小物体的位置与姿态，根据视觉信息完成抓取操作","value":"1.可用于复杂工业/农业场景中，提高生产效率与设备智能化\n2.提高自己的代码编程能力\n3.可以为后续加入课题组其他方向结合奠定基础","challenge":"1.小目标在图像中的像素占比小，深度神经网络在特征提取过程中容易丢失细节信息。\n2.抓取任务不仅需要检测目标位置，还需要获取目标的方向和姿态，否则机械臂可能无法正确抓取。","opportunity":"","progress":"已搭建仿真环境，目前准备训练自己的数据集","accent":"teal","tags":["无人系统","2026"],"status":"推进中"},{"id":"problem-024","title":"面向高安全要求场景的通用语义级SLAM框架","direction":"无人系统","sourceDirection":"无人系统","directionSlug":"unmanned-systems","year":"2026","owner":"孙秉旭","participantsText":"崔瑞航、孙秉旭","participants":["崔瑞航","孙秉旭"],"problem":"面向复杂环境下感知退化、定位漂移和建图不稳定问题，研究鲁棒的带有语义级的无人系统定位与建图方法，并面向安全场景探索协同感知支撑机制","vision":"构建VLM驱动的层级动态SLAM：面向高安全场景的定位建图与意图识别框架。该框架一定要奔着落地，可用于家用小型无人机（配合家用人形机器人）、工业巡检无人机等等。","value":"该愿景框架下的五大研究重点：1.安全红线：零容错——可以舍去单纯追求精度的学术界指标，但一定要安全稳定运行，不能因此炸机。2.复杂环境感知退化——工业场景的弱光、家庭室内阳台逆光等。3.建模高动态场景——厂区的人，叉车等。家里的老人小孩，下楼买菜时大街上的行人。4.语义赋能——识别地图中的管道泄漏；家中识别桌子上绿色的水杯协助无人机抓拿。5.长期运行需求——长期巡检地图如何表示？家庭动态地图更新，室外地图如何表示？","challenge":"持续更新......后续为每个研究重点列出挑战项","opportunity":"1.从常规环境下的定位与建图走向复杂环境下的安全定位与建图；2.从只关注精度走向兼顾鲁棒性、可信性、实时性和故障应对能力；3.从纯几何建图到几何+物理渲染+语义的高逼真建图；4.从单机感知走向面向异常场景的协同感知支撑","progress":"阅读相关论文，学习代码，梳理SLAM发展脉络，思考复杂环境与安全场景下可研究的问题和方案","accent":"teal","tags":["无人系统","2026"],"status":"推进中"},{"id":"problem-026","title":"具有理论安全保证的无人机高速实时避障","direction":"无人系统","sourceDirection":"无人系统","directionSlug":"unmanned-systems","year":"2026","owner":"张政","participantsText":"张政","participants":["张政"],"problem":"解决无人机避障研究中的‘快’与‘安全’难以兼得的问题。同时拓展到移动障碍物的场景","vision":"借助端到端RL技术推动无人机从“受控环境下的谨慎飞行”迈向“开放动态环境中的敏捷自主”，在不牺牲安全性的前提下释放其速度与机动潜力","value":"1 应急救援与灾难响应\n2 环境监测和保护\n3 城市低空配送\n4 城市安防和警务","challenge":"1 如何更准确的识别动态障碍物\n2 如何避免ESDF建图去建模障碍物，直接使用点云信息进行无人机的决策","opportunity":"","progress":"已完成仿真和部分实验，正在写论文","accent":"teal","tags":["无人系统","2026"],"status":"推进中"},{"id":"problem-027","title":"四旋翼无人机端到端避障","direction":"无人系统","sourceDirection":"无人系统","directionSlug":"unmanned-systems","year":"2026","owner":"邢锦文","participantsText":"邢锦文","participants":["邢锦文"],"problem":"使仅利用视觉信息的无人机能够在现实大多数环境中高速、敏捷的飞行。","vision":"以先进小网络的合理组织和训练方式超越较大网络的性能，具备较好的Sim2Real性质","value":"1、端到端的方法相较于传统方法能大大提高无人机飞行速度的上限，提高无人机在救援，目标跟踪，巡逻等应用场景下的效率。\n2、减少传感器的使用，使其低成本与轻量化，大规模生产。\n3、无论是在茂密的森林、复杂的室内走廊，还是光照剧烈的工业矿井，无人机都能凭借同一套神经网络模型实现自主穿梭。","challenge":"","opportunity":"","progress":"","accent":"teal","tags":["无人系统","2026"],"status":"问题梳理"}]}'::jsonb, 'published', 1)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('researchAreas', 'artificial-intelligence', '{"slug":"artificial-intelligence","title":"人工智能","eyebrow":"Artificial Intelligence","description":"聚焦蛋白质生成、医学图像分类、舌象多模态大模型、天然分子筛选、DTA 预测和 Agent 工具化，探索 AI 在科研与工程中的可用性。","question":"如何让人工智能方法从模型指标走向真实问题解决，兼顾数据稀缺、泛化、可解释、开放世界和工具化落地。","approach":["以生物医学智能、多模态理解和科研工具化为主线，建设从数据到模型再到演示系统的问题闭环。","围绕小样本、长尾分布、跨模态融合和动态交互等难点设计模型。","持续评估模型在科研复现、工程部署和实际使用成本上的价值。"],"openQuestions":["蛋白质生成","医学图像","多模态大模型","Agent 工具"],"metrics":["生成模型","多模态学习","科研工具化"],"publicationIds":["pub-001","pub-002","pub-003","pub-004","pub-005","pub-006"],"resourceIds":["res-protein-benchmark","res-protein-code","res-medical-image-demo","res-tongue-spec","res-tongue-demo","res-natural-molecule-pipeline","res-binding-benchmark","res-dta-report","res-dta-code"],"accent":"amber","problemCount":8,"participantCount":11,"participants":["孙兴泽","崔鹏珊","徐刘义","陈明","郭蕴","王清","敦子晗","张学文","高一鸣","何天宇","芦安洋"],"projectIds":["problem-006","problem-007","problem-011","problem-013","problem-018","problem-020","problem-023","problem-028"],"representativeProblems":["靶点特异性蛋白生成","医学图像分类","开放世界复杂舌象识别的多模态大模型"],"problems":[{"id":"problem-006","title":"靶点特异性蛋白生成","direction":"人工智能","sourceDirection":"人工智能","directionSlug":"artificial-intelligence","year":"2026","owner":"孙兴泽","participantsText":"孙兴泽","participants":["孙兴泽"],"problem":"使用生成模型生成的蛋白质仍需要大量实验来验证蛋白质的有效性","vision":"精准生成具有特定活性的功能性蛋白，能够进行功能性蛋白直接设计","value":"减少后续实验的验证，设计出自然界不存在的具有超高亲和力的功能性蛋白","challenge":"1，缺少靶点结合蛋白质的相关数据集；2，如何将靶点特征融合到扩散模型当中","opportunity":"设计目标更加明确","progress":"了解了相关3D特征注入条件信息的论文","accent":"amber","tags":["人工智能","2026"],"status":"推进中"},{"id":"problem-007","title":"医学图像分类","direction":"人工智能","sourceDirection":"人工智能","directionSlug":"artificial-intelligence","year":"2026","owner":"崔鹏珊","participantsText":"崔鹏珊","participants":["崔鹏珊"],"problem":"针对复杂病灶表征下的特征学习困难、类别不平衡导致的识别偏置，以及模型预测可信度不足等关键问题，提升分类方法的准确性、可解释性和临床辅助价值。","vision":"构建面向复杂医学影像的高精度、高可信度分类方法，实现对不同疾病类别或病变等级的稳定识别，并为临床辅助诊断提供可靠支持。","value":"医学图像数据量大、人工阅片成本高，且诊断结果受医生经验影响较大。开展医学图像分类研究有助于提高诊断效率、降低漏诊误诊风险、缓解医疗资源分布不均问题，具有临床意义和社会价值。","challenge":"1.病灶区域往往尺度变化大、边界模糊、形态复杂；\n2.医学数据常存在类别不平衡、小样本、多中心分布差异等问题；\n3.模型不仅要追求精度，还要兼顾效率、泛化能力和可解释性，这对算法设计提出了较高要求。","opportunity":"扩展至多标签、多模态任务","progress":"修改论文中","accent":"amber","tags":["人工智能","2026"],"status":"推进中"},{"id":"problem-011","title":"开放世界复杂舌象识别的多模态大模型","direction":"人工智能","sourceDirection":"人工智能","directionSlug":"artificial-intelligence","year":"2026","owner":"徐刘义","participantsText":"徐刘义、陈明、郭蕴、王清","participants":["徐刘义","陈明","郭蕴","王清"],"problem":"如何让模型从“固定类别识别”走向“开放世界理解”，实现对基础舌象属性及其组合关系的灵活识别，从而适应现实中长尾分布的复杂舌象场景","vision":"构建一个基于 MLLM 的开放舌象识别系统，使模型能够像医生一样，不局限于训练时见过的固定类别，而是基于对舌象基础属性的理解，完成对复杂舌象的组合式分析与描述","value":"1、真实舌象呈长尾、复杂、组合式分布，传统闭集分类无法应对\n2、可应用于临床辅助问诊、基层/远程筛查、中医数字化标准建设","challenge":"1、舌象本身具有高度复杂性和模糊性\n2、传统监督学习天然不适合开放场景\n3、多模态建模本身具有挑战","opportunity":"1、从单一“望诊”向中医“四诊合参”的多模态大模型演进\n2、开放环境下的终身学习与动态演进机制","progress":"规划初步demo、收集数据集","accent":"amber","tags":["人工智能","2026"],"status":"推进中"},{"id":"problem-013","title":"面向抗衰靶点的天然分子筛选","direction":"人工智能","sourceDirection":"人工智能","directionSlug":"artificial-intelligence","year":"2026","owner":"敦子晗","participantsText":"敦子晗","participants":["敦子晗"],"problem":"如何借助深度学习工具，从海量的天然分子中精准筛选出真正具有抗衰老药效的先导分子","vision":"打造“高通量初筛（看结合）—低通量精筛（看功能）—动力学验证（看机制）”的递进式筛选范式，精准锁定具有真实抗衰效用的先导分子。","value":"1.直击全球老龄化加剧的严峻现状，破解现有AI方法对复杂天然分子“认不准”的技术瓶颈，实现分子筛选从“预测物理结合”向“精准预判真实抗衰药效”的跨越；\n2.抗衰老药物“实验转化率低”的僵局，大幅降低新药研发的“盲盒试错”成本与时间，极大提升真正有效分子的发现率。","challenge":"1.合成小分子到天然分子的表征偏置；\n2.抗衰老药靶数据稀疏；\n3.如何打破单一物理结合预测的局限，引入抗衰老生物学表型语义约束。","opportunity":"1.天然分子表征问题：现有预训练模型主要面向合成小分子；\n2.小样本问题：高质量抗衰老药靶数据少，很多药物作用不明；\n3.作用不明问题：药靶物理结合预测方法缺少表征约束，无法预测其真实作用如”抑制剂“、”激活剂“还是无作用。","progress":"方法调研中","accent":"amber","tags":["人工智能","2026"],"status":"推进中"},{"id":"problem-018","title":"如何让Agent变成实用工具","direction":"人工智能","sourceDirection":"人工智能","directionSlug":"artificial-intelligence","year":"2026","owner":"张学文","participantsText":"张学文","participants":["张学文"],"problem":"OpenClaw等Agent平台当前使用门槛高、配置复杂、Token消耗大，大家难以真正用其解决实际问题。","vision":"探索一套轻量化、低成本的OpenClaw应用模式。通过优化技能调用逻辑、预设高频办公场景的RPA模板，让大家真正能将agent用到工作中。","value":"1.通过学习搭建agent增加实践经验\n2.在过程中体会产品思维，提高可用性","challenge":"agent要想好用需要耗费token，目前来看其维护成本不低于人工成本。加入办公自动化脚本的部分又需要经常维护，此外安全性也会限制它的能力","opportunity":"openclaw目前已经是个不错的平台，但是也需要使用者有很好的想法，让这个平台从看着厉害，变成用着真香。","progress":"已完成部署学习openclaw","accent":"amber","tags":["人工智能","2026"],"status":"推进中"},{"id":"problem-020","title":"蛋白质核苷酸结合点位预测","direction":"人工智能","sourceDirection":"人工智能","directionSlug":"artificial-intelligence","year":"2026","owner":"高一鸣","participantsText":"高一鸣","participants":["高一鸣"],"problem":"归咎于特征表征不足和融合机制僵化，现有的计算方法在预测蛋白质-核苷酸结合位点时往往性能欠佳","vision":"提出一个统一且高度自适应的框架，旨在推动该领域从“手动架构设计”向“自动化架构搜索”的范式转变","value":"准确识别结合位点是破译分子机制和加速药物研发的基础核心，设计模型从而为后基因组时代解析复杂的蛋白质-配体相互作用提供一种极其有效的新方案","challenge":"1.蛋白质序列特征高维冗余，且含有噪声2.静态架构无法针对特定任务指定针对性融合策略3.核苷酸任务之间的信息交互能力有限","opportunity":"引入结构先验知识或少样本学习技术来进一步提升低资源场景的表现 。同时，计划探索代理辅助优化来加速架构搜索过程","progress":"修改论文中","accent":"amber","tags":["人工智能","2026"],"status":"推进中"},{"id":"problem-023","title":"药物-靶标亲和力（DTA）预测","direction":"人工智能","sourceDirection":"人工智能","directionSlug":"artificial-intelligence","year":"2026","owner":"何天宇","participantsText":"何天宇","participants":["何天宇"],"problem":"给定药物分子和蛋白靶标，预测二者结合强弱（亲和力），本质上是学习药物与蛋白之间的相互作用关系。","vision":"构建高精度、可解释、对未见药物/靶标也能稳定泛化的多模态预测模型，用于虚拟筛选、药物优化与药物重定位。","value":"降本增效： 过滤 90% 以上的无效先导化合物，显著降低湿实验成本；风险控制： 在早期发现阶段预测脱靶效应，提升创新药临床转化成功率。","challenge":".  模型极易过拟合特定数据集，在“冷启动”或跨数据集场景下性能大幅崩盘； 药靶两侧特征尺度差异大，且融合机制多为预设静态结构，难以捕捉样本级的动态交互规律。","opportunity":"从简单的结合亲和力预测转向真实的药物生成；除亲和力外，同时考虑稳定性和特异性等，更贴近药物研发需求","progress":"修改论文中","accent":"amber","tags":["人工智能","2026"],"status":"推进中"},{"id":"problem-028","title":"多智能体技术学习、使用、改进","direction":"人工智能","sourceDirection":"人工智能","directionSlug":"artificial-intelligence","year":"2026","owner":"芦安洋","participantsText":"芦安洋","participants":["芦安洋"],"problem":"","vision":"","value":"学习Claud Code、大龙虾 源码\n\n渐进式给AI信息\n减少信息使用\n旧工具替代\n如何设计记忆系统","challenge":"","opportunity":"","progress":"","accent":"amber","tags":["人工智能","2026"],"status":"问题梳理"}]}'::jsonb, 'published', 2)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('researchAreas', 'engineering-projects', '{"slug":"engineering-projects","title":"工程项目","eyebrow":"Engineering Projects","description":"面向燃气轮机、压缩机组、管网运输和工业现场建模优化，沉淀可服务真实工程问题的模型、算法和系统方案。","question":"如何把控制、建模、优化和数据方法落到真实工业对象上，解决数据不足、机理复杂和能耗优化等工程问题。","approach":["从工程对象和现场需求出发，明确建模、优化和验证目标。","结合机理建模、数据驱动和仿真验证，形成可复用的工程方案。","围绕压缩机、燃气轮机和管网场景积累项目资料与实验依据。"],"openQuestions":["工业建模","负荷分配","能耗优化","工程验证"],"metrics":["机理建模","优化调度","工程落地"],"publicationIds":[],"resourceIds":[],"accent":"rose","problemCount":2,"participantCount":3,"participants":["陈业凡","张兴政","吴昊隆"],"projectIds":["problem-022","problem-025"],"representativeProblems":["燃气轮机及压缩机建模","压缩机组负荷分配优化"],"problems":[{"id":"problem-022","title":"燃气轮机及压缩机建模","direction":"工程项目","sourceDirection":"工程","directionSlug":"engineering-projects","year":"2026","owner":"陈业凡","participantsText":"陈业凡，张兴政","participants":["陈业凡","张兴政"],"problem":"利用已有的数据对燃气轮机进行建模","vision":"目标对于燃气轮机掌握一套建模方法，对于国产燃气轮机进行细致的机理数据建模，研发模型尽可能贴近实际燃气轮机","value":"对于后续工程方面以及燃气轮机国产化具有意义，后续团队可以在已有的燃气轮机模型上继续往下深挖","challenge":"1、需要更多的燃气轮机的数据集2、对于机理部分需要燃气轮机内部尺寸的一些数据3、建模方法以及如何实现高精度建模，更贴合实际燃气轮机","opportunity":"","progress":"目前对燃气轮机的涡轮部分进行建模探究，先对部分进行建模尝试","accent":"rose","tags":["工程项目","2026"],"status":"推进中"},{"id":"problem-025","title":"压缩机组负荷分配优化","direction":"工程项目","sourceDirection":"工程","directionSlug":"engineering-projects","year":"2026","owner":"吴昊隆","participantsText":"吴昊隆","participants":["吴昊隆"],"problem":"针对压气站场的多台压缩机组并联工作时负荷分配策略开展研究","vision":"构建一套多机组负荷分配优化策略，并通过仿真验证算法","value":"目前压气站常配备多台机组，但现存的负荷分配算法无法使得能耗最优；而我们如果能实现能耗最优，可大幅度降低管网运输成本，为企业降本增效，同时具有理论意义和工程意义","challenge":"1.实际运行数据缺乏，需要后续在工程中继续收集2.评估指标、优化指标确立","opportunity":"","progress":"正在查照相关文献","accent":"rose","tags":["工程项目","2026"],"status":"推进中"}]}'::jsonb, 'published', 3)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('people', '芦安洋', '{"name":"芦安洋","role":"实验室主任","group":"directors","problemTitle":""}'::jsonb, 'published', 0)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('people', '钱熠凝', '{"name":"钱熠凝","role":"副主任","group":"directors","problemTitle":""}'::jsonb, 'published', 1)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('people', '张佳楠', '{"name":"张佳楠","group":"control-theory","category":"控制理论","problemTitle":"多目标可靠跟踪"}'::jsonb, 'published', 2)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('people', '王庆杰', '{"name":"王庆杰","group":"control-theory","category":"控制理论","problemTitle":"多目标可靠跟踪"}'::jsonb, 'published', 3)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('people', '赵冬可', '{"name":"赵冬可","group":"control-theory","category":"控制理论","problemTitle":"攻击设计/检测/识别"}'::jsonb, 'published', 4)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('people', '张满', '{"name":"张满","group":"control-theory","category":"控制理论","problemTitle":"攻击设计/检测/识别"}'::jsonb, 'published', 5)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('people', '崔崇熠', '{"name":"崔崇熠","group":"control-theory","category":"控制理论","problemTitle":"攻击设计/检测/识别"}'::jsonb, 'published', 6)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('people', '李家庚', '{"name":"李家庚","group":"control-theory","category":"控制理论","problemTitle":"无模型全自主真实世界强化学习"}'::jsonb, 'published', 7)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('people', '纪寒康', '{"name":"纪寒康","group":"control-theory","category":"控制理论","problemTitle":"安全状态估计"}'::jsonb, 'published', 8)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('people', '杜爽', '{"name":"杜爽","group":"control-theory","category":"控制理论","problemTitle":"多无人机围捕"}'::jsonb, 'published', 9)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('people', '尹利榜', '{"name":"尹利榜","group":"unmanned-systems","category":"无人系统","problemTitle":"更灵活与更安全的多机悬吊负载"}'::jsonb, 'published', 10)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('people', '周圣岳', '{"name":"周圣岳","group":"unmanned-systems","category":"无人系统","problemTitle":"无人机负载识别与控制"}'::jsonb, 'published', 11)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('people', '张小辉', '{"name":"张小辉","group":"unmanned-systems","category":"无人系统","problemTitle":"无人机负载识别与控制"}'::jsonb, 'published', 12)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('people', '朱立秋', '{"name":"朱立秋","group":"unmanned-systems","category":"无人系统","problemTitle":"复杂环境下的机器人环境理解与智能决策"}'::jsonb, 'published', 13)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('people', '田傲祥', '{"name":"田傲祥","group":"unmanned-systems","category":"无人系统","problemTitle":"基于视觉的四旋翼无人机端到端避障"}'::jsonb, 'published', 14)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('people', '李锦震', '{"name":"李锦震","group":"unmanned-systems","category":"无人系统","problemTitle":"轮腿机器人避障越障协同"}'::jsonb, 'published', 15)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('people', '韩丙羲', '{"name":"韩丙羲","group":"unmanned-systems","category":"无人系统","problemTitle":"轮腿机器人避障越障协同"}'::jsonb, 'published', 16)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('people', '郁有冬', '{"name":"郁有冬","group":"unmanned-systems","category":"无人系统","problemTitle":"多模态融合的端到端自动驾驶与轨迹规划"}'::jsonb, 'published', 17)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('people', '于佳琪', '{"name":"于佳琪","group":"unmanned-systems","category":"无人系统","problemTitle":"机械臂多模态感知协同与动态干扰下高精度控制"}'::jsonb, 'published', 18)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('people', '孙显鹏', '{"name":"孙显鹏","group":"unmanned-systems","category":"无人系统","problemTitle":"复杂场景下基于强化学习的机械臂物体抓取"}'::jsonb, 'published', 19)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('people', '张灿', '{"name":"张灿","group":"unmanned-systems","category":"无人系统","problemTitle":"复杂场景下基于强化学习的机械臂物体抓取"}'::jsonb, 'published', 20)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('people', '钱炜', '{"name":"钱炜","group":"unmanned-systems","category":"无人系统","problemTitle":"扩散模型在无人系统轨迹规划中的应用"}'::jsonb, 'published', 21)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('people', '刘星昊', '{"name":"刘星昊","group":"unmanned-systems","category":"无人系统","problemTitle":"扩散模型在无人系统轨迹规划中的应用"}'::jsonb, 'published', 22)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('people', '郑晓虎', '{"name":"郑晓虎","group":"unmanned-systems","category":"无人系统","problemTitle":"机械臂在复杂环境下的小目标识别定位抓取"}'::jsonb, 'published', 23)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('people', '孙秉旭', '{"name":"孙秉旭","group":"unmanned-systems","category":"无人系统","problemTitle":"面向高安全要求场景的通用语义级SLAM框架"}'::jsonb, 'published', 24)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('people', '崔瑞航', '{"name":"崔瑞航","group":"unmanned-systems","category":"无人系统","problemTitle":"面向高安全要求场景的通用语义级SLAM框架"}'::jsonb, 'published', 25)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('people', '张政', '{"name":"张政","group":"unmanned-systems","category":"无人系统","problemTitle":"具有理论安全保证的无人机高速实时避障"}'::jsonb, 'published', 26)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('people', '邢锦文', '{"name":"邢锦文","group":"unmanned-systems","category":"无人系统","problemTitle":"四旋翼无人机端到端避障"}'::jsonb, 'published', 27)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('people', '孙兴泽', '{"name":"孙兴泽","group":"artificial-intelligence","category":"人工智能","problemTitle":"靶点特异性蛋白生成"}'::jsonb, 'published', 28)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('people', '崔鹏珊', '{"name":"崔鹏珊","group":"artificial-intelligence","category":"人工智能","problemTitle":"医学图像分类"}'::jsonb, 'published', 29)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('people', '徐刘义', '{"name":"徐刘义","group":"artificial-intelligence","category":"人工智能","problemTitle":"开放世界复杂舌象识别的多模态大模型"}'::jsonb, 'published', 30)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('people', '陈明', '{"name":"陈明","group":"artificial-intelligence","category":"人工智能","problemTitle":"开放世界复杂舌象识别的多模态大模型"}'::jsonb, 'published', 31)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('people', '郭蕴', '{"name":"郭蕴","group":"artificial-intelligence","category":"人工智能","problemTitle":"开放世界复杂舌象识别的多模态大模型"}'::jsonb, 'published', 32)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('people', '王清', '{"name":"王清","group":"artificial-intelligence","category":"人工智能","problemTitle":"开放世界复杂舌象识别的多模态大模型"}'::jsonb, 'published', 33)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('people', '敦子晗', '{"name":"敦子晗","group":"artificial-intelligence","category":"人工智能","problemTitle":"面向抗衰靶点的天然分子筛选"}'::jsonb, 'published', 34)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('people', '张学文', '{"name":"张学文","group":"artificial-intelligence","category":"人工智能","problemTitle":"如何让Agent变成实用工具"}'::jsonb, 'published', 35)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('people', '高一鸣', '{"name":"高一鸣","group":"artificial-intelligence","category":"人工智能","problemTitle":"蛋白质核苷酸结合点位预测"}'::jsonb, 'published', 36)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('people', '王少宽', '{"name":"王少宽","group":"artificial-intelligence","category":"人工智能","problemTitle":"药物-靶标亲和力（DTA）预测"}'::jsonb, 'published', 37)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('people', '李毅霄', '{"name":"李毅霄","group":"artificial-intelligence","category":"人工智能","problemTitle":"药物-靶标亲和力（DTA）预测"}'::jsonb, 'published', 38)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('people', '陈业凡', '{"name":"陈业凡","group":"engineering-projects","category":"工程项目","problemTitle":"燃气轮机及压缩机建模"}'::jsonb, 'published', 39)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('people', '张兴政', '{"name":"张兴政","group":"engineering-projects","category":"工程项目","problemTitle":"燃气轮机及压缩机建模"}'::jsonb, 'published', 40)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('people', '吴昊隆', '{"name":"吴昊隆","group":"engineering-projects","category":"工程项目","problemTitle":"压缩机组负荷分配优化"}'::jsonb, 'published', 41)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('publications', 'pub-007', '{"id":"pub-007","title":"Distributed Secure State Estimation Against Byzantine Agents: A Multi-hop Relay-based Sorting and Filtering Method","authors":"Jianan Zhang, Chao Deng, An-Yang Lu","venue":"IEEE Transactions on Automatic Control","year":"2026","type":"journal","tag":"安全状态估计","featured":false,"doi":"10.1109/TAC.2026.3683008","paper":"https://ieeexplore.ieee.org/document/11479663?sessionid=","pdf":"","code":"","dataset":"","researchSlug":"","projectIds":[],"resourceIds":[],"citation":"J. Zhang, C. Deng, and A.-Y. Lu, “Distributed Secure State Estimation Against Byzantine Agents: A Multi-hop Relay-based Sorting and Filtering Method,” IEEE Transactions on Automatic Control, early access / accepted version, 2026, doi: 10.1109/TAC.2026.3683008.","abstract":"本文研究存在 Byzantine agents 的多智能体网络中，网络物理系统的分布式安全状态估计问题。作者提出多跳加权分布式梯度下降算法 MW-DGD，将多跳中继通信、排序过滤和 minimum message coverage 结合起来，在多跳场景下建立等价数学表示，从而以多项式时间实现安全估计。论文进一步给出更一般的鲁棒一致性条件，并提出分布式误差检测算法，用于动态评估 Byzantine 攻击下的估计可靠性。","highlights":["提出 MW-DGD 算法，在 Byzantine agents 存在时实现多项式时间的分布式安全状态估计。","将 sorting/filtering 与 minimum message coverage 融合，用于处理多跳中继中被篡改或伪造的路径消息。","给出 f-local Byzantine 模型下弹性渐近一致性的充要条件：图需满足 (f + 1)-strictly robust with l hops。","相比既有 (2f + 1)-robust 条件，论文的图鲁棒性要求更宽松。","提出 DED 分布式误差检测算法，并通过仿真验证多跳方案在估计性能和鲁棒性上的优势。"],"bibtex":"@article{zhang2026distributedsecurestateestimation,\n  title = {Distributed Secure State Estimation Against Byzantine Agents: A Multi-hop Relay-based Sorting and Filtering Method},\n  author = {Zhang, Jianan and Deng, Chao and Lu, An-Yang},\n  journal = {IEEE Transactions on Automatic Control},\n  year = {2026},\n  volume = {PP},\n  number = {99},\n  pages = {1--16},\n  doi = {10.1109/TAC.2026.3683008},\n  note = {Accepted for publication / early access author version}\n}"}'::jsonb, 'published', 0)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('publications', 'pub-001', '{"id":"pub-001","title":"靶点条件扩散模型用于功能性蛋白生成的技术报告","authors":"林知远, 宋清越, 许嘉禾","venue":"智能生物设计预印本","year":"2026","type":"preprint","tag":"蛋白质设计","featured":true,"doi":"","pdf":"","code":"","dataset":"","researchSlug":"target-specific-protein","projectIds":["proj-001"],"resourceIds":["res-protein-benchmark","res-protein-code"],"citation":"Lin Z., Song Q., Xu J. Target-conditioned diffusion for functional protein generation. BioAI Design Preprint, 2026.","abstract":"围绕靶点特征如何注入蛋白生成模型，整理条件扩散、亲和力约束和实验验证候选流程。","highlights":["提出面向靶点条件的候选生成流程","整理亲和力重排序与功能活性验证队列","形成可扩展的蛋白生成评测模板"],"bibtex":"@article{lin2026targetdiffusion,\n  title = {Target-conditioned diffusion for functional protein generation},\n  author = {Lin, Zhiyuan and Song, Qingyue and Xu, Jiahe},\n  journal = {BioAI Design Preprint},\n  year = {2026}\n}"}'::jsonb, 'published', 1)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('publications', 'pub-002', '{"id":"pub-002","title":"复杂病灶场景下医学图像分类的可信学习基线","authors":"赵令仪, 周亦然","venue":"医学影像智能研讨会","year":"2025","type":"conference","tag":"医学影像","featured":true,"doi":"","pdf":"","code":"","dataset":"","researchSlug":"medical-image-classification","projectIds":["proj-002"],"resourceIds":["res-medical-image-demo"],"citation":"Zhao L., Zhou Y. Trustworthy learning baselines for medical image classification under complex lesions. Medical Imaging AI Workshop, 2025.","abstract":"面向边界模糊、类别不平衡和多中心分布差异，构建可解释分类与置信校准实验基线。","highlights":["统一多中心图像分类实验设置","加入置信度校准和可解释评测","明确科研演示与临床诊断之间的边界"],"bibtex":"@inproceedings{zhao2025trustworthy,\n  title = {Trustworthy learning baselines for medical image classification under complex lesions},\n  author = {Zhao, Lingyi and Zhou, Yiran},\n  booktitle = {Medical Imaging AI Workshop},\n  year = {2025}\n}"}'::jsonb, 'published', 2)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('publications', 'pub-003', '{"id":"pub-003","title":"开放世界复杂舌象识别的组合属性建模框架","authors":"王景行, 陈沐晴, 林知远","venue":"多模态医学智能技术报告","year":"2025","type":"preprint","tag":"舌象 MLLM","featured":false,"doi":"","pdf":"","code":"","dataset":"","researchSlug":"open-tongue-mllm","projectIds":["proj-003"],"resourceIds":["res-tongue-spec","res-tongue-demo"],"citation":"Wang J., Chen M., Lin Z. Compositional attribute modeling for open-world tongue image understanding. Multimodal Medical AI Technical Report, 2025.","abstract":"探索从闭集类别预测转向基础属性理解与组合式描述的舌象多模态大模型路线。","highlights":["提出舌象基础属性与组合属性拆分","比较闭集识别与开放世界描述","形成多模态指令样本规范"],"bibtex":"@techreport{wang2025tonguemllm,\n  title = {Compositional attribute modeling for open-world tongue image understanding},\n  author = {Wang, Jingxing and Chen, Muqing and Lin, Zhiyuan},\n  institution = {Intelligent Medicine and Biocomputing Lab},\n  year = {2025}\n}"}'::jsonb, 'published', 3)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('publications', 'pub-004', '{"id":"pub-004","title":"面向抗衰靶点的天然分子筛选：从结合预测到功能约束","authors":"陈沐晴, 许嘉禾","venue":"AI Drug Discovery Workshop","year":"2024","type":"conference","tag":"天然分子筛选","featured":false,"doi":"","pdf":"","code":"","dataset":"","researchSlug":"anti-aging-natural-molecules","projectIds":["proj-004"],"resourceIds":["res-natural-molecule-pipeline"],"citation":"Chen M., Xu J. Natural molecule screening for anti-aging targets: from binding prediction to functional constraints. AI Drug Discovery Workshop, 2024.","abstract":"讨论天然分子表征偏置、抗衰靶点数据稀疏以及生物学表型语义约束的建模方案。","highlights":["串联结合预测、语义约束和动力学验证","分析天然分子结构偏置","形成递进式筛选流程"],"bibtex":"@inproceedings{chen2024naturalmolecule,\n  title = {Natural molecule screening for anti-aging targets: from binding prediction to functional constraints},\n  author = {Chen, Muqing and Xu, Jiahe},\n  booktitle = {AI Drug Discovery Workshop},\n  year = {2024}\n}"}'::jsonb, 'published', 4)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('publications', 'pub-005', '{"id":"pub-005","title":"蛋白质-核苷酸结合位点预测中的自适应特征融合","authors":"宋清越, 周亦然","venue":"Journal of Computational Biomedicine","year":"2024","type":"journal","tag":"结合位点预测","featured":false,"doi":"","pdf":"","code":"","dataset":"","researchSlug":"protein-nucleotide-sites","projectIds":["proj-005"],"resourceIds":["res-binding-benchmark"],"citation":"Song Q., Zhou Y. Adaptive feature fusion for protein-nucleotide binding site prediction. Journal of Computational Biomedicine, 2024.","abstract":"围绕高维蛋白序列特征、结构先验和任务间交互，设计低资源场景下的融合评测协议。","highlights":["构建低资源结合位点评测协议","融合序列特征与结构先验","分析不同核苷酸类别的泛化差异"],"bibtex":"@article{song2024bindingfusion,\n  title = {Adaptive feature fusion for protein-nucleotide binding site prediction},\n  author = {Song, Qingyue and Zhou, Yiran},\n  journal = {Journal of Computational Biomedicine},\n  year = {2024}\n}"}'::jsonb, 'published', 5)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('publications', 'pub-006', '{"id":"pub-006","title":"冷启动场景下药物-靶标亲和力预测的动态交互评测","authors":"许嘉禾, 赵令仪, 林知远","venue":"智能药物发现技术报告","year":"2026","type":"preprint","tag":"DTA 预测","featured":true,"doi":"","pdf":"","code":"","dataset":"","researchSlug":"dta-prediction","projectIds":["proj-006"],"resourceIds":["res-dta-report","res-dta-code"],"citation":"Xu J., Zhao L., Lin Z. Dynamic interaction evaluation for drug-target affinity prediction under cold-start settings. Intelligent Drug Discovery Technical Report, 2026.","abstract":"关注未见药物或靶标条件下的泛化崩盘问题，比较静态融合与样本级动态交互建模策略。","highlights":["构建冷启动和跨数据集评测协议","比较静态融合与动态交互建模","服务虚拟筛选候选排序"],"bibtex":"@techreport{xu2026dtacoldstart,\n  title = {Dynamic interaction evaluation for drug-target affinity prediction under cold-start settings},\n  author = {Xu, Jiahe and Zhao, Lingyi and Lin, Zhiyuan},\n  institution = {Intelligent Medicine and Biocomputing Lab},\n  year = {2026}\n}"}'::jsonb, 'published', 6)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('newsItems', 'news-001', '{"id":"news-001","title":"实验室启动靶点特异性蛋白生成课题基线搭建","excerpt":"团队正在整理靶点结合蛋白数据、条件扩散模型和功能活性验证流程。","date":"2026-04-18","category":"research","featured":true}'::jsonb, 'published', 0)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('newsItems', 'news-002', '{"id":"news-002","title":"智能医学与生物计算实验室开放长期研究助理岗位","excerpt":"欢迎对深度学习、生物信息、药物发现、医学影像和蛋白质建模感兴趣的同学加入。","date":"2026-03-26","category":"recruiting","featured":true}'::jsonb, 'published', 1)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('newsItems', 'news-003', '{"id":"news-003","title":"复杂舌象多模态数据规范进入第一轮整理","excerpt":"团队围绕开放世界识别、组合属性标注和中医数字化标准建设推进数据流程。","date":"2026-02-11","category":"event","featured":false}'::jsonb, 'published', 2)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('newsItems', 'news-004', '{"id":"news-004","title":"DTA 冷启动泛化评测与天然分子筛选流程完成阶段复盘","excerpt":"阶段报告聚焦跨数据集泛化、天然分子表征偏置和抗衰靶点数据稀疏问题。","date":"2025-12-08","category":"achievement","featured":false}'::jsonb, 'published', 3)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('projects', 'problem-001', '{"id":"problem-001","title":"更灵活与更安全的多机悬吊负载","description":"由多架无人机通过柔性缆绳共同悬吊并运输一个负载，在复杂环境中实现安全、分布式的自主运输与操控。","problem":"由多架无人机通过柔性缆绳共同悬吊并运输一个负载，在复杂环境中实现安全、分布式的自主运输与操控。","vision":"构建一种面向复杂环境的分布式多无人机悬吊运输理论与方法体系，使多机系统能够像一个“可重构、可协同、自适应”的空中运输体一样，在未知或半未知环境中安全穿行、快速机动、鲁棒运输。","value":"多机悬吊适用于：\n1. 应急救援与灾害现场物资投送\n2. 山地/峡谷/林区等复杂地形运输\n3.港口、仓储、施工等重物协同吊运\n4.狭窄空间或危险环境中的穿越布放任务","challenge":"1. 动力学耦合强，系统本质复杂；\n2. 从集中式走向分布式后，协调更难；\n等等问题有待整理","opportunity":"按后续研究方向可以划分为：\n1. 从“集中式敏捷运输”走向“分布式敏捷运输”；\n2.从“已知模型”走向“模型不确定、自适应、学习增强”；\n3.从“开阔环境运输”走向“复杂受限空间作业”","progress":"目前正在进行从集中式到分布式的NMPC最优控制理论研究","lead":"尹利榜","owner":"尹利榜","phase":"目前正在进行从集中式到分布式的NMPC最优控制理论研究","tags":["无人系统","2026"],"status":"推进中","accent":"teal","researchSlug":"unmanned-systems","publicationIds":[],"resourceIds":[],"outputs":["构建一种面向复杂环境的分布式多无人机悬吊运输理论与方法体系，使多机系统能够像一个“可重构、可协同、自适应”的空中运输体一样，在未知或半未知环境中安全穿行、快速机动、鲁棒运输。","多机悬吊适用于：\n1. 应急救援与灾害现场物资投送\n2. 山地/峡谷/林区等复杂地形运输\n3.港口、仓储、施工等重物协同吊运\n4.狭窄空间或危险环境中的穿越布放任务"],"milestones":["1. 动力学耦合强，系统本质复杂；\n2. 从集中式走向分布式后，协调更难；\n等等问题有待整理","按后续研究方向可以划分为：\n1. 从“集中式敏捷运输”走向“分布式敏捷运输”；\n2.从“已知模型”走向“模型不确定、自适应、学习增强”；\n3.从“开阔环境运输”走向“复杂受限空间作业”","目前正在进行从集中式到分布式的NMPC最优控制理论研究"],"links":[],"year":"2026","direction":"无人系统"}'::jsonb, 'published', 0)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('projects', 'problem-002', '{"id":"problem-002","title":"无人机负载识别与控制","description":"能够识别挂载物的重量，能够识别挂载物在机身具体位置、能够识别挂载物和机身之间的绳索长度","problem":"能够识别挂载物的重量，能够识别挂载物在机身具体位置、能够识别挂载物和机身之间的绳索长度","vision":"任意负载挂载于无人机任意离散已知挂点","value":"高空作业的检修人员不可能精准定位无人机的唯一挂点，无人机不可能事先确切知道所有挂载物的所有属性","challenge":"如何识别阶跃负载并且快速控制是难度所在","opportunity":"暂时不知道","progress":"分为粗糙估计和精细化估计，精细化估计的技术已经获取，粗糙且快速估计的方法在路上","lead":"周圣岳、张小辉","owner":"周圣岳","phase":"分为粗糙估计和精细化估计，精细化估计的技术已经获取，粗糙且快速估计的方法在路上","tags":["无人系统","2026"],"status":"推进中","accent":"teal","researchSlug":"unmanned-systems","publicationIds":[],"resourceIds":[],"outputs":["任意负载挂载于无人机任意离散已知挂点","高空作业的检修人员不可能精准定位无人机的唯一挂点，无人机不可能事先确切知道所有挂载物的所有属性"],"milestones":["如何识别阶跃负载并且快速控制是难度所在","暂时不知道","分为粗糙估计和精细化估计，精细化估计的技术已经获取，粗糙且快速估计的方法在路上"],"links":[],"year":"2026","direction":"无人系统"}'::jsonb, 'published', 1)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('projects', 'problem-003', '{"id":"problem-003","title":"多目标可靠跟踪","description":"在网络攻击或者感知故障的情况下，如何通过多架无人机协同感知与信息融合，实现对多个目标高精度、高鲁棒性的持续跟踪。","problem":"在网络攻击或者感知故障的情况下，如何通过多架无人机协同感知与信息融合，实现对多个目标高精度、高鲁棒性的持续跟踪。","vision":"1.即使在大规模目标、强感知干扰、网络攻击或部分无人机失效等复杂场景下，仍能够持续、准确、实时地掌握每个目标的动态轨迹。\n2.将跟踪算法应用到实物中","value":"1.满足公共安全（如区域监控）、交通管理、应急救援（如围捕逃犯）等场景中对大范围、多目标实时感知的迫切需求。\n2.能显著提升单机跟踪的覆盖范围和容错能力。","challenge":"1.如何在网络攻击下实现多无人机的分布式控制\n2.在感知故障、部分目标丢失或网络攻击等复杂场景下，如何获得所有目标的状态","opportunity":"1）抗攻击分布式控制：研究不同无人机-目标数量配比下的自适应控制策略，使集群在遭遇网络攻击时仍能协同感知并覆盖所有目标；\n2）容错与鲁棒跟踪：针对单机感知部分目标、传感器故障或通信攻击等情况，发展分布式融合与状态估计方法，确保多目标跟踪的连续性与可靠性。","progress":"拜占庭攻击下的多无人机多目标跟踪已初步实现，后续将逐步优化并完善该框架并探索不同攻击场景下的跟踪策略","lead":"张佳楠、王庆杰","owner":"张佳楠","phase":"拜占庭攻击下的多无人机多目标跟踪已初步实现，后续将逐步优化并完善该框架并探索不同攻击场景下的跟踪策略","tags":["控制理论","2026"],"status":"推进中","accent":"blue","researchSlug":"control-theory","publicationIds":[],"resourceIds":[],"outputs":["1.即使在大规模目标、强感知干扰、网络攻击或部分无人机失效等复杂场景下，仍能够持续、准确、实时地掌握每个目标的动态轨迹。\n2.将跟踪算法应用到实物中","1.满足公共安全（如区域监控）、交通管理、应急救援（如围捕逃犯）等场景中对大范围、多目标实时感知的迫切需求。\n2.能显著提升单机跟踪的覆盖范围和容错能力。"],"milestones":["1.如何在网络攻击下实现多无人机的分布式控制\n2.在感知故障、部分目标丢失或网络攻击等复杂场景下，如何获得所有目标的状态","1）抗攻击分布式控制：研究不同无人机-目标数量配比下的自适应控制策略，使集群在遭遇网络攻击时仍能协同感知并覆盖所有目标；\n2）容错与鲁棒跟踪：针对单机感知部分目标、传感器故障或通信攻击等情况，发展分布式融合与状态估计方法，确保多目标跟踪的连续性与可靠性。","拜占庭攻击下的多无人机多目标跟踪已初步实现，后续将逐步优化并完善该框架并探索不同攻击场景下的跟踪策略"],"links":[],"year":"2026","direction":"控制理论"}'::jsonb, 'published', 2)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('projects', 'problem-004', '{"id":"problem-004","title":"攻击设计/检测/识别","description":"该问题主要研究信息物理系统在遭受恶意攻击时，攻击应该以什么形式影响系统运行；以及当系统遭受隐蔽攻击时如何检测和识别的问题。","problem":"该问题主要研究信息物理系统在遭受恶意攻击时，攻击应该以什么形式影响系统运行；以及当系统遭受隐蔽攻击时如何检测和识别的问题。","vision":"使系统在面对隐蔽性强、破坏性大的攻击时，仍然具备可检测的能力，从而实现系统由被动防御向主动防守的转变","value":"1.随着信息物理系统面临的安全威胁日益突出，对高可靠性和高安全性的需求也越来越迫切。\n2.攻击检测与识别不仅关系到系统能否安全稳定运行，还直接影响故障隔离、容错控制、决策重构等后续环节。","challenge":"1.非线性系统方向研究不足，其中关于非线性耦合性尚未解决；","opportunity":"后续利用人工智能方法，来实现目标","progress":"找相关文献，推导中","lead":"赵冬可、张满、崔崇熠","owner":"赵冬可","phase":"找相关文献，推导中","tags":["控制理论","2026"],"status":"推进中","accent":"blue","researchSlug":"control-theory","publicationIds":[],"resourceIds":[],"outputs":["使系统在面对隐蔽性强、破坏性大的攻击时，仍然具备可检测的能力，从而实现系统由被动防御向主动防守的转变","1.随着信息物理系统面临的安全威胁日益突出，对高可靠性和高安全性的需求也越来越迫切。\n2.攻击检测与识别不仅关系到系统能否安全稳定运行，还直接影响故障隔离、容错控制、决策重构等后续环节。"],"milestones":["1.非线性系统方向研究不足，其中关于非线性耦合性尚未解决；","后续利用人工智能方法，来实现目标","找相关文献，推导中"],"links":[],"year":"2026","direction":"控制理论"}'::jsonb, 'published', 3)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('projects', 'problem-005', '{"id":"problem-005","title":"无模型全自主真实世界强化学习","description":"真实世界RL Agent的危险尝试不被允许，场景训练过程需要人类大量干预，探索无人监管下RL Agent安全自主探索的可能性。","problem":"真实世界RL Agent的危险尝试不被允许，场景训练过程需要人类大量干预，探索无人监管下RL Agent安全自主探索的可能性。","vision":"构建跨模型、对上层算法透明、对多领域人才友好的准通用真实世界具身RL智能体的自主学习架构。","value":"真实世界强化学习可以从真实环境获取信息，可以有效缓解Sim2Real Gap，并尝试解决难以被计算机模拟的问题。然而RL固有的随机性造成危险探索，需要人类实时监管并重置训练流程，学习效率低。已有方法一般依赖模型，对复杂机械系统建模困难，难以落地。所提方案有助于为真实世界RL的更广泛应用铺平道路。","challenge":"在不同硬件上设计尽可能满足通用性需求的Framework存在困难；模型提供控制逻辑，缺乏模型信息时可能无法负反馈；环境信息定义安全性，丢失环境特权信息时保证自主学习时的安全性有困难；假设跨学科从业者只有通识级别的数学/物理知识，为保证跨领域使用该架构需要减少专业性。","opportunity":"拓展已有方案性能，使其适用于更多工程痛点场景。","progress":"进行初步实物部署和已有方案的进一步升级。","lead":"李家庚","owner":"李家庚","phase":"进行初步实物部署和已有方案的进一步升级。","tags":["控制理论","2026"],"status":"推进中","accent":"blue","researchSlug":"control-theory","publicationIds":[],"resourceIds":[],"outputs":["构建跨模型、对上层算法透明、对多领域人才友好的准通用真实世界具身RL智能体的自主学习架构。","真实世界强化学习可以从真实环境获取信息，可以有效缓解Sim2Real Gap，并尝试解决难以被计算机模拟的问题。然而RL固有的随机性造成危险探索，需要人类实时监管并重置训练流程，学习效率低。已有方法一般依赖模型，对复杂机械系统建模困难，难以落地。所提方案有助于为真实世界RL的更广泛应用铺平道路。"],"milestones":["在不同硬件上设计尽可能满足通用性需求的Framework存在困难；模型提供控制逻辑，缺乏模型信息时可能无法负反馈；环境信息定义安全性，丢失环境特权信息时保证自主学习时的安全性有困难；假设跨学科从业者只有通识级别的数学/物理知识，为保证跨领域使用该架构需要减少专业性。","拓展已有方案性能，使其适用于更多工程痛点场景。","进行初步实物部署和已有方案的进一步升级。"],"links":[],"year":"2026","direction":"控制理论"}'::jsonb, 'published', 4)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('projects', 'problem-006', '{"id":"problem-006","title":"靶点特异性蛋白生成","description":"使用生成模型生成的蛋白质仍需要大量实验来验证蛋白质的有效性","problem":"使用生成模型生成的蛋白质仍需要大量实验来验证蛋白质的有效性","vision":"精准生成具有特定活性的功能性蛋白，能够进行功能性蛋白直接设计","value":"减少后续实验的验证，设计出自然界不存在的具有超高亲和力的功能性蛋白","challenge":"1，缺少靶点结合蛋白质的相关数据集；2，如何将靶点特征融合到扩散模型当中","opportunity":"设计目标更加明确","progress":"了解了相关3D特征注入条件信息的论文","lead":"孙兴泽","owner":"孙兴泽","phase":"了解了相关3D特征注入条件信息的论文","tags":["人工智能","2026"],"status":"推进中","accent":"amber","researchSlug":"artificial-intelligence","publicationIds":[],"resourceIds":[],"outputs":["精准生成具有特定活性的功能性蛋白，能够进行功能性蛋白直接设计","减少后续实验的验证，设计出自然界不存在的具有超高亲和力的功能性蛋白"],"milestones":["1，缺少靶点结合蛋白质的相关数据集；2，如何将靶点特征融合到扩散模型当中","设计目标更加明确","了解了相关3D特征注入条件信息的论文"],"links":[],"year":"2026","direction":"人工智能"}'::jsonb, 'published', 5)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('projects', 'problem-007', '{"id":"problem-007","title":"医学图像分类","description":"针对复杂病灶表征下的特征学习困难、类别不平衡导致的识别偏置，以及模型预测可信度不足等关键问题，提升分类方法的准确性、可解释性和临床辅助价值。","problem":"针对复杂病灶表征下的特征学习困难、类别不平衡导致的识别偏置，以及模型预测可信度不足等关键问题，提升分类方法的准确性、可解释性和临床辅助价值。","vision":"构建面向复杂医学影像的高精度、高可信度分类方法，实现对不同疾病类别或病变等级的稳定识别，并为临床辅助诊断提供可靠支持。","value":"医学图像数据量大、人工阅片成本高，且诊断结果受医生经验影响较大。开展医学图像分类研究有助于提高诊断效率、降低漏诊误诊风险、缓解医疗资源分布不均问题，具有临床意义和社会价值。","challenge":"1.病灶区域往往尺度变化大、边界模糊、形态复杂；\n2.医学数据常存在类别不平衡、小样本、多中心分布差异等问题；\n3.模型不仅要追求精度，还要兼顾效率、泛化能力和可解释性，这对算法设计提出了较高要求。","opportunity":"扩展至多标签、多模态任务","progress":"修改论文中","lead":"崔鹏珊","owner":"崔鹏珊","phase":"修改论文中","tags":["人工智能","2026"],"status":"推进中","accent":"amber","researchSlug":"artificial-intelligence","publicationIds":[],"resourceIds":[],"outputs":["构建面向复杂医学影像的高精度、高可信度分类方法，实现对不同疾病类别或病变等级的稳定识别，并为临床辅助诊断提供可靠支持。","医学图像数据量大、人工阅片成本高，且诊断结果受医生经验影响较大。开展医学图像分类研究有助于提高诊断效率、降低漏诊误诊风险、缓解医疗资源分布不均问题，具有临床意义和社会价值。"],"milestones":["1.病灶区域往往尺度变化大、边界模糊、形态复杂；\n2.医学数据常存在类别不平衡、小样本、多中心分布差异等问题；\n3.模型不仅要追求精度，还要兼顾效率、泛化能力和可解释性，这对算法设计提出了较高要求。","扩展至多标签、多模态任务","修改论文中"],"links":[],"year":"2026","direction":"人工智能"}'::jsonb, 'published', 6)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('projects', 'problem-008', '{"id":"problem-008","title":"复杂环境下的机器人环境理解与智能决策","description":"机器人根据障碍物过去及当前的位置、速度等信息，推测其潜在的运动趋势并对其行为做出理解，避免与障碍物之间发生交互冲突","problem":"机器人根据障碍物过去及当前的位置、速度等信息，推测其潜在的运动趋势并对其行为做出理解，避免与障碍物之间发生交互冲突","vision":"1. 机器人能够根据障碍物的行为和状态理解其行为逻辑，并作出合理决策；\n2. 机器人能够预判周围障碍物的下一步行为，进而主动做出自己的行动来改变周围环境","value":"使机器人从被动感知障碍物提升到主动进行安全决策，能够理解动态障碍物的行为方式并作出预判，在自动驾驶、物流以及导弹攻防等领域有较大应用前景","challenge":"1. 目前该方向研究较少，研究方法较为简单；\n2. 能够准确描述障碍物行为的模型较少，已有模型简单，无法全面概括障碍物行为；\n3. 如何让机器人根据障碍物意图模型做出合理决策；\n4. 机器人如何在理解周围物体行为逻辑的基础上对其进行引导，以完成自己的目标","opportunity":"1. 更全面的障碍物意图理解模型\n2. 更合理的机器人交互决策\n3. 后续可以将类似方法用于机器人面对复杂环境(存在静态、动态障碍物)的决策，比如存在动态障碍物环境中的避障越障","progress":"已完成仿真和部分实验，正在编写论文","lead":"朱立秋","owner":"朱立秋","phase":"已完成仿真和部分实验，正在编写论文","tags":["无人系统","2026"],"status":"推进中","accent":"teal","researchSlug":"unmanned-systems","publicationIds":[],"resourceIds":[],"outputs":["1. 机器人能够根据障碍物的行为和状态理解其行为逻辑，并作出合理决策；\n2. 机器人能够预判周围障碍物的下一步行为，进而主动做出自己的行动来改变周围环境","使机器人从被动感知障碍物提升到主动进行安全决策，能够理解动态障碍物的行为方式并作出预判，在自动驾驶、物流以及导弹攻防等领域有较大应用前景"],"milestones":["1. 目前该方向研究较少，研究方法较为简单；\n2. 能够准确描述障碍物行为的模型较少，已有模型简单，无法全面概括障碍物行为；\n3. 如何让机器人根据障碍物意图模型做出合理决策；\n4. 机器人如何在理解周围物体行为逻辑的基础上对其进行引导，以完成自己的目标","1. 更全面的障碍物意图理解模型\n2. 更合理的机器人交互决策\n3. 后续可以将类似方法用于机器人面对复杂环境(存在静态、动态障碍物)的决策，比如存在动态障碍物环境中的避障越障","已完成仿真和部分实验，正在编写论文"],"links":[],"year":"2026","direction":"无人系统"}'::jsonb, 'published', 7)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('projects', 'problem-009', '{"id":"problem-009","title":"安全状态估计","description":"利用一段时间内的系统输出完成初始状态的重构，排除或检测出异常传感器","problem":"利用一段时间内的系统输出完成初始状态的重构，排除或检测出异常传感器","vision":"开发高效状态估计算法，争取与无人机，机械臂等应用场景结合并落地","value":"安全状态估计与故障检查，目标跟踪，追捕，编队等问题联系紧密；其亦可转化为组合问题应用于计算机算法开发，具有广泛的应用场景","challenge":"非线性系统太宽泛，难以用代数方法解决状态估计","opportunity":"完成非线性系统状态估计论文；学习组合优化方法（包括拟阵等方法），将安全状态估计问题转化为组合优化问题以开发多项式时间算法","progress":"修改论文中","lead":"纪寒康、王庆杰\n张满、张佳楠","owner":"纪寒康","phase":"修改论文中","tags":["控制理论","2026"],"status":"推进中","accent":"blue","researchSlug":"control-theory","publicationIds":[],"resourceIds":[],"outputs":["开发高效状态估计算法，争取与无人机，机械臂等应用场景结合并落地","安全状态估计与故障检查，目标跟踪，追捕，编队等问题联系紧密；其亦可转化为组合问题应用于计算机算法开发，具有广泛的应用场景"],"milestones":["非线性系统太宽泛，难以用代数方法解决状态估计","完成非线性系统状态估计论文；学习组合优化方法（包括拟阵等方法），将安全状态估计问题转化为组合优化问题以开发多项式时间算法","修改论文中"],"links":[],"year":"2026","direction":"控制理论"}'::jsonb, 'published', 8)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('projects', 'problem-010', '{"id":"problem-010","title":"多无人机围捕","description":"在目标信息不可直接测量情况下，多架无人机通过状态估计与协同控制实现对运动目标的追踪并包围，同时保证无碰撞发生。","problem":"在目标信息不可直接测量情况下，多架无人机通过状态估计与协同控制实现对运动目标的追踪并包围，同时保证无碰撞发生。","vision":"从理论层面分析围捕成功与否的临界条件，研究最经济的围捕策略。","value":"可应用于安防巡逻、目标拦截、应急救援等需要多无人机自主追踪与避障的场景。","challenge":"1. 目标状态不可直接获取，需要实时状态估计；\n2. 传感器感知和定位可能存在不确定性；\n3. 动态障碍物运动不确定，对于高速移动、突然出现障碍物避碰策略有效性。","opportunity":"1. 分析动态障碍物多大速度范围下系统能够在控制策略下保证安全；\n2. 扩展到密集障碍物情况下或有遮挡场景下。","progress":"文献梳理并完善想法","lead":"杜爽","owner":"杜爽","phase":"文献梳理并完善想法","tags":["控制理论","2026"],"status":"推进中","accent":"blue","researchSlug":"control-theory","publicationIds":[],"resourceIds":[],"outputs":["从理论层面分析围捕成功与否的临界条件，研究最经济的围捕策略。","可应用于安防巡逻、目标拦截、应急救援等需要多无人机自主追踪与避障的场景。"],"milestones":["1. 目标状态不可直接获取，需要实时状态估计；\n2. 传感器感知和定位可能存在不确定性；\n3. 动态障碍物运动不确定，对于高速移动、突然出现障碍物避碰策略有效性。","1. 分析动态障碍物多大速度范围下系统能够在控制策略下保证安全；\n2. 扩展到密集障碍物情况下或有遮挡场景下。","文献梳理并完善想法"],"links":[],"year":"2026","direction":"控制理论"}'::jsonb, 'published', 9)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('projects', 'problem-011', '{"id":"problem-011","title":"开放世界复杂舌象识别的多模态大模型","description":"如何让模型从“固定类别识别”走向“开放世界理解”，实现对基础舌象属性及其组合关系的灵活识别，从而适应现实中长尾分布的复杂舌象场景","problem":"如何让模型从“固定类别识别”走向“开放世界理解”，实现对基础舌象属性及其组合关系的灵活识别，从而适应现实中长尾分布的复杂舌象场景","vision":"构建一个基于 MLLM 的开放舌象识别系统，使模型能够像医生一样，不局限于训练时见过的固定类别，而是基于对舌象基础属性的理解，完成对复杂舌象的组合式分析与描述","value":"1、真实舌象呈长尾、复杂、组合式分布，传统闭集分类无法应对\n2、可应用于临床辅助问诊、基层/远程筛查、中医数字化标准建设","challenge":"1、舌象本身具有高度复杂性和模糊性\n2、传统监督学习天然不适合开放场景\n3、多模态建模本身具有挑战","opportunity":"1、从单一“望诊”向中医“四诊合参”的多模态大模型演进\n2、开放环境下的终身学习与动态演进机制","progress":"规划初步demo、收集数据集","lead":"徐刘义、陈明、郭蕴、王清","owner":"徐刘义","phase":"规划初步demo、收集数据集","tags":["人工智能","2026"],"status":"推进中","accent":"amber","researchSlug":"artificial-intelligence","publicationIds":[],"resourceIds":[],"outputs":["构建一个基于 MLLM 的开放舌象识别系统，使模型能够像医生一样，不局限于训练时见过的固定类别，而是基于对舌象基础属性的理解，完成对复杂舌象的组合式分析与描述","1、真实舌象呈长尾、复杂、组合式分布，传统闭集分类无法应对\n2、可应用于临床辅助问诊、基层/远程筛查、中医数字化标准建设"],"milestones":["1、舌象本身具有高度复杂性和模糊性\n2、传统监督学习天然不适合开放场景\n3、多模态建模本身具有挑战","1、从单一“望诊”向中医“四诊合参”的多模态大模型演进\n2、开放环境下的终身学习与动态演进机制","规划初步demo、收集数据集"],"links":[],"year":"2026","direction":"人工智能"}'::jsonb, 'published', 10)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('projects', 'problem-012', '{"id":"problem-012","title":"基于视觉的四旋翼无人机端到端避障","description":"训练一个神经网络，使利用视觉信息的无人机能够在现实大多数环境中高速、敏捷、丝滑的飞行。","problem":"训练一个神经网络，使利用视觉信息的无人机能够在现实大多数环境中高速、敏捷、丝滑的飞行。","vision":"结合模仿学习与强化学习等其他方法的优点，增强其仿真到现实的泛化能力，提高训练效率，增强高速避障性能，使无人机能够在室外敏捷高速飞行。","value":"1、端到端的方法相较于传统方法能大大提高无人机飞行速度的上限，提高无人机在救援，目标跟踪，巡逻等应用场景下的效率。\n2、减少传感器的使用，使其低成本与轻量化，大规模生产。\n3、无论是在茂密的森林、复杂的室内走廊，还是光照剧烈的工业矿井，无人机都能凭借同一套神经网络模型实现自主穿梭。","challenge":"1、高速避障成功率低。\n2、强化学习奖励函数设计困难，难收敛，视觉维度高训练困难。\n3、模仿学习泛化性差，依赖高质量数据，性能上限受专家策略影响。","opportunity":"1、提高在复杂障碍物下的避障能力。\n2、提高处理速度。","progress":"测试各个方法的效果（仿真）","lead":"田傲祥","owner":"田傲祥","phase":"测试各个方法的效果（仿真）","tags":["无人系统","2026"],"status":"推进中","accent":"teal","researchSlug":"unmanned-systems","publicationIds":[],"resourceIds":[],"outputs":["结合模仿学习与强化学习等其他方法的优点，增强其仿真到现实的泛化能力，提高训练效率，增强高速避障性能，使无人机能够在室外敏捷高速飞行。","1、端到端的方法相较于传统方法能大大提高无人机飞行速度的上限，提高无人机在救援，目标跟踪，巡逻等应用场景下的效率。\n2、减少传感器的使用，使其低成本与轻量化，大规模生产。\n3、无论是在茂密的森林、复杂的室内走廊，还是光照剧烈的工业矿井，无人机都能凭借同一套神经网络模型实现自主穿梭。"],"milestones":["1、高速避障成功率低。\n2、强化学习奖励函数设计困难，难收敛，视觉维度高训练困难。\n3、模仿学习泛化性差，依赖高质量数据，性能上限受专家策略影响。","1、提高在复杂障碍物下的避障能力。\n2、提高处理速度。","测试各个方法的效果（仿真）"],"links":[],"year":"2026","direction":"无人系统"}'::jsonb, 'published', 11)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('projects', 'problem-013', '{"id":"problem-013","title":"面向抗衰靶点的天然分子筛选","description":"如何借助深度学习工具，从海量的天然分子中精准筛选出真正具有抗衰老药效的先导分子","problem":"如何借助深度学习工具，从海量的天然分子中精准筛选出真正具有抗衰老药效的先导分子","vision":"打造“高通量初筛（看结合）—低通量精筛（看功能）—动力学验证（看机制）”的递进式筛选范式，精准锁定具有真实抗衰效用的先导分子。","value":"1.直击全球老龄化加剧的严峻现状，破解现有AI方法对复杂天然分子“认不准”的技术瓶颈，实现分子筛选从“预测物理结合”向“精准预判真实抗衰药效”的跨越；\n2.抗衰老药物“实验转化率低”的僵局，大幅降低新药研发的“盲盒试错”成本与时间，极大提升真正有效分子的发现率。","challenge":"1.合成小分子到天然分子的表征偏置；\n2.抗衰老药靶数据稀疏；\n3.如何打破单一物理结合预测的局限，引入抗衰老生物学表型语义约束。","opportunity":"1.天然分子表征问题：现有预训练模型主要面向合成小分子；\n2.小样本问题：高质量抗衰老药靶数据少，很多药物作用不明；\n3.作用不明问题：药靶物理结合预测方法缺少表征约束，无法预测其真实作用如”抑制剂“、”激活剂“还是无作用。","progress":"方法调研中","lead":"敦子晗","owner":"敦子晗","phase":"方法调研中","tags":["人工智能","2026"],"status":"推进中","accent":"amber","researchSlug":"artificial-intelligence","publicationIds":[],"resourceIds":[],"outputs":["打造“高通量初筛（看结合）—低通量精筛（看功能）—动力学验证（看机制）”的递进式筛选范式，精准锁定具有真实抗衰效用的先导分子。","1.直击全球老龄化加剧的严峻现状，破解现有AI方法对复杂天然分子“认不准”的技术瓶颈，实现分子筛选从“预测物理结合”向“精准预判真实抗衰药效”的跨越；\n2.抗衰老药物“实验转化率低”的僵局，大幅降低新药研发的“盲盒试错”成本与时间，极大提升真正有效分子的发现率。"],"milestones":["1.合成小分子到天然分子的表征偏置；\n2.抗衰老药靶数据稀疏；\n3.如何打破单一物理结合预测的局限，引入抗衰老生物学表型语义约束。","1.天然分子表征问题：现有预训练模型主要面向合成小分子；\n2.小样本问题：高质量抗衰老药靶数据少，很多药物作用不明；\n3.作用不明问题：药靶物理结合预测方法缺少表征约束，无法预测其真实作用如”抑制剂“、”激活剂“还是无作用。","方法调研中"],"links":[],"year":"2026","direction":"人工智能"}'::jsonb, 'published', 12)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('projects', 'problem-014', '{"id":"problem-014","title":"轮腿机器人避障越障协同\n轮腿机械臂（韩丙羲）","description":"针对轮腿机器人在复杂环境的自主运动需求，构建 “感知+规划+动作” 一体化系统，实现从起点到尽头的全流程自主运行，无需人工干预。\n（韩丙羲）研究轮腿与机械臂协同控制，实现复杂地形稳定移动，精准抓取的任务","problem":"针对轮腿机器人在复杂环境的自主运动需求，构建 “感知+规划+动作” 一体化系统，实现从起点到尽头的全流程自主运行，无需人工干预。\n（韩丙羲）研究轮腿与机械臂协同控制，实现复杂地形稳定移动，精准抓取的任务","vision":"实现复杂场景下轮腿机器人自主导航与避障越障的闭环，提升机器人在复杂地形的自主作业能力，为工业巡检、复杂环境探测等应用提供技术基础。","value":"1、满足轮腿机器人在固定障碍环境的自主导航与越障需求；\n2、提升机器人地形适应能力，拓展应用场景，降低操作成本，适配多行业实际需求。\n3.融合轮腿优势，拓展机器人在复杂环境作业能力（韩丙羲）","challenge":"1、跳跃时定位漂移、激光匹配失效；\n2、需要动作稳定，包括轮腿跳跃姿态控制、落地缓冲。\n3.机械臂运动时引发的系统振动与定位偏差（韩丙羲）","opportunity":"1、扩展多障碍场景适配；\n2、增加跳跃动作自适应调节。","progress":"已搭建的简单地图测试仿真，实现了轮腿简单功能，目前准备搭建实物地图。\n已完成机械臂仿真，轮腿仿真还未搭好（韩丙羲）","lead":"李锦震\n韩丙羲","owner":"李锦震","phase":"已搭建的简单地图测试仿真，实现了轮腿简单功能，目前准备搭建实物地图。\n已完成机械臂仿真，轮腿仿真还未搭好（韩丙羲）","tags":["无人系统","2026"],"status":"推进中","accent":"teal","researchSlug":"unmanned-systems","publicationIds":[],"resourceIds":[],"outputs":["实现复杂场景下轮腿机器人自主导航与避障越障的闭环，提升机器人在复杂地形的自主作业能力，为工业巡检、复杂环境探测等应用提供技术基础。","1、满足轮腿机器人在固定障碍环境的自主导航与越障需求；\n2、提升机器人地形适应能力，拓展应用场景，降低操作成本，适配多行业实际需求。\n3.融合轮腿优势，拓展机器人在复杂环境作业能力（韩丙羲）"],"milestones":["1、跳跃时定位漂移、激光匹配失效；\n2、需要动作稳定，包括轮腿跳跃姿态控制、落地缓冲。\n3.机械臂运动时引发的系统振动与定位偏差（韩丙羲）","1、扩展多障碍场景适配；\n2、增加跳跃动作自适应调节。","已搭建的简单地图测试仿真，实现了轮腿简单功能，目前准备搭建实物地图。\n已完成机械臂仿真，轮腿仿真还未搭好（韩丙羲）"],"links":[],"year":"2026","direction":"无人系统"}'::jsonb, 'published', 13)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('projects', 'problem-015', '{"id":"problem-015","title":"多模态融合的端到端自动驾驶与轨迹规划","description":"针对工作需求，开展自动驾驶相关内容的学习，包括从零到一的算法学习，复现","problem":"针对工作需求，开展自动驾驶相关内容的学习，包括从零到一的算法学习，复现","vision":"完整的学习自动驾驶控制算法，并搭实现sim2real","value":"1.面向求职岗位需要，学习一些基本技能\n2.提高自己的代码能力\n3.系统性的学习也可以为无人机后续的工作奠定基础","challenge":"从零开始需要摸索","opportunity":"","progress":"开始学习基础知识","lead":"郁有冬","owner":"郁有冬","phase":"开始学习基础知识","tags":["无人系统","2026"],"status":"推进中","accent":"teal","researchSlug":"unmanned-systems","publicationIds":[],"resourceIds":[],"outputs":["完整的学习自动驾驶控制算法，并搭实现sim2real","1.面向求职岗位需要，学习一些基本技能\n2.提高自己的代码能力\n3.系统性的学习也可以为无人机后续的工作奠定基础"],"milestones":["从零开始需要摸索","开始学习基础知识"],"links":[],"year":"2026","direction":"无人系统"}'::jsonb, 'published', 14)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('projects', 'problem-016', '{"id":"problem-016","title":"机械臂多模态感知协同与动态干扰下高精度控制","description":"针对机械臂在复杂工况下多源感知信息不同步、动态干扰导致定位精度下降的问题，通过构建感知数据协同处理机制与抗干扰控制策略，实现多模态信息的有效融合，解决动态环境中机械臂末端执行器定位偏差超阈值、操作可靠性不足的核心矛盾。","problem":"针对机械臂在复杂工况下多源感知信息不同步、动态干扰导致定位精度下降的问题，通过构建感知数据协同处理机制与抗干扰控制策略，实现多模态信息的有效融合，解决动态环境中机械臂末端执行器定位偏差超阈值、操作可靠性不足的核心矛盾。","vision":"构建一种面向复杂工况的机械臂感知 - 控制协同理论与方法体系，使机械臂能够在多源干扰、负载波动的场景中，始终保持高精度定位、稳定操作与快速响应。","value":"满足精密装配、微电子制造等场景对机械臂操作精度的高要求，提升自动化生产线的产品合格率与生产效率。","challenge":"1.视觉、力觉、惯性测量数据的采样频率与数据格式差异大，冗余信息剔除易导致融合结果失真，影响感知准确性。\n2.外部振动、负载变化等干扰具有随机性与非线性特征，难以建立精确数学模型。","opportunity":"","progress":"查找相关论文，进行相关基础知识的学习","lead":"于佳琪","owner":"于佳琪","phase":"查找相关论文，进行相关基础知识的学习","tags":["无人系统","2026"],"status":"推进中","accent":"teal","researchSlug":"unmanned-systems","publicationIds":[],"resourceIds":[],"outputs":["构建一种面向复杂工况的机械臂感知 - 控制协同理论与方法体系，使机械臂能够在多源干扰、负载波动的场景中，始终保持高精度定位、稳定操作与快速响应。","满足精密装配、微电子制造等场景对机械臂操作精度的高要求，提升自动化生产线的产品合格率与生产效率。"],"milestones":["1.视觉、力觉、惯性测量数据的采样频率与数据格式差异大，冗余信息剔除易导致融合结果失真，影响感知准确性。\n2.外部振动、负载变化等干扰具有随机性与非线性特征，难以建立精确数学模型。","查找相关论文，进行相关基础知识的学习"],"links":[],"year":"2026","direction":"无人系统"}'::jsonb, 'published', 15)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('projects', 'problem-017', '{"id":"problem-017","title":"复杂场景下基于强化学习的机械臂物体抓取、在机械臂强化学习前如何找到适合的奖励函数","description":"针对机械臂端到端的强化学习，使用强化学习算法，完成能够适应复杂场景的训练。如何使用尽可能少的专家演示，找到泛化性强的强化学习控制方法，以适应复杂或者变化的环境","problem":"针对机械臂端到端的强化学习，使用强化学习算法，完成能够适应复杂场景的训练。如何使用尽可能少的专家演示，找到泛化性强的强化学习控制方法，以适应复杂或者变化的环境","vision":"能够在复杂的场景下根据抓取目标自动探索，最终将目标物体抓取成功。通过强化学习训练出泛化性强的模型适应复杂场景。","value":"1.面向求职岗位需要，学习一些基本技能\n2.提高自己的代码能力\n3.系统性的学习也可以为无人机后续的工作奠定基础4.通过逆强化学习方法实现更高效的泛化性、确定性更强的训练。","challenge":"1、建模跟实际情况差别很大       2.每次训练需要资源过于庞大，每轮需要数十万次。                 3.强化学习奖励函数设计困难，难收敛，视觉维度高训练困难。如何剥离出环境和偶然的干扰，让机械臂理解训练时的真实意图","opportunity":"","progress":"查找相关论文，测试各个方法的效果。","lead":"孙显鹏，张灿","owner":"孙显鹏","phase":"查找相关论文，测试各个方法的效果。","tags":["无人系统","2026"],"status":"推进中","accent":"teal","researchSlug":"unmanned-systems","publicationIds":[],"resourceIds":[],"outputs":["能够在复杂的场景下根据抓取目标自动探索，最终将目标物体抓取成功。通过强化学习训练出泛化性强的模型适应复杂场景。","1.面向求职岗位需要，学习一些基本技能\n2.提高自己的代码能力\n3.系统性的学习也可以为无人机后续的工作奠定基础4.通过逆强化学习方法实现更高效的泛化性、确定性更强的训练。"],"milestones":["1、建模跟实际情况差别很大       2.每次训练需要资源过于庞大，每轮需要数十万次。                 3.强化学习奖励函数设计困难，难收敛，视觉维度高训练困难。如何剥离出环境和偶然的干扰，让机械臂理解训练时的真实意图","查找相关论文，测试各个方法的效果。"],"links":[],"year":"2026","direction":"无人系统"}'::jsonb, 'published', 16)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('projects', 'problem-018', '{"id":"problem-018","title":"如何让Agent变成实用工具","description":"OpenClaw等Agent平台当前使用门槛高、配置复杂、Token消耗大，大家难以真正用其解决实际问题。","problem":"OpenClaw等Agent平台当前使用门槛高、配置复杂、Token消耗大，大家难以真正用其解决实际问题。","vision":"探索一套轻量化、低成本的OpenClaw应用模式。通过优化技能调用逻辑、预设高频办公场景的RPA模板，让大家真正能将agent用到工作中。","value":"1.通过学习搭建agent增加实践经验\n2.在过程中体会产品思维，提高可用性","challenge":"agent要想好用需要耗费token，目前来看其维护成本不低于人工成本。加入办公自动化脚本的部分又需要经常维护，此外安全性也会限制它的能力","opportunity":"openclaw目前已经是个不错的平台，但是也需要使用者有很好的想法，让这个平台从看着厉害，变成用着真香。","progress":"已完成部署学习openclaw","lead":"张学文","owner":"张学文","phase":"已完成部署学习openclaw","tags":["人工智能","2026"],"status":"推进中","accent":"amber","researchSlug":"artificial-intelligence","publicationIds":[],"resourceIds":[],"outputs":["探索一套轻量化、低成本的OpenClaw应用模式。通过优化技能调用逻辑、预设高频办公场景的RPA模板，让大家真正能将agent用到工作中。","1.通过学习搭建agent增加实践经验\n2.在过程中体会产品思维，提高可用性"],"milestones":["agent要想好用需要耗费token，目前来看其维护成本不低于人工成本。加入办公自动化脚本的部分又需要经常维护，此外安全性也会限制它的能力","openclaw目前已经是个不错的平台，但是也需要使用者有很好的想法，让这个平台从看着厉害，变成用着真香。","已完成部署学习openclaw"],"links":[],"year":"2026","direction":"人工智能"}'::jsonb, 'published', 17)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('projects', 'problem-019', '{"id":"problem-019","title":"扩散模型在无人系统轨迹规划中的应用","description":"针对复杂及长尾突发环境下，无人系统在实际部署时面对动态障碍物或博弈场景易发生碰撞、以及底层执行机构发生剧烈抖动的问题。","problem":"针对复杂及长尾突发环境下，无人系统在实际部署时面对动态障碍物或博弈场景易发生碰撞、以及底层执行机构发生剧烈抖动的问题。","vision":"构建一套\"扩散模型\"规划控制范式，实现端到端轨迹规划的“零碰撞”安全，能在环境变化时进行快速局部重规划，同时具备对陌生场景和结果不确定性的感知能力。","value":"1.赋予无人系统应对未知高危突发场景的快速主动避险能力。\n2.加速扩散轨迹规划的推理时间。\n3. 尝试将速度优化、安全约束、在线重规划与交互行为建模在同一系统中统一起来，解决当前研究方向较为分散的问题","challenge":"1.纯数据驱动的扩散模型缺乏物理常识。\n2.推理机制存在“开环盲目性”，多步去噪耗时长。\n3. 可进一步研究扩散模型与传统规划/控制方法的协同切换机制。","opportunity":"1.从扩散模型开环盲目去噪走向基于中间态干预的推理机制\n2.从“端到端直接输出”走向“大模型生成结合经典控制”的架构","progress":"查找最新相关论文，学习自动驾驶基础知识","lead":"钱炜、刘星昊","owner":"钱炜","phase":"查找最新相关论文，学习自动驾驶基础知识","tags":["无人系统","2026"],"status":"推进中","accent":"teal","researchSlug":"unmanned-systems","publicationIds":[],"resourceIds":[],"outputs":["构建一套\"扩散模型\"规划控制范式，实现端到端轨迹规划的“零碰撞”安全，能在环境变化时进行快速局部重规划，同时具备对陌生场景和结果不确定性的感知能力。","1.赋予无人系统应对未知高危突发场景的快速主动避险能力。\n2.加速扩散轨迹规划的推理时间。\n3. 尝试将速度优化、安全约束、在线重规划与交互行为建模在同一系统中统一起来，解决当前研究方向较为分散的问题"],"milestones":["1.纯数据驱动的扩散模型缺乏物理常识。\n2.推理机制存在“开环盲目性”，多步去噪耗时长。\n3. 可进一步研究扩散模型与传统规划/控制方法的协同切换机制。","1.从扩散模型开环盲目去噪走向基于中间态干预的推理机制\n2.从“端到端直接输出”走向“大模型生成结合经典控制”的架构","查找最新相关论文，学习自动驾驶基础知识"],"links":[],"year":"2026","direction":"无人系统"}'::jsonb, 'published', 18)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('projects', 'problem-020', '{"id":"problem-020","title":"蛋白质核苷酸结合点位预测","description":"归咎于特征表征不足和融合机制僵化，现有的计算方法在预测蛋白质-核苷酸结合位点时往往性能欠佳","problem":"归咎于特征表征不足和融合机制僵化，现有的计算方法在预测蛋白质-核苷酸结合位点时往往性能欠佳","vision":"提出一个统一且高度自适应的框架，旨在推动该领域从“手动架构设计”向“自动化架构搜索”的范式转变","value":"准确识别结合位点是破译分子机制和加速药物研发的基础核心，设计模型从而为后基因组时代解析复杂的蛋白质-配体相互作用提供一种极其有效的新方案","challenge":"1.蛋白质序列特征高维冗余，且含有噪声2.静态架构无法针对特定任务指定针对性融合策略3.核苷酸任务之间的信息交互能力有限","opportunity":"引入结构先验知识或少样本学习技术来进一步提升低资源场景的表现 。同时，计划探索代理辅助优化来加速架构搜索过程","progress":"修改论文中","lead":"高一鸣","owner":"高一鸣","phase":"修改论文中","tags":["人工智能","2026"],"status":"推进中","accent":"amber","researchSlug":"artificial-intelligence","publicationIds":[],"resourceIds":[],"outputs":["提出一个统一且高度自适应的框架，旨在推动该领域从“手动架构设计”向“自动化架构搜索”的范式转变","准确识别结合位点是破译分子机制和加速药物研发的基础核心，设计模型从而为后基因组时代解析复杂的蛋白质-配体相互作用提供一种极其有效的新方案"],"milestones":["1.蛋白质序列特征高维冗余，且含有噪声2.静态架构无法针对特定任务指定针对性融合策略3.核苷酸任务之间的信息交互能力有限","引入结构先验知识或少样本学习技术来进一步提升低资源场景的表现 。同时，计划探索代理辅助优化来加速架构搜索过程","修改论文中"],"links":[],"year":"2026","direction":"人工智能"}'::jsonb, 'published', 19)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('projects', 'problem-021', '{"id":"problem-021","title":"机械臂在复杂环境下的小目标识别定位抓取","description":"复杂场景中许多小目标尺寸较小，且常存在随机摆放、遮挡等情况，特征信息少、检测困难、定位精度不足，难以完成精确的识别抓取","problem":"复杂场景中许多小目标尺寸较小，且常存在随机摆放、遮挡等情况，特征信息少、检测困难、定位精度不足，难以完成精确的识别抓取","vision":"机械臂能够在杂乱环境中快速自动识别细小物体的位置与姿态，根据视觉信息完成抓取操作","value":"1.可用于复杂工业/农业场景中，提高生产效率与设备智能化\n2.提高自己的代码编程能力\n3.可以为后续加入课题组其他方向结合奠定基础","challenge":"1.小目标在图像中的像素占比小，深度神经网络在特征提取过程中容易丢失细节信息。\n2.抓取任务不仅需要检测目标位置，还需要获取目标的方向和姿态，否则机械臂可能无法正确抓取。","opportunity":"","progress":"已搭建仿真环境，目前准备训练自己的数据集","lead":"郑晓虎","owner":"郑晓虎","phase":"已搭建仿真环境，目前准备训练自己的数据集","tags":["无人系统","2026"],"status":"推进中","accent":"teal","researchSlug":"unmanned-systems","publicationIds":[],"resourceIds":[],"outputs":["机械臂能够在杂乱环境中快速自动识别细小物体的位置与姿态，根据视觉信息完成抓取操作","1.可用于复杂工业/农业场景中，提高生产效率与设备智能化\n2.提高自己的代码编程能力\n3.可以为后续加入课题组其他方向结合奠定基础"],"milestones":["1.小目标在图像中的像素占比小，深度神经网络在特征提取过程中容易丢失细节信息。\n2.抓取任务不仅需要检测目标位置，还需要获取目标的方向和姿态，否则机械臂可能无法正确抓取。","已搭建仿真环境，目前准备训练自己的数据集"],"links":[],"year":"2026","direction":"无人系统"}'::jsonb, 'published', 20)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('projects', 'problem-022', '{"id":"problem-022","title":"燃气轮机及压缩机建模","description":"利用已有的数据对燃气轮机进行建模","problem":"利用已有的数据对燃气轮机进行建模","vision":"目标对于燃气轮机掌握一套建模方法，对于国产燃气轮机进行细致的机理数据建模，研发模型尽可能贴近实际燃气轮机","value":"对于后续工程方面以及燃气轮机国产化具有意义，后续团队可以在已有的燃气轮机模型上继续往下深挖","challenge":"1、需要更多的燃气轮机的数据集2、对于机理部分需要燃气轮机内部尺寸的一些数据3、建模方法以及如何实现高精度建模，更贴合实际燃气轮机","opportunity":"","progress":"目前对燃气轮机的涡轮部分进行建模探究，先对部分进行建模尝试","lead":"陈业凡，张兴政","owner":"陈业凡","phase":"目前对燃气轮机的涡轮部分进行建模探究，先对部分进行建模尝试","tags":["工程项目","2026"],"status":"推进中","accent":"rose","researchSlug":"engineering-projects","publicationIds":[],"resourceIds":[],"outputs":["目标对于燃气轮机掌握一套建模方法，对于国产燃气轮机进行细致的机理数据建模，研发模型尽可能贴近实际燃气轮机","对于后续工程方面以及燃气轮机国产化具有意义，后续团队可以在已有的燃气轮机模型上继续往下深挖"],"milestones":["1、需要更多的燃气轮机的数据集2、对于机理部分需要燃气轮机内部尺寸的一些数据3、建模方法以及如何实现高精度建模，更贴合实际燃气轮机","目前对燃气轮机的涡轮部分进行建模探究，先对部分进行建模尝试"],"links":[],"year":"2026","direction":"工程项目"}'::jsonb, 'published', 21)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('projects', 'problem-023', '{"id":"problem-023","title":"药物-靶标亲和力（DTA）预测","description":"给定药物分子和蛋白靶标，预测二者结合强弱（亲和力），本质上是学习药物与蛋白之间的相互作用关系。","problem":"给定药物分子和蛋白靶标，预测二者结合强弱（亲和力），本质上是学习药物与蛋白之间的相互作用关系。","vision":"构建高精度、可解释、对未见药物/靶标也能稳定泛化的多模态预测模型，用于虚拟筛选、药物优化与药物重定位。","value":"降本增效： 过滤 90% 以上的无效先导化合物，显著降低湿实验成本；风险控制： 在早期发现阶段预测脱靶效应，提升创新药临床转化成功率。","challenge":".  模型极易过拟合特定数据集，在“冷启动”或跨数据集场景下性能大幅崩盘； 药靶两侧特征尺度差异大，且融合机制多为预设静态结构，难以捕捉样本级的动态交互规律。","opportunity":"从简单的结合亲和力预测转向真实的药物生成；除亲和力外，同时考虑稳定性和特异性等，更贴近药物研发需求","progress":"修改论文中","lead":"何天宇","owner":"何天宇","phase":"修改论文中","tags":["人工智能","2026"],"status":"推进中","accent":"amber","researchSlug":"artificial-intelligence","publicationIds":[],"resourceIds":[],"outputs":["构建高精度、可解释、对未见药物/靶标也能稳定泛化的多模态预测模型，用于虚拟筛选、药物优化与药物重定位。","降本增效： 过滤 90% 以上的无效先导化合物，显著降低湿实验成本；风险控制： 在早期发现阶段预测脱靶效应，提升创新药临床转化成功率。"],"milestones":[".  模型极易过拟合特定数据集，在“冷启动”或跨数据集场景下性能大幅崩盘； 药靶两侧特征尺度差异大，且融合机制多为预设静态结构，难以捕捉样本级的动态交互规律。","从简单的结合亲和力预测转向真实的药物生成；除亲和力外，同时考虑稳定性和特异性等，更贴近药物研发需求","修改论文中"],"links":[],"year":"2026","direction":"人工智能"}'::jsonb, 'published', 22)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('projects', 'problem-024', '{"id":"problem-024","title":"面向高安全要求场景的通用语义级SLAM框架","description":"面向复杂环境下感知退化、定位漂移和建图不稳定问题，研究鲁棒的带有语义级的无人系统定位与建图方法，并面向安全场景探索协同感知支撑机制","problem":"面向复杂环境下感知退化、定位漂移和建图不稳定问题，研究鲁棒的带有语义级的无人系统定位与建图方法，并面向安全场景探索协同感知支撑机制","vision":"构建VLM驱动的层级动态SLAM：面向高安全场景的定位建图与意图识别框架。该框架一定要奔着落地，可用于家用小型无人机（配合家用人形机器人）、工业巡检无人机等等。","value":"该愿景框架下的五大研究重点：1.安全红线：零容错——可以舍去单纯追求精度的学术界指标，但一定要安全稳定运行，不能因此炸机。2.复杂环境感知退化——工业场景的弱光、家庭室内阳台逆光等。3.建模高动态场景——厂区的人，叉车等。家里的老人小孩，下楼买菜时大街上的行人。4.语义赋能——识别地图中的管道泄漏；家中识别桌子上绿色的水杯协助无人机抓拿。5.长期运行需求——长期巡检地图如何表示？家庭动态地图更新，室外地图如何表示？","challenge":"持续更新......后续为每个研究重点列出挑战项","opportunity":"1.从常规环境下的定位与建图走向复杂环境下的安全定位与建图；2.从只关注精度走向兼顾鲁棒性、可信性、实时性和故障应对能力；3.从纯几何建图到几何+物理渲染+语义的高逼真建图；4.从单机感知走向面向异常场景的协同感知支撑","progress":"阅读相关论文，学习代码，梳理SLAM发展脉络，思考复杂环境与安全场景下可研究的问题和方案","lead":"崔瑞航、孙秉旭","owner":"孙秉旭","phase":"阅读相关论文，学习代码，梳理SLAM发展脉络，思考复杂环境与安全场景下可研究的问题和方案","tags":["无人系统","2026"],"status":"推进中","accent":"teal","researchSlug":"unmanned-systems","publicationIds":[],"resourceIds":[],"outputs":["构建VLM驱动的层级动态SLAM：面向高安全场景的定位建图与意图识别框架。该框架一定要奔着落地，可用于家用小型无人机（配合家用人形机器人）、工业巡检无人机等等。","该愿景框架下的五大研究重点：1.安全红线：零容错——可以舍去单纯追求精度的学术界指标，但一定要安全稳定运行，不能因此炸机。2.复杂环境感知退化——工业场景的弱光、家庭室内阳台逆光等。3.建模高动态场景——厂区的人，叉车等。家里的老人小孩，下楼买菜时大街上的行人。4.语义赋能——识别地图中的管道泄漏；家中识别桌子上绿色的水杯协助无人机抓拿。5.长期运行需求——长期巡检地图如何表示？家庭动态地图更新，室外地图如何表示？"],"milestones":["持续更新......后续为每个研究重点列出挑战项","1.从常规环境下的定位与建图走向复杂环境下的安全定位与建图；2.从只关注精度走向兼顾鲁棒性、可信性、实时性和故障应对能力；3.从纯几何建图到几何+物理渲染+语义的高逼真建图；4.从单机感知走向面向异常场景的协同感知支撑","阅读相关论文，学习代码，梳理SLAM发展脉络，思考复杂环境与安全场景下可研究的问题和方案"],"links":[],"year":"2026","direction":"无人系统"}'::jsonb, 'published', 23)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('projects', 'problem-025', '{"id":"problem-025","title":"压缩机组负荷分配优化","description":"针对压气站场的多台压缩机组并联工作时负荷分配策略开展研究","problem":"针对压气站场的多台压缩机组并联工作时负荷分配策略开展研究","vision":"构建一套多机组负荷分配优化策略，并通过仿真验证算法","value":"目前压气站常配备多台机组，但现存的负荷分配算法无法使得能耗最优；而我们如果能实现能耗最优，可大幅度降低管网运输成本，为企业降本增效，同时具有理论意义和工程意义","challenge":"1.实际运行数据缺乏，需要后续在工程中继续收集2.评估指标、优化指标确立","opportunity":"","progress":"正在查照相关文献","lead":"吴昊隆","owner":"吴昊隆","phase":"正在查照相关文献","tags":["工程项目","2026"],"status":"推进中","accent":"rose","researchSlug":"engineering-projects","publicationIds":[],"resourceIds":[],"outputs":["构建一套多机组负荷分配优化策略，并通过仿真验证算法","目前压气站常配备多台机组，但现存的负荷分配算法无法使得能耗最优；而我们如果能实现能耗最优，可大幅度降低管网运输成本，为企业降本增效，同时具有理论意义和工程意义"],"milestones":["1.实际运行数据缺乏，需要后续在工程中继续收集2.评估指标、优化指标确立","正在查照相关文献"],"links":[],"year":"2026","direction":"工程项目"}'::jsonb, 'published', 24)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('projects', 'problem-026', '{"id":"problem-026","title":"具有理论安全保证的无人机高速实时避障","description":"解决无人机避障研究中的‘快’与‘安全’难以兼得的问题。同时拓展到移动障碍物的场景","problem":"解决无人机避障研究中的‘快’与‘安全’难以兼得的问题。同时拓展到移动障碍物的场景","vision":"借助端到端RL技术推动无人机从“受控环境下的谨慎飞行”迈向“开放动态环境中的敏捷自主”，在不牺牲安全性的前提下释放其速度与机动潜力","value":"1 应急救援与灾难响应\n2 环境监测和保护\n3 城市低空配送\n4 城市安防和警务","challenge":"1 如何更准确的识别动态障碍物\n2 如何避免ESDF建图去建模障碍物，直接使用点云信息进行无人机的决策","opportunity":"","progress":"已完成仿真和部分实验，正在写论文","lead":"张政","owner":"张政","phase":"已完成仿真和部分实验，正在写论文","tags":["无人系统","2026"],"status":"推进中","accent":"teal","researchSlug":"unmanned-systems","publicationIds":[],"resourceIds":[],"outputs":["借助端到端RL技术推动无人机从“受控环境下的谨慎飞行”迈向“开放动态环境中的敏捷自主”，在不牺牲安全性的前提下释放其速度与机动潜力","1 应急救援与灾难响应\n2 环境监测和保护\n3 城市低空配送\n4 城市安防和警务"],"milestones":["1 如何更准确的识别动态障碍物\n2 如何避免ESDF建图去建模障碍物，直接使用点云信息进行无人机的决策","已完成仿真和部分实验，正在写论文"],"links":[],"year":"2026","direction":"无人系统"}'::jsonb, 'published', 25)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('projects', 'problem-027', '{"id":"problem-027","title":"四旋翼无人机端到端避障","description":"使仅利用视觉信息的无人机能够在现实大多数环境中高速、敏捷的飞行。","problem":"使仅利用视觉信息的无人机能够在现实大多数环境中高速、敏捷的飞行。","vision":"以先进小网络的合理组织和训练方式超越较大网络的性能，具备较好的Sim2Real性质","value":"1、端到端的方法相较于传统方法能大大提高无人机飞行速度的上限，提高无人机在救援，目标跟踪，巡逻等应用场景下的效率。\n2、减少传感器的使用，使其低成本与轻量化，大规模生产。\n3、无论是在茂密的森林、复杂的室内走廊，还是光照剧烈的工业矿井，无人机都能凭借同一套神经网络模型实现自主穿梭。","challenge":"","opportunity":"","progress":"","lead":"邢锦文","owner":"邢锦文","phase":"问题梳理中","tags":["无人系统","2026"],"status":"问题梳理","accent":"teal","researchSlug":"unmanned-systems","publicationIds":[],"resourceIds":[],"outputs":["以先进小网络的合理组织和训练方式超越较大网络的性能，具备较好的Sim2Real性质","1、端到端的方法相较于传统方法能大大提高无人机飞行速度的上限，提高无人机在救援，目标跟踪，巡逻等应用场景下的效率。\n2、减少传感器的使用，使其低成本与轻量化，大规模生产。\n3、无论是在茂密的森林、复杂的室内走廊，还是光照剧烈的工业矿井，无人机都能凭借同一套神经网络模型实现自主穿梭。"],"milestones":[],"links":[],"year":"2026","direction":"无人系统"}'::jsonb, 'published', 26)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('projects', 'problem-028', '{"id":"problem-028","title":"多智能体技术学习、使用、改进","description":"","problem":"","vision":"","value":"学习Claud Code、大龙虾 源码\n\n渐进式给AI信息\n减少信息使用\n旧工具替代\n如何设计记忆系统","challenge":"","opportunity":"","progress":"","lead":"芦安洋","owner":"芦安洋","phase":"问题梳理中","tags":["人工智能","2026"],"status":"问题梳理","accent":"amber","researchSlug":"artificial-intelligence","publicationIds":[],"resourceIds":[],"outputs":["学习Claud Code、大龙虾 源码\n\n渐进式给AI信息\n减少信息使用\n旧工具替代\n如何设计记忆系统"],"milestones":[],"links":[],"year":"2026","direction":"人工智能"}'::jsonb, 'published', 27)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('resources', 'res-protein-benchmark', '{"id":"res-protein-benchmark","title":"靶点条件蛋白生成 Benchmark","category":"dataset","description":"用于整理靶点结构、结合蛋白候选和验证状态的评测数据规范。","status":"建设中","owner":"蛋白生成方向","updated":"2026-04-18","href":""}'::jsonb, 'published', 0)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('resources', 'res-protein-code', '{"id":"res-protein-code","title":"蛋白生成基线代码","category":"code","description":"条件扩散、候选重排序和报告生成脚本的开源入口规划。","status":"整理中","owner":"宋清越","updated":"2026-04-12","href":""}'::jsonb, 'published', 1)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('resources', 'res-medical-image-demo', '{"id":"res-medical-image-demo","title":"医学图像分类科研演示","category":"demo","description":"展示分类、置信度和可解释热图的科研演示，不用于临床决策。","status":"内测中","owner":"赵令仪","updated":"2026-03-28","href":""}'::jsonb, 'published', 2)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('resources', 'res-tongue-spec', '{"id":"res-tongue-spec","title":"舌象属性标注规范","category":"document","description":"舌象基础属性、组合属性、拍摄质量和标注一致性的文档入口。","status":"第一版整理中","owner":"王景行","updated":"2026-02-11","href":""}'::jsonb, 'published', 3)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('resources', 'res-tongue-demo', '{"id":"res-tongue-demo","title":"舌象多模态理解演示","category":"demo","description":"开放世界舌象属性理解原型，仅用于科研展示和标注流程复盘。","status":"原型验证","owner":"王景行","updated":"2026-02-20","href":""}'::jsonb, 'published', 4)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('resources', 'res-natural-molecule-pipeline', '{"id":"res-natural-molecule-pipeline","title":"天然分子筛选流程文档","category":"document","description":"高通量初筛、低通量精筛、动力学验证和候选复核的流程说明。","status":"建设中","owner":"陈沐晴","updated":"2025-12-08","href":""}'::jsonb, 'published', 5)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('resources', 'res-binding-benchmark', '{"id":"res-binding-benchmark","title":"蛋白质-核苷酸结合位点 Benchmark","category":"dataset","description":"统一序列特征、结构先验和结合位点标签的低资源评测入口。","status":"整理中","owner":"宋清越","updated":"2025-11-26","href":""}'::jsonb, 'published', 6)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('resources', 'res-dta-report', '{"id":"res-dta-report","title":"DTA 冷启动评测报告","category":"document","description":"药物冷启动、靶标冷启动和跨数据集泛化结果的报告模板。","status":"可预览","owner":"许嘉禾","updated":"2026-01-16","href":""}'::jsonb, 'published', 7)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('resources', 'res-dta-code', '{"id":"res-dta-code","title":"药物-靶标亲和力预测代码入口","category":"code","description":"动态交互建模、冷启动划分和虚拟筛选排序脚本的代码入口规划。","status":"整理中","owner":"许嘉禾","updated":"2026-01-20","href":""}'::jsonb, 'published', 8)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('joinReasons', 'joinReasons-001', '{"title":"交叉问题清晰","description":"课题覆盖蛋白质设计、药物发现、医学影像和中医多模态智能，问题边界明确。"}'::jsonb, 'published', 0)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('joinReasons', 'joinReasons-002', '{"title":"从表征到验证","description":"不只追求单个模型指标，也关注数据表征、融合机制、泛化评测和实验验证路径。"}'::jsonb, 'published', 1)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('joinReasons', 'joinReasons-003', '{"title":"适合长期成长","description":"可以从文献复现、数据清洗和基线搭建逐步进入论文写作与系统实现。"}'::jsonb, 'published', 2)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+
+insert into public.content_entries (content_type, entry_key, data, status, sort_order)
+values ('joinReasons', 'joinReasons-004', '{"title":"工程与科研并重","description":"重视可复用代码、可追踪实验和可解释结果，让研究成果更容易持续迭代。"}'::jsonb, 'published', 3)
+on conflict (content_type, entry_key) do update set
+  data = excluded.data,
+  status = excluded.status,
+  sort_order = excluded.sort_order,
+  updated_at = now();
+commit;

@@ -20,5 +20,5 @@
 </template>
 
 <script setup>
-import { navItems, siteInfo } from '../data/siteData'
+import { navItems, siteInfo } from '../services/contentStore'
 </script>

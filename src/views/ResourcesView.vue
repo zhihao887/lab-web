@@ -45,7 +45,7 @@
 
 <script setup>
 import { computed } from 'vue'
-import { resources } from '../data/siteData'
+import { resources } from '../services/contentStore'
 
 const categories = [
   { id: 'dataset', title: '数据集与 Benchmark', eyebrow: 'Datasets' },

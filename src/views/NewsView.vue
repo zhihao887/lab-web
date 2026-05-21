@@ -38,7 +38,7 @@
 <script setup>
 import { computed, ref } from 'vue'
 import PageHero from '../components/PageHero.vue'
-import { newsItems } from '../data/siteData'
+import { newsItems } from '../services/contentStore'
 
 const category = ref('all')
 

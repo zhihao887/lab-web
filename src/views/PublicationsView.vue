@@ -71,7 +71,7 @@
 <script setup>
 import { computed, ref } from 'vue'
 import PageHero from '../components/PageHero.vue'
-import { publications } from '../data/siteData'
+import { publications } from '../services/contentStore'
 
 const query = ref('')
 const year = ref('')

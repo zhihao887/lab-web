@@ -30,7 +30,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { navItems, siteInfo } from '../data/siteData'
+import { navItems, siteInfo } from '../services/contentStore'
 
 const menuOpen = ref(false)
 const closeMenu = () => {

@@ -84,7 +84,7 @@
 <script setup>
 import { computed, ref } from 'vue'
 import PageHero from '../components/PageHero.vue'
-import { projects, researchAreas } from '../data/siteData'
+import { projects, researchAreas } from '../services/contentStore'
 
 const query = ref('')
 const direction = ref('')

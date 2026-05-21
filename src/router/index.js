@@ -9,7 +9,14 @@ import ResearchDetailView from '../views/ResearchDetailView.vue'
 import PublicationDetailView from '../views/PublicationDetailView.vue'
 import ProjectDetailView from '../views/ProjectDetailView.vue'
 import ResourcesView from '../views/ResourcesView.vue'
-import { siteInfo } from '../data/siteData'
+import AdminContentManager from '../views/admin/AdminContentManager.vue'
+import AdminDashboardView from '../views/admin/AdminDashboardView.vue'
+import AdminLayout from '../views/admin/AdminLayout.vue'
+import AdminLoginView from '../views/admin/AdminLoginView.vue'
+import AdminSettingsView from '../views/admin/AdminSettingsView.vue'
+import { getCurrentAdmin } from '../services/adminAuth'
+import { siteInfo } from '../services/contentStore'
+import { adminBasePath } from '../services/supabaseClient'
 
 const routes = [
   { path: '/', name: 'home', component: HomeView, meta: { title: '首页' } },
@@ -22,6 +29,21 @@ const routes = [
   { path: '/projects/:id', name: 'project-detail', component: ProjectDetailView, meta: { title: '项目详情' } },
   { path: '/resources', name: 'resources', component: ResourcesView, meta: { title: '资源' } },
   { path: '/join', name: 'join', component: JoinView, meta: { title: '加入我们' } },
+  { path: `${adminBasePath}/login`, name: 'admin-login', component: AdminLoginView, meta: { title: 'Admin Login', admin: true } },
+  {
+    path: adminBasePath,
+    component: AdminLayout,
+    meta: { admin: true, requiresAdmin: true },
+    children: [
+      { path: '', name: 'admin-dashboard', component: AdminDashboardView, meta: { title: 'Admin', admin: true, requiresAdmin: true } },
+      { path: 'news', name: 'admin-news', component: AdminContentManager, meta: { title: 'Admin News', admin: true, requiresAdmin: true, contentType: 'newsItems' } },
+      { path: 'people', name: 'admin-people', component: AdminContentManager, meta: { title: 'Admin People', admin: true, requiresAdmin: true, contentType: 'people' } },
+      { path: 'projects', name: 'admin-projects', component: AdminContentManager, meta: { title: 'Admin Projects', admin: true, requiresAdmin: true, contentType: 'projects' } },
+      { path: 'publications', name: 'admin-publications', component: AdminContentManager, meta: { title: 'Admin Publications', admin: true, requiresAdmin: true, contentType: 'publications' } },
+      { path: 'resources', name: 'admin-resources', component: AdminContentManager, meta: { title: 'Admin Resources', admin: true, requiresAdmin: true, contentType: 'resources' } },
+      { path: 'settings', name: 'admin-settings', component: AdminSettingsView, meta: { title: 'Admin Settings', admin: true, requiresAdmin: true } },
+    ],
+  },
   { path: '/:pathMatch(.*)*', redirect: '/' },
 ]
 
@@ -31,6 +53,18 @@ const router = createRouter({
   scrollBehavior() {
     return { top: 0 }
   },
+})
+
+router.beforeEach(async (to) => {
+  if (!to.meta.requiresAdmin) return true
+
+  const admin = await getCurrentAdmin()
+  if (admin) return true
+
+  return {
+    name: 'admin-login',
+    query: { redirect: to.fullPath },
+  }
 })
 
 router.afterEach((to) => {

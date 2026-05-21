@@ -124,7 +124,7 @@
 import { computed, ref, watchEffect } from 'vue'
 import { useRoute } from 'vue-router'
 import PageHero from '../components/PageHero.vue'
-import { projects, publications, researchAreas, siteInfo } from '../data/siteData'
+import { projects, publications, researchAreas, siteInfo } from '../services/contentStore'
 
 const route = useRoute()
 const copied = ref(false)

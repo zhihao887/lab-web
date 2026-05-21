@@ -8,7 +8,7 @@
           我们欢迎对控制理论、无人系统、人工智能与工程项目有长期兴趣的同学加入。这里更看重持续推进问题的能力，也看重把想法做成系统、实验和论文的耐心。
         </p>
         <div class="hero-actions" aria-label="加入我们操作">
-          <a class="join-button primary" :href="mailtoHref">提交申请</a>
+          <a class="join-button primary" :href="mailtoHref" @click="sendApplicationEmail">提交申请</a>
           <a class="join-button secondary" href="#join-openings">查看适合方向</a>
         </div>
       </div>
@@ -174,7 +174,7 @@
             <li>每周可投入时间与近期目标</li>
             <li>可以证明能力的项目、代码或作品链接</li>
           </ul>
-          <a class="join-button primary wide" :href="mailtoHref">按模板发邮件</a>
+          <a class="join-button primary wide" :href="mailtoHref" @click="sendApplicationEmail">按模板发邮件</a>
         </aside>
       </div>
     </section>
@@ -208,14 +208,14 @@
         <h2 id="final-cta-title">期待和你一起把问题往前推</h2>
         <p>如果你已经有明确兴趣，直接发送申请材料即可；如果还不确定方向，也可以先说明自己的背景与想探索的问题。</p>
       </div>
-      <a class="join-button primary" :href="mailtoHref">提交申请</a>
+      <a class="join-button primary" :href="mailtoHref" @click="sendApplicationEmail">提交申请</a>
     </section>
   </div>
 </template>
 
 <script setup>
 import { computed, ref } from 'vue'
-import { siteInfo } from '../data/siteData'
+import { siteInfo } from '../services/contentStore'
 
 const supportStats = [
   { value: '长期', label: '围绕真实问题持续推进' },
@@ -313,14 +313,43 @@ const toggleFaq = (id) => {
   openFaqId.value = openFaqId.value === id ? '' : id
 }
 
-const mailtoHref = computed(() => {
-  const subject = encodeURIComponent('申请加入问题研究社')
-  const body = encodeURIComponent(
-    '老师您好，\n\n我希望申请加入问题研究社。我的基本信息如下：\n姓名：\n学校/年级：\n专业方向：\n感兴趣的问题或项目：\n每周可投入时间：\n项目/代码/作品链接：\n\n谢谢！',
-  )
+const mailSubject = '申请加入问题研究社'
+const mailBody =
+  '老师您好，\n\n我希望申请加入问题研究社。我的基本信息如下：\n姓名：\n学校/年级：\n专业方向：\n感兴趣的问题或项目：\n每周可投入时间：\n项目/代码/作品链接：\n\n谢谢！'
+
+const mailtoHref = computed(() => `mailto:${siteInfo.email}`)
+const mailtoTemplateHref = computed(() => {
+  const subject = encodeURIComponent(mailSubject)
+  const body = encodeURIComponent(mailBody)
 
   return `mailto:${siteInfo.email}?subject=${subject}&body=${body}`
 })
+
+const isMobileMailEnvironment = () => {
+  if (typeof window === 'undefined') return false
+
+  return window.matchMedia('(max-width: 720px), (hover: none), (pointer: coarse)').matches
+}
+
+const copyMailTemplate = async () => {
+  if (typeof navigator === 'undefined' || !navigator.clipboard?.writeText) return
+
+  try {
+    await navigator.clipboard.writeText(`收件人：${siteInfo.email}\n主题：${mailSubject}\n\n${mailBody}`)
+  } catch {
+    // Some in-app browsers block clipboard access; the clean mailto link still opens normally.
+  }
+}
+
+const sendApplicationEmail = (event) => {
+  if (isMobileMailEnvironment()) {
+    void copyMailTemplate()
+    return
+  }
+
+  event.preventDefault()
+  window.location.href = mailtoTemplateHref.value
+}
 </script>
 
 <style scoped>

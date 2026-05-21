@@ -166,7 +166,7 @@
 <script setup>
 import { computed } from 'vue'
 import HeroVisual from '../components/HeroVisual.vue'
-import { newsItems, projects, publications, researchAreas, resources, stats } from '../data/siteData'
+import { newsItems, projects, publications, researchAreas, resources, stats } from '../services/contentStore'
 
 const latestNews = computed(() => newsItems.slice(0, 3))
 const featuredPublications = computed(() => publications.filter((item) => item.featured).slice(0, 3))

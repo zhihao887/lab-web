@@ -31,7 +31,10 @@
       <article v-for="(person, idx) in directors" :key="person.name" class="director-card" :style="{ '--delay': idx * 100 + 'ms' }">
         <div class="director-avatar-wrapper">
           <div class="director-avatar-ring"></div>
-          <div class="director-avatar">{{ initials(person.name) }}</div>
+          <div class="director-avatar">
+            <img v-if="person.avatar" :src="person.avatar" :alt="person.name" />
+            <span v-else>{{ initials(person.name) }}</span>
+          </div>
         </div>
         <div class="director-body">
           <div class="director-badge">
@@ -85,7 +88,10 @@
         :class="'card-accent-' + group.accent"
         :style="{ '--delay': personIdx * 50 + 'ms' }"
       >
-        <div class="avatar" :class="'avatar-' + group.accent">{{ initials(person.name) }}</div>
+        <div class="avatar" :class="'avatar-' + group.accent">
+          <img v-if="person.avatar" :src="person.avatar" :alt="person.name" />
+          <span v-else>{{ initials(person.name) }}</span>
+        </div>
         <h3>{{ person.name }}</h3>
         <div v-if="person.problemTitle" class="problem-tag">
           <span class="tag-text">{{ person.problemTitle }}</span>
@@ -106,7 +112,7 @@
 
 <script setup>
 import { computed, ref } from 'vue'
-import { people } from '../data/siteData'
+import { people } from '../services/contentStore'
 
 const direction = ref('')
 
