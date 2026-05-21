@@ -34,7 +34,7 @@
               <strong>{{ entry.data[module.summaryField] || entry.entry_key }}</strong>
               <small>{{ entry.entry_key }}</small>
             </span>
-            <em :class="entry.status">{{ entry.status }}</em>
+            <em :class="entry.localOnly ? 'draft' : entry.status">{{ entry.localOnly ? '未保存' : entry.status }}</em>
           </button>
         </div>
       </section>
@@ -177,7 +177,17 @@ const statusLabel = computed(() => {
   return '已发布'
 })
 
-const resetForm = (data = {}) => {
+const blankFormData = () => {
+  const data = {}
+  module.value.fields.forEach((field) => {
+    if (field.type === 'checkbox') data[field.name] = false
+    else if (field.type === 'list') data[field.name] = []
+    else data[field.name] = ''
+  })
+  return data
+}
+
+const resetForm = (data = {}, dirty = false) => {
   suppressDirty.value = true
   Object.keys(form).forEach((key) => delete form[key])
   module.value.fields.forEach((field) => {
@@ -187,7 +197,7 @@ const resetForm = (data = {}) => {
   })
   nextTick(() => {
     suppressDirty.value = false
-    isDirty.value = false
+    isDirty.value = dirty
   })
 }
 
@@ -197,7 +207,7 @@ const selectEntry = (entry) => {
   entryKey.value = entry.entry_key
   status.value = entry.status || 'published'
   sortOrder.value = entry.sort_order ?? 0
-  resetForm(entry.data)
+  resetForm(entry.data, Boolean(entry.localOnly || entry.dirty))
 }
 
 const makeKey = (data) => {
@@ -210,21 +220,48 @@ const makeKey = (data) => {
     .slice(0, 80)
 }
 
+const nextEntryKey = () => {
+  const prefix = module.value.keyPrefix
+  const pattern = new RegExp(`^${prefix}-(\\d+)$`)
+  const maxNumber = entries.value.reduce((max, entry) => {
+    const match = String(entry.entry_key).match(pattern)
+    if (!match) return max
+    return Math.max(max, Number(match[1]) || 0)
+  }, 0)
+
+  return `${prefix}-${String(maxNumber + 1).padStart(3, '0')}`
+}
+
 const newItem = () => {
   suppressDirty.value = true
-  selectedKey.value = ''
   const nextIndex = entries.value.length + 1
-  entryKey.value = `${module.value.keyPrefix}-${String(nextIndex).padStart(3, '0')}`
-  status.value = 'published'
-  sortOrder.value = entries.value.length
-  resetForm({})
+  const key = nextEntryKey()
+  const draft = {
+    content_type: route.meta.contentType,
+    entry_key: key,
+    data: blankFormData(),
+    status: 'published',
+    sort_order: nextIndex - 1,
+    localOnly: true,
+    dirty: true,
+  }
+  entries.value = [draft, ...entries.value]
+  selectEntry(draft)
 }
 
 const duplicateSelected = () => {
-  selectedKey.value = ''
-  entryKey.value = `${module.value.keyPrefix}-${Date.now()}`
-  status.value = 'published'
-  isDirty.value = true
+  const key = nextEntryKey()
+  const draft = {
+    content_type: route.meta.contentType,
+    entry_key: key,
+    data: normalizedData(),
+    status: 'published',
+    sort_order: entries.value.length,
+    localOnly: true,
+    dirty: true,
+  }
+  entries.value = [draft, ...entries.value]
+  selectEntry(draft)
 }
 
 const loadItems = async () => {
@@ -249,6 +286,16 @@ const normalizedData = () => {
   const idField = module.value.idField
   if (idField && !data[idField]) data[idField] = entryKey.value || makeKey(data)
   return data
+}
+
+const syncSelectedLocalEntry = () => {
+  if (!selectedKey.value) return
+  const entry = entries.value.find((item) => item.entry_key === selectedKey.value)
+  if (!entry) return
+
+  entry.data = normalizedData()
+  entry.sort_order = Number(sortOrder.value) || 0
+  entry.dirty = true
 }
 
 const save = async () => {
@@ -286,6 +333,15 @@ const remove = async () => {
   if (!ok) return
 
   try {
+    const currentEntry = entries.value.find((entry) => entry.entry_key === selectedKey.value)
+    if (currentEntry?.localOnly) {
+      entries.value = entries.value.filter((entry) => entry.entry_key !== selectedKey.value)
+      message.value = '未保存内容已移除。'
+      if (entries.value.length) selectEntry(entries.value[0])
+      else newItem()
+      return
+    }
+
     await deleteAdminEntry({ contentType: route.meta.contentType, entryKey: selectedKey.value })
     message.value = '已删除。'
     await loadItems()
@@ -329,13 +385,19 @@ const textToList = (value) => value.split('\n').map((item) => item.trim()).filte
 watch(
   form,
   () => {
-    if (!suppressDirty.value) isDirty.value = true
+    if (!suppressDirty.value) {
+      isDirty.value = true
+      syncSelectedLocalEntry()
+    }
   },
   { deep: true },
 )
 
 watch(sortOrder, () => {
-  if (!suppressDirty.value) isDirty.value = true
+  if (!suppressDirty.value) {
+    isDirty.value = true
+    syncSelectedLocalEntry()
+  }
 })
 
 watch(
