@@ -1575,6 +1575,14 @@ button {
   color: var(--blue-deep);
 }
 
+.publication-venue-full {
+  margin: 8px 0 0;
+  color: #6f9fca;
+  font-size: 0.88rem;
+  font-weight: 680;
+  line-height: 1.55;
+}
+
 .publication-paper-link {
   min-height: 32px;
   padding: 8px 12px;

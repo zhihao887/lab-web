@@ -43,6 +43,7 @@
           </RouterLink>
           <p class="authors">{{ pub.authors }}</p>
           <p>{{ pub.abstract }}</p>
+          <p v-if="pub.venue" class="publication-venue-full">{{ pub.venue }}</p>
           <div v-if="pub.paper" class="tag-row publication-links">
             <a
               class="button secondary small publication-paper-link"
