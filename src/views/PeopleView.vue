@@ -28,7 +28,17 @@
       </div>
     </div>
     <div class="directors-grid">
-      <article v-for="(person, idx) in directors" :key="person.name" class="director-card" :style="{ '--delay': idx * 100 + 'ms' }">
+      <component
+        :is="profileHref(person) ? 'a' : 'article'"
+        v-for="(person, idx) in directors"
+        :key="person.name"
+        class="director-card"
+        :class="{ 'is-clickable': profileHref(person) }"
+        :href="profileHref(person) || undefined"
+        :target="profileHref(person) ? '_blank' : undefined"
+        :rel="profileHref(person) ? 'noopener noreferrer' : undefined"
+        :style="{ '--delay': idx * 100 + 'ms' }"
+      >
         <div class="director-avatar-wrapper">
           <div class="director-avatar-ring"></div>
           <div class="director-avatar">
@@ -49,7 +59,7 @@
             {{ person.problemTitle }}
           </p>
         </div>
-      </article>
+      </component>
     </div>
   </section>
 
@@ -115,6 +125,12 @@ import { computed, ref } from 'vue'
 import { people } from '../services/contentStore'
 
 const direction = ref('')
+
+const profileLinks = {
+  芦安洋: 'http://www.ise.neu.edu.cn/2025/1010/c5975a293508/page.htm',
+}
+
+const profileHref = (person) => profileLinks[person.name] || ''
 
 const directors = computed(() => {
   return people.filter((p) => p.group === 'directors')

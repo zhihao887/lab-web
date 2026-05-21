@@ -1018,6 +1018,12 @@ button {
     0 0 0 1px rgba(79, 130, 194, 0.1);
 }
 
+.director-card.is-clickable {
+  color: inherit;
+  cursor: pointer;
+  text-decoration: none;
+}
+
 .director-card:hover::after {
   opacity: 0.6;
 }
