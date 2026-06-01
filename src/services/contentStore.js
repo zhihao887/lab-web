@@ -69,10 +69,15 @@ const replaceArray = (target, values) => {
 }
 
 const applySiteInfo = (value) => {
+  const normalizedValue = { ...value }
+  if (normalizedValue.email === 'contact@imblab.cn') {
+    normalizedValue.email = fallbackSiteInfo.email
+  }
+
   Object.keys(siteInfo).forEach((key) => {
     delete siteInfo[key]
   })
-  Object.assign(siteInfo, value)
+  Object.assign(siteInfo, normalizedValue)
 }
 
 export const getFallbackItems = (contentType) => fallbackCollections[contentType] || []

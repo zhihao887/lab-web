@@ -16,7 +16,7 @@ export const siteInfo = {
   name: '问题研究社',              // 修改实验室中文名称
   nameEn: 'Problem Research Lab', // 修改实验室英文名称
   subtitle: '...',                 // 修改副标题
-  email: 'contact@imblab.cn',      // 修改联系邮箱
+  email: 'guoyun@mails.neu.edu.cn',      // 修改联系邮箱
   location: '北京 · 问题研究社联合空间', // 修改地址
 }
 
