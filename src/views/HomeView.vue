@@ -47,7 +47,7 @@
       <RouterLink to="/projects">全部研究问题</RouterLink>
     </div>
     <div class="research-grid">
-      <RouterLink v-for="area in researchAreas" :key="area.slug" :to="`/research/${area.slug}`" class="research-card">
+      <article v-for="area in researchAreas" :key="area.slug" class="research-card research-card-static">
         <span class="card-eyebrow">{{ area.eyebrow }}</span>
         <h3>{{ area.title }}</h3>
         <p>{{ area.description }}</p>
@@ -58,7 +58,7 @@
         <div class="tag-row">
           <span v-for="metric in area.metrics" :key="metric">{{ metric }}</span>
         </div>
-      </RouterLink>
+      </article>
     </div>
   </section>
 
@@ -74,7 +74,7 @@
       <RouterLink
         v-for="project in representativeProjects"
         :key="project.id"
-        :to="`/research/${project.researchSlug}`"
+        :to="`/projects/${project.id}`"
         class="project-card"
       >
         <div class="project-visual" :class="`accent-${project.accent}`">

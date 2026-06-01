@@ -710,6 +710,18 @@ button {
   padding: 22px;
 }
 
+.research-card-static:hover {
+  transform: none;
+  border-color: var(--line);
+  box-shadow: 0 12px 34px rgba(23, 32, 51, 0.06);
+}
+
+.direction-summary-card-static:hover {
+  transform: none;
+  border-color: var(--line);
+  box-shadow: 0 12px 34px rgba(23, 32, 51, 0.06);
+}
+
 .research-card h3,
 .news-preview h3,
 .publication-stack h3,

@@ -28,7 +28,7 @@
     </div>
 
     <div class="direction-summary-grid">
-      <RouterLink v-for="area in researchAreas" :key="area.slug" :to="`/research/${area.slug}`" class="direction-summary-card">
+      <article v-for="area in researchAreas" :key="area.slug" class="direction-summary-card direction-summary-card-static">
         <span class="card-eyebrow">{{ area.eyebrow }}</span>
         <h2>{{ area.title }}</h2>
         <p>{{ area.description }}</p>
@@ -36,7 +36,7 @@
           <span>{{ area.problemCount }} 个问题</span>
           <span>{{ area.participantCount }} 位参与人</span>
         </div>
-      </RouterLink>
+      </article>
     </div>
   </section>
 
@@ -46,7 +46,6 @@
         <p class="eyebrow">{{ group.area.eyebrow }}</p>
         <h2>{{ group.area.title }}</h2>
       </div>
-      <RouterLink :to="`/research/${group.area.slug}`">方向详情</RouterLink>
     </div>
 
     <div class="problem-library-grid">
@@ -66,7 +65,7 @@
           <span v-for="tag in project.tags" :key="tag">{{ tag }}</span>
         </div>
         <div class="project-card-footer">
-          <RouterLink :to="`/research/${project.researchSlug}`" class="text-link">查看方向问题集</RouterLink>
+          <RouterLink :to="`/projects/${project.id}`" class="text-link">查看问题详情</RouterLink>
         </div>
       </article>
     </div>

@@ -72,9 +72,9 @@
 
         <div v-if="linkedArea" class="meta-panel">
           <h2>关联方向</h2>
-          <RouterLink :to="`/research/${linkedArea.slug}`" class="text-link">
+          <span class="text-link">
             {{ linkedArea.title }}
-          </RouterLink>
+          </span>
         </div>
 
         <div v-if="linkedProjects.length" class="meta-panel">

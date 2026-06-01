@@ -51,9 +51,9 @@
 
         <div class="meta-panel">
           <h2>所属方向</h2>
-          <RouterLink v-if="linkedArea" :to="`/research/${linkedArea.slug}`" class="text-link">
+          <span v-if="linkedArea" class="text-link">
             {{ linkedArea.title }}
-          </RouterLink>
+          </span>
         </div>
 
         <div class="meta-panel">
